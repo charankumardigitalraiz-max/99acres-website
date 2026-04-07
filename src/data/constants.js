@@ -1,0 +1,153 @@
+// ─── HERO SLIDES ──────────────────────────────────────────
+export const SLIDES = [
+  {
+    bg: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=80',
+    tag: 'New Launch 2026',
+    title: 'Find Your Perfect\nDream Property',
+    sub: "Explore 1 Lakh+ verified listings across India's top cities",
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80',
+    tag: 'Premium Villas',
+    title: 'Luxury Living\nRedefined',
+    sub: 'Premium villas, penthouses and gated communities for discerning buyers',
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80',
+    tag: 'Commercial Hub',
+    title: 'Scale Your Business\nWith the Right Space',
+    sub: 'Office spaces, retail shops and warehouses in prime locations',
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&q=80',
+    tag: 'Exclusive Rentals',
+    title: 'Your Next Home\nAwaits You',
+    sub: 'Fully verified rental properties, move-in ready and hassle-free',
+  },
+];
+
+// ─── PROMO BANNERS ────────────────────────────────────────
+export const PROMO_BANNERS = [
+  {
+    img: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80',
+    tag: 'HOME LOANS',
+    title: 'Get Home Loan at\n8.5% Interest Rate',
+    sub: 'Quick approval • Minimal paperwork • Up to ₹5 Cr',
+    cta: 'Apply Now',
+    accent: '#005ca8',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1200&q=80',
+    tag: 'SPECIAL OFFER',
+    title: 'Earn ₹10,000 for\nEvery Referral',
+    sub: 'Refer friends • They find a home • You earn rewards',
+    cta: 'Refer Now',
+    accent: '#059669',
+  },
+];
+
+// ─── CATEGORIES ───────────────────────────────────────────
+export const CATEGORIES = [
+  { img: '/src/assets/categories/apartments.png', name: 'Apartments', count: '42,000+' },
+  { img: '/src/assets/categories/villas.png', name: 'Villas', count: '8,500+' },
+  { img: '/src/assets/categories/commercial.png', name: 'Commercial', count: '15,000+' },
+  { img: '/src/assets/categories/projects.png', name: 'New Projects', count: '1,200+' },
+  { img: '/src/assets/categories/land.png', name: 'Plots / Land', count: '22,000+' },
+];
+
+// ─── BUY PROPERTIES ───────────────────────────────────────
+export const BUY_PROPERTIES = [
+  { id: 'b1', type: 'buy', img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80', badge: 'Ready to Move', badgeClass: 'ready', price: '₹ 1.25 Cr', title: '3 BHK Premium Flat', loc: 'Whitefield, Bangalore', beds: '3', baths: '2', size: '1,850 sqft', rating: 4.7 },
+  { id: 'b2', type: 'buy', img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80', badge: 'New Launch', badgeClass: 'new', price: '₹ 3.80 Cr', title: '4 BHK Luxury Villa', loc: 'Koramangala, Bangalore', beds: '4', baths: '4', size: '3,200 sqft', rating: 4.9 },
+  { id: 'b3', type: 'buy', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', badge: 'Ready to Move', badgeClass: 'ready', price: '₹ 88 Lac', title: '2 BHK Modern Apartment', loc: 'Electronic City, Bangalore', beds: '2', baths: '2', size: '1,100 sqft', rating: 4.5 },
+  { id: 'b4', type: 'buy', img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80', badge: 'Under Const.', badgeClass: '', price: '₹ 2.40 Cr', title: '3 BHK Penthouse', loc: 'Indiranagar, Bangalore', beds: '3', baths: '3', size: '2,400 sqft', rating: 4.8 },
+];
+
+// ─── RENT PROPERTIES ──────────────────────────────────────
+export const RENT_PROPERTIES = [
+  { id: 'r1', type: 'rent', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge: 'Available Now', badgeClass: 'ready', price: '₹ 28,000/mo', title: '2 BHK Fully Furnished', loc: 'HSR Layout, Bangalore', beds: '2', baths: '2', size: '1,050 sqft', rating: 4.6 },
+  { id: 'r2', type: 'rent', img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', badge: 'Available Now', badgeClass: 'ready', price: '₹ 45,000/mo', title: '3 BHK Semi-Furnished', loc: 'Bandra West, Mumbai', beds: '3', baths: '2', size: '1,650 sqft', rating: 4.8 },
+  { id: 'r3', type: 'rent', img: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=600&q=80', badge: 'Available Now', badgeClass: 'ready', price: '₹ 18,000/mo', title: '1 BHK Studio Apartment', loc: 'Andheri, Mumbai', beds: '1', baths: '1', size: '620 sqft', rating: 4.3 },
+  { id: 'r4', type: 'rent', img: 'https://images.unsplash.com/photo-1551361415-69c87624334f?w=600&q=80', badge: 'Available Now', badgeClass: 'ready', price: '₹ 60,000/mo', title: '4 BHK Luxury Apartment', loc: 'Powai, Mumbai', beds: '4', baths: '3', size: '2,100 sqft', rating: 4.9 },
+];
+
+// ─── HIGH RATED PROPERTIES ────────────────────────────────
+export const HIGH_RATED_PROPERTIES = [
+  { id: 'h1', type: 'buy', img: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 5.20 Cr', title: 'Ultra Luxury 5 BHK Bungalow', loc: 'Juhu, Mumbai', beds: '5', baths: '5', size: '5,400 sqft', rating: 5.0 },
+  { id: 'h2', type: 'rent', img: 'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 85,000/mo', title: 'Sea View 3 BHK Penthouse', loc: 'Marine Lines, Mumbai', beds: '3', baths: '3', size: '2,800 sqft', rating: 4.9 },
+  { id: 'h3', type: 'buy', img: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 4.10 Cr', title: 'Premium 4 BHK Villa', loc: 'Jubilee Hills, Hyderabad', beds: '4', baths: '4', size: '4,200 sqft', rating: 4.9 },
+  { id: 'h4', type: 'rent', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFyRa6JYZl0Zi-N_DdIsYkXR1q1PSmWFP54g&s', badge: 'Top Rated', badgeClass: 'new', price: '₹ 55,000/mo', title: 'Furnished 3 BHK Golf View', loc: 'DLF Phase 5, Gurugram', beds: '3', baths: '3', size: '2,200 sqft', rating: 4.8 },
+  { id: 'h5', type: 'buy', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 3.75 Cr', title: 'Modern 4 BHK Smart Home', loc: 'Whitefield, Bangalore', beds: '4', baths: '4', size: '3,600 sqft', rating: 4.8 },
+  { id: 'h6', type: 'rent', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 45,000/mo', title: 'Spacious 3 BHK Lake Facing', loc: 'Powai, Mumbai', beds: '3', baths: '2', size: '1,900 sqft', rating: 4.8 },
+  { id: 'h7', type: 'buy', img: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 2.85 Cr', title: 'Designer 3 BHK Apartment', loc: 'Banjara Hills, Hyderabad', beds: '3', baths: '3', size: '2,100 sqft', rating: 4.7 },
+  { id: 'h8', type: 'buy', img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 6.50 Cr', title: 'Heritage 6 BHK Farmhouse', loc: 'Chattarpur, Delhi', beds: '6', baths: '6', size: '8,000 sqft', rating: 4.9 },
+  { id: 'h9', type: 'rent', img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 32,000/mo', title: 'Cozy 2 BHK Hill View', loc: 'Koregaon Park, Pune', beds: '2', baths: '2', size: '1,200 sqft', rating: 4.7 },
+  { id: 'h10', type: 'buy', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', badge: 'Top Rated', badgeClass: 'new', price: '₹ 1.95 Cr', title: 'New Launch 2 BHK Flat', loc: 'Hinjewadi, Pune', beds: '2', baths: '2', size: '1,050 sqft', rating: 4.6 },
+];
+
+// ─── LAND / PLOT PROPERTIES ───────────────────────────────
+export const LAND_PROPERTIES = [
+  { id: 'l1', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', badge: 'Prime Plot', badgeClass: 'new', price: '₹ 1.80 Cr', title: 'Corner Plot in Gated Township', loc: 'Aerocity, Hyderabad', size: '250 sq yd', type: 'Residential', facing: 'East' },
+  { id: 'l2', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80', badge: 'NA Approved', badgeClass: 'ready', price: '₹ 95 L', title: 'Farm Land with Road Access', loc: 'Karjat, Maharashtra', size: '2 Acres', type: 'Agricultural', facing: 'North' },
+  { id: 'l3', img: 'https://images.unsplash.com/photo-1587745890135-20db8c79b027?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', badge: 'DTCP Approved', badgeClass: 'new', price: '₹ 2.40 Cr', title: 'Commercial Corner Plot', loc: 'ORR, Bangalore', size: '300 sq yd', type: 'Commercial', facing: 'West' },
+  { id: 'l4', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80', badge: 'Gated Community', badgeClass: 'ready', price: '₹ 75 L', title: 'Villa Plot in Premium Township', loc: 'Shamshabad, Hyderabad', size: '200 sq yd', type: 'Residential', facing: 'South' },
+  { id: 'l5', img: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=600&q=80', badge: 'Waterfront', badgeClass: 'new', price: '₹ 3.20 Cr', title: 'Lake Facing Eco Plot', loc: 'Kanakapura Road, Bangalore', size: '500 sq yd', type: 'Residential', facing: 'North-East' },
+  { id: 'l6', img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80', badge: 'Investment', badgeClass: 'new', price: '₹ 1.20 Cr', title: 'Plot Near IT Hub', loc: 'Electronic City, Bangalore', size: '150 sq yd', type: 'Residential', facing: 'East' },
+  { id: 'l7', img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=80', badge: 'RERA Approved', badgeClass: 'ready', price: '₹ 60 L', title: 'Residential Plot in Smart City', loc: 'Dholera SIR, Gujarat', size: '180 sq yd', type: 'Residential', facing: 'West' },
+  { id: 'l8', img: 'https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=600&q=80', badge: 'Highway Touch', badgeClass: 'new', price: '₹ 4.50 Cr', title: 'Highway Commercial Plot', loc: 'NH48, Delhi NCR', size: '1,000 sq yd', type: 'Commercial', facing: 'South-East' },
+];
+
+// ─── CITIES ───────────────────────────────────────────────
+export const CITIES = [
+  { name: 'Mumbai', count: '1.2L+', img: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=80' },
+  { name: 'Delhi NCR', count: '98K+', img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80' },
+  { name: 'Bangalore', count: '86K+', img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=400&q=80' },
+  { name: 'Hyderabad', count: '72K+', img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=400&q=80' },
+  { name: 'Chennai', count: '54K+', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80' },
+  { name: 'Pune', count: '61K+', img: 'https://t3.ftcdn.net/jpg/03/20/46/64/360_F_320466451_lyuLhFiKxlcp2vBZk1bV3uPrJVLmaZSB.jpg' },
+  { name: 'Kolkata', count: '45K+', img: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=400&q=80' },
+  { name: 'Ahmedabad', count: '38K+', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80' },
+  { name: 'Jaipur', count: '29K+', img: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&q=80' },
+  { name: 'Chandigarh', count: '22K+', img: 'https://media.istockphoto.com/id/2176517445/photo/aerial-view-of-chandigarh-city-and-sukhna-chowk-in-punjab-is-a-planned-indian-city.jpg?s=612x612&w=0&k=20&c=Ho-m3jlJ_xQBnNJOCpAdsPIUvWMywMI6sxyrvo_3JK4=' },
+  { name: 'Lucknow', count: '18K+', img: 'https://s7ap1.scene7.com/is/image/incredibleindia/lucknow%20railway%20station-lucknow-uttar%20pradesh-hero?qlt=82&ts=1742160337309' },
+  { name: 'Kochi', count: '15K+', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80' },
+];
+
+// ─── HYDERABAD PROPERTIES ─────────────────────────────────
+export const HYDERABAD_LOCALITIES = [
+  { id: 'hyd1', type: 'buy', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80', badge: 'Jubilee Hills', badgeClass: 'new', price: '₹ 8.50 Cr', title: 'Ultra Premium 5 BHK Villa', loc: 'Jubilee Hills, Hyderabad', beds: '5', baths: '6', size: '6,200 sqft', rating: 4.9 },
+  { id: 'hyd2', type: 'buy', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80', badge: 'Banjara Hills', badgeClass: 'ready', price: '₹ 4.20 Cr', title: 'Luxury 3 BHK Apartment', loc: 'Banjara Hills, Hyderabad', beds: '3', baths: '3', size: '2,800 sqft', rating: 4.8 },
+  { id: 'hyd3', type: 'buy', img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80', badge: 'Gachibowli', badgeClass: 'new', price: '₹ 2.10 Cr', title: 'Modern 3 BHK Near IT Park', loc: 'Gachibowli, Hyderabad', beds: '3', baths: '3', size: '1,950 sqft', rating: 4.7 },
+  { id: 'hyd4', type: 'rent', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80', badge: 'HITEC City', badgeClass: 'ready', price: '₹ 85,000/mo', title: 'Furnished 4 BHK Penthouse', loc: 'HITEC City, Hyderabad', beds: '4', baths: '4', size: '3,200 sqft', rating: 4.9 },
+  { id: 'hyd5', type: 'buy', img: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80', badge: 'Kondapur', badgeClass: 'new', price: '₹ 1.75 Cr', title: 'Premium 2.5 BHK Flat', loc: 'Kondapur, Hyderabad', beds: '3', baths: '2', size: '1,600 sqft', rating: 4.6 },
+  { id: 'hyd6', type: 'buy', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', badge: 'Kukatpally', badgeClass: 'ready', price: '₹ 1.45 Cr', title: 'Spacious 3 BHK Apartment', loc: 'Kukatpally, Hyderabad', beds: '3', baths: '3', size: '1,850 sqft', rating: 4.5 },
+  { id: 'hyd7', type: 'rent', img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80', badge: 'Madhapur', badgeClass: 'new', price: '₹ 60,000/mo', title: 'Contemporary 3 BHK Flat', loc: 'Madhapur, Hyderabad', beds: '3', baths: '3', size: '2,100 sqft', rating: 4.8 },
+  { id: 'hyd8', type: 'buy', img: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80', badge: 'Tellapur', badgeClass: 'new', price: '₹ 3.15 Cr', title: 'Exclusive 4 BHK Duplex Villa', loc: 'Tellapur, Hyderabad', beds: '4', baths: '4', size: '3,800 sqft', rating: 4.7 },
+];
+
+// ─── STATS ────────────────────────────────────────────────
+export const STATS = [
+  { num: '10L+', label: 'Active Listings' },
+  { num: '25K+', label: 'Verified Builders' },
+  { num: '5M+', label: 'Happy Customers' },
+  { num: '500+', label: 'Cities Covered' },
+];
+
+// ─── NAV LINKS ────────────────────────────────────────────
+export const NAV_LINKS = [
+  { label: 'Buy', path: '/' },
+  { label: 'Rent', path: '/' },
+  { label: 'New Projects', path: '/' },
+  { label: 'Commercial', path: '/' },
+  { label: 'Agents', path: '/' },
+];
+
+// ─── SEARCH TABS ─────────────────────────────────────────
+export const SEARCH_TABS = ['Buy', 'Rent', 'New Projects', 'Commercial'];
+
+// ─── FOOTER LINKS ─────────────────────────────────────────
+export const FOOTER_LINKS = {
+  Company: ['About Us', 'Careers', 'Blog', 'Press', 'Contact'],
+  Explore: ['Buy in Mumbai', 'Buy in Bangalore', 'Rent in Delhi', 'New Projects'],
+  Support: ['Help Center', 'Privacy Policy', 'Terms of Use', 'Report Fraud'],
+};

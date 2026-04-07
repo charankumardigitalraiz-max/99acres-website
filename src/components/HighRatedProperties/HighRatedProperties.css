@@ -1,0 +1,79 @@
+/* === HIGH RATED SECTION === */
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slide-prev-btn,
+.slide-next-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.slide-prev-btn:hover,
+.slide-next-btn:hover {
+  background: var(--dark);
+  color: var(--white);
+  border-color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.slide-prev-btn.swiper-button-disabled,
+.slide-next-btn.swiper-button-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.divider-v {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  margin: 0 8px;
+}
+
+.carousel-wrapper {
+  margin: 0 -20px;
+  padding: 8px 20px 8px;
+}
+
+.rated-swiper {
+  padding: 8px 4px 8px !important;
+  margin: -8px -4px !important;
+}
+
+/* Force horizontal layout on swiper wrapper */
+.rated-swiper .swiper-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+}
+
+.rated-swiper .swiper-slide {
+  height: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .slider-controls .divider-v,
+  .slider-controls .view-all {
+    display: none;
+  }
+  
+  .carousel-wrapper {
+    margin: 0 -15px;
+    padding: 8px 15px 8px;
+  }
+}

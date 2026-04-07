@@ -1,0 +1,101 @@
+/* === PROMO BANNER SWIPER === */
+.promo-swiper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.promo-slide {
+  position: relative;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.promo-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(15, 23, 42, 0.7) 40%,
+    transparent 100%
+  );
+}
+
+.promo-slide-content {
+  position: relative;
+  z-index: 1;
+}
+
+.promo-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.promo-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.promo-sub {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.banner-cta {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 32px;
+  border-radius: var(--radius-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.banner-cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+@media (max-width: 1024px) {
+  .promo-slide {
+    padding: 0 40px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-slide {
+    height: auto;
+    padding: 40px 24px;
+  }
+
+  .promo-title {
+    font-size: 1.6rem;
+  }
+
+  .promo-sub {
+    font-size: 0.95rem;
+  }
+}
