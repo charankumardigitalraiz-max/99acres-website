@@ -49,11 +49,12 @@ export const PROMO_BANNERS = [
 // ─── CATEGORIES ───────────────────────────────────────────
 export const CATEGORIES = [
   { img: '/categories/apartments.png', name: 'Apartments', count: '42,000+' },
-  { img: '//categories/villas.png', name: 'Villas', count: '8,500+' },
+  { img: '/categories/villas.png', name: 'Villas', count: '8,500+' },
   { img: '/categories/commercial.png', name: 'Commercial', count: '15,000+' },
   { img: '/categories/projects.png', name: 'New Projects', count: '1,200+' },
   { img: '/categories/land.png', name: 'Plots / Land', count: '22,000+' },
 ];
+
 
 // ─── BUY PROPERTIES ───────────────────────────────────────
 export const BUY_PROPERTIES = [
