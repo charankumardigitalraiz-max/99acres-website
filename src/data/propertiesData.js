@@ -322,7 +322,7 @@ export const propertiesData = [
       propertyTaxReceipt: 'plot_tax.pdf'
     },
     // --- Harmonization Fields ---
-    img: 'https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=600&q=80',
+    img: 'https://www.shutterstock.com/image-photo/aerial-view-developing-residential-area-260nw-2712823111.jpg',
     loc: 'Gachibowli, Hyderabad',
     beds: '0',
     baths: '0',
@@ -462,5 +462,197 @@ export const propertiesData = [
     size: '6,500 sqft',
     badge: 'Elite Villa',
     badgeClass: 'new'
+  },
+  {
+    id: 7,
+    title: '5 Acres Agricultural Land in Shadnagar',
+    propertyType: 'Lands',
+    purpose: 'selling',
+    propertyLength: '5 Acres',
+    areaValue: 217800,
+    location: {
+      city: 'Hyderabad',
+      locality: 'Shadnagar',
+      projectName: 'Open Lands',
+      fullAddress: 'Survey No 123, Shadnagar, Hyderabad Outskirts',
+      landmark: 'Near Highway'
+    },
+    city: 'Hyderabad',
+    uploader: {
+      name: 'Ramesh Babu',
+      role: 'owner',
+      avatar: 'RB',
+      verification: 'Adhaar Verified',
+      photo: null
+    },
+    uploadedBy: 'Ramesh Babu',
+    userId: 'e5b7a4c6-5f6b-8e0d-2a35-007',
+    uploadertype: 'owner',
+    pricing: {
+      expectedPrice: 15000000,
+      pricePerSqft: 68,
+      maintenanceCharges: 0,
+      negotiable: true
+    },
+    price: '₹1.5 Cr',
+    status: 'verified',
+    date: '2025-03-26',
+    furnishingStatus: 'Unfurnished',
+    amenities: ['water supply'],
+    direction: 'east side',
+    locationAdvantages: ['close to highway'],
+    availabilityStatus: 'ready to move',
+    availableFrom: '2024-01-01',
+    smartAlbum: {
+      'Land View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80']
+    },
+    coverPhoto: 'https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80',
+    images: ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80'],
+    video: null,
+    ownerVerification: {
+      type: 'Adhaar',
+      status: 'Verified',
+      photo: null
+    },
+    ownershipProofs: {
+      saleDeed: 'land_deed.pdf',
+      encumbranceCert: 'land_ec.pdf',
+      propertyTaxReceipt: 'land_tax.pdf'
+    },
+    // --- Harmonization Fields ---
+    img: 'https://apollo.olx.in/v1/files/j6xrnig4nb3p2-IN/image',
+    loc: 'Shadnagar, Hyderabad',
+    beds: '0',
+    baths: '0',
+    size: '5 Acres',
+    badge: 'Agriculture',
+    badgeClass: 'ready'
+  },
+  {
+    id: 8,
+    title: 'Sea Facing 5BHK Villa in ECR',
+    propertyType: 'Villas',
+    purpose: 'selling',
+    propertyLength: '8000 sqft',
+    areaValue: 8000,
+    location: {
+      city: 'Chennai',
+      locality: 'ECR',
+      projectName: 'Ocean Breezes',
+      fullAddress: 'Villa 10, Ocean Breezes, ECR, Chennai',
+      landmark: 'Near VGP'
+    },
+    city: 'Chennai',
+    uploader: {
+      name: 'Anjali Desai',
+      role: 'agent',
+      avatar: 'AD',
+      verification: 'PAN Verified',
+      photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop'
+    },
+    uploadedBy: 'Anjali Desai',
+    userId: '10008',
+    uploadertype: 'agent',
+    pricing: {
+      expectedPrice: 150000000,
+      pricePerSqft: 18750,
+      maintenanceCharges: 25000,
+      negotiable: true
+    },
+    price: '₹15 Cr',
+    status: 'verified',
+    date: '2025-04-01',
+    furnishingStatus: 'Semi Furnished',
+    amenities: ['water supply', 'washrooms', 'bedrooms', 'kitchen', 'livving room', 'balcony', 'parking', 'garden', 'terrace', 'pool'],
+    direction: 'east side',
+    locationAdvantages: ['close to highway', 'close to market'],
+    availabilityStatus: 'ready to move',
+    availableFrom: '2025-05-01',
+    smartAlbum: {
+      'Exterior': ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80'],
+      'Pool': ['https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80']
+    },
+    coverPhoto: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80',
+    images: ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80', 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80'],
+    video: null,
+    ownerVerification: {
+      type: 'Passport',
+      status: 'Verified',
+      photo: 'https://images.unsplash.com/photo-1581553672347-95d9444c0d2c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    ownershipProofs: {
+      saleDeed: 'villa_deed.pdf'
+    },
+    // --- Harmonization Fields ---
+    img: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80',
+    loc: 'ECR, Chennai',
+    beds: '5',
+    baths: '6',
+    size: '8,000 sqft',
+    badge: 'Luxury Sea View',
+    badgeClass: 'new'
+  },
+  {
+    id: 9,
+    title: 'Corner Plot in Gated Community',
+    propertyType: 'Plots',
+    purpose: 'selling',
+    propertyLength: '3600 sqft',
+    areaValue: 3600,
+    location: {
+      city: 'Pune',
+      locality: 'Hinjewadi',
+      projectName: 'Tech Park Enclave',
+      fullAddress: 'Plot C-12, Tech Park Enclave, Hinjewadi, Pune',
+      landmark: 'Near Phase 1 IT Park'
+    },
+    city: 'Pune',
+    uploader: {
+      name: 'Sahil Sharma',
+      role: 'owner',
+      avatar: 'SS',
+      verification: 'Adhaar Verified',
+      photo: null
+    },
+    uploadedBy: 'Sahil Sharma',
+    userId: '10009',
+    uploadertype: 'owner',
+    pricing: {
+      expectedPrice: 8500000,
+      pricePerSqft: 2361,
+      maintenanceCharges: 1000,
+      negotiable: false
+    },
+    price: '₹85 L',
+    status: 'verified',
+    date: '2025-04-05',
+    furnishingStatus: 'Unfurnished',
+    amenities: ['water supply', 'parking', 'garden'],
+    direction: 'north-east',
+    locationAdvantages: ['close to highway', 'close to market'],
+    availabilityStatus: 'ready to move',
+    availableFrom: '2025-04-10',
+    smartAlbum: {
+      'Location': ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80']
+    },
+    coverPhoto: 'https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80',
+    images: ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80'],
+    video: null,
+    ownerVerification: {
+      type: 'Adhaar',
+      status: 'Verified',
+      photo: null
+    },
+    ownershipProofs: {
+      saleDeed: 'deed.pdf'
+    },
+    // --- Harmonization Fields ---
+    img: 'https://images.unsplash.com/photo-1524813686514-a57563d77965?w=600&q=80',
+    loc: 'Hinjewadi, Pune',
+    beds: '0',
+    baths: '0',
+    size: '3,600 sqft',
+    badge: 'Corner Plot',
+    badgeClass: 'ready'
   }
 ];

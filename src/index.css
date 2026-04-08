@@ -23,7 +23,8 @@
   --white: #ffffff;
   --green: #10b981;
   --red: #ef4444;
-  --shadow-elite: 0 25px 60px -12px rgba(10, 18, 42, 0.18), 0 0 1px rgba(0, 0, 0, 0.1);
+  --shadow-elite:
+    0 25px 60px -12px rgba(10, 18, 42, 0.18), 0 0 1px rgba(0, 0, 0, 0.1);
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -35,7 +36,11 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -70,7 +75,10 @@ ul {
   padding: 0 20px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--dark);
   line-height: 1.15;
   letter-spacing: -0.02em;

@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Properties from './pages/Properties';
 import Subscription from './pages/Subscription';
 import PropertyDetails from './pages/PropertyDetails';
+import UserPanel from './pages/UserPanel';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="subscription" element={<Subscription />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="profile/:tab?" element={<UserPanel />} />
           </Route>
         </Routes>
       </Provider>

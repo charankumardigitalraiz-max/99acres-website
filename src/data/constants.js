@@ -87,14 +87,14 @@ export const HIGH_RATED_PROPERTIES = [
 
 // ─── LAND / PLOT PROPERTIES ───────────────────────────────
 export const LAND_PROPERTIES = [
-  { id: 'l1', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', badge: 'Prime Plot', badgeClass: 'new', price: '₹ 1.80 Cr', title: 'Corner Plot in Gated Township', loc: 'Aerocity, Hyderabad', size: '250 sq yd', type: 'Residential', facing: 'East' },
-  { id: 'l2', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80', badge: 'NA Approved', badgeClass: 'ready', price: '₹ 95 L', title: 'Farm Land with Road Access', loc: 'Karjat, Maharashtra', size: '2 Acres', type: 'Agricultural', facing: 'North' },
-  { id: 'l3', img: 'https://images.unsplash.com/photo-1587745890135-20db8c79b027?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', badge: 'DTCP Approved', badgeClass: 'new', price: '₹ 2.40 Cr', title: 'Commercial Corner Plot', loc: 'ORR, Bangalore', size: '300 sq yd', type: 'Commercial', facing: 'West' },
-  { id: 'l4', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80', badge: 'Gated Community', badgeClass: 'ready', price: '₹ 75 L', title: 'Villa Plot in Premium Township', loc: 'Shamshabad, Hyderabad', size: '200 sq yd', type: 'Residential', facing: 'South' },
-  { id: 'l5', img: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=600&q=80', badge: 'Waterfront', badgeClass: 'new', price: '₹ 3.20 Cr', title: 'Lake Facing Eco Plot', loc: 'Kanakapura Road, Bangalore', size: '500 sq yd', type: 'Residential', facing: 'North-East' },
-  { id: 'l6', img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80', badge: 'Investment', badgeClass: 'new', price: '₹ 1.20 Cr', title: 'Plot Near IT Hub', loc: 'Electronic City, Bangalore', size: '150 sq yd', type: 'Residential', facing: 'East' },
-  { id: 'l7', img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=80', badge: 'RERA Approved', badgeClass: 'ready', price: '₹ 60 L', title: 'Residential Plot in Smart City', loc: 'Dholera SIR, Gujarat', size: '180 sq yd', type: 'Residential', facing: 'West' },
-  { id: 'l8', img: 'https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=600&q=80', badge: 'Highway Touch', badgeClass: 'new', price: '₹ 4.50 Cr', title: 'Highway Commercial Plot', loc: 'NH48, Delhi NCR', size: '1,000 sq yd', type: 'Commercial', facing: 'South-East' },
+  { id: 'l1', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', badge: 'Prime Plot', badgeClass: 'new', price: '₹ 1.80 Cr', title: 'Corner Plot in Gated Township', loc: 'Aerocity, Hyderabad', size: '250 sq yd', type: 'Residential', facing: 'East' },
+  { id: 'l2', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80', badge: 'NA Approved', badgeClass: 'ready', price: '₹ 95 L', title: 'Farm Land with Road Access', loc: 'Karjat, Maharashtra', size: '2 Acres', type: 'Agricultural', facing: 'North' },
+  { id: 'l3', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1587745890135-20db8c79b027?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', badge: 'DTCP Approved', badgeClass: 'new', price: '₹ 2.40 Cr', title: 'Commercial Corner Plot', loc: 'ORR, Bangalore', size: '300 sq yd', type: 'Commercial', facing: 'West' },
+  { id: 'l4', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80', badge: 'Gated Community', badgeClass: 'ready', price: '₹ 75 L', title: 'Villa Plot in Premium Township', loc: 'Shamshabad, Hyderabad', size: '200 sq yd', type: 'Residential', facing: 'South' },
+  { id: 'l5', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=600&q=80', badge: 'Waterfront', badgeClass: 'new', price: '₹ 3.20 Cr', title: 'Lake Facing Eco Plot', loc: 'Kanakapura Road, Bangalore', size: '500 sq yd', type: 'Residential', facing: 'North-East' },
+  { id: 'l6', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80', badge: 'Investment', badgeClass: 'new', price: '₹ 1.20 Cr', title: 'Plot Near IT Hub', loc: 'Electronic City, Bangalore', size: '150 sq yd', type: 'Residential', facing: 'East' },
+  { id: 'l7', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=80', badge: 'RERA Approved', badgeClass: 'ready', price: '₹ 60 L', title: 'Residential Plot in Smart City', loc: 'Dholera SIR, Gujarat', size: '180 sq yd', type: 'Residential', facing: 'West' },
+  { id: 'l8', propertyType: 'Plots', img: 'https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=600&q=80', badge: 'Highway Touch', badgeClass: 'new', price: '₹ 4.50 Cr', title: 'Highway Commercial Plot', loc: 'NH48, Delhi NCR', size: '1,000 sq yd', type: 'Commercial', facing: 'South-East' },
 ];
 
 // ─── CITIES ───────────────────────────────────────────────
@@ -150,4 +150,50 @@ export const FOOTER_LINKS = {
   Company: ['About Us', 'Careers', 'Blog', 'Press', 'Contact'],
   Explore: ['Buy in Mumbai', 'Buy in Bangalore', 'Rent in Delhi', 'New Projects'],
   Support: ['Help Center', 'Privacy Policy', 'Terms of Use', 'Report Fraud'],
+};
+
+// ─── USER PANEL MOCK DATA ─────────────────────────────────
+export const MOCK_USER_DATA = {
+  profile: {
+    firstName: 'Charan',
+    lastName: 'Kumar',
+    email: 'charanapalimara@gmail.com',
+    phone: '+91 98765 43210',
+    city: 'Mumbai',
+    bio: 'Looking for premium residential properties in major Indian metros.',
+    initials: 'CK',
+    memberSince: '2024'
+  },
+  activities: [
+    { icon: '🏠', bg: '#fef3c7', text: 'Viewed "3BHK Villas in Saket"', time: '2h ago' },
+    { icon: '❤️', bg: '#fee2e2', text: 'Added "Apartments in Whitefield" to wishlist', time: '5h ago' },
+    { icon: '🔍', bg: '#dbeafe', text: 'Searched "Flats in Mumbai"', time: '1d ago' },
+    { icon: '📧', bg: '#d1fae5', text: 'Contacted owner for Villa in Powai', time: '2d ago' },
+    { icon: '🔔', bg: '#ede9fe', text: 'Price drop alert: Commercial in Adyar', time: '3d ago' },
+  ],
+  chats: [
+    { id: 2, name: 'Owner - 3BHK Powai', avatar: 'O', time: 'Yesterday', lastMsg: 'Yes, the apartment is available for a visit tomorrow.', unread: false },
+    { id: 3, name: 'Agent Rahul', avatar: 'R', time: 'Tuesday', lastMsg: 'I have sent the floor plans to your email.', unread: false },
+    { id: 4, name: 'Priya Sharma', avatar: 'P', time: 'Monday', lastMsg: 'Is the price negotiable?', unread: true },
+  ],
+  tickets: [
+    { id: '#T-4582', subject: 'Difficulty in photo upload', category: 'Listing Issue', date: '08 Apr, 2026', status: 'Open', priority: 'High' },
+    { id: '#T-4410', subject: 'Property location mismatch', category: 'Technical Support', date: '05 Apr, 2026', status: 'Resolved', priority: 'Low' },
+    { id: '#T-4395', subject: 'Premium listing payment query', category: 'Payment', date: '02 Apr, 2026', status: 'In Progress', priority: 'Urgent' },
+  ],
+  notifications: [
+    { unread: true, title: 'Price Drop Alert', body: 'The Commercial Space in Adyar dropped by ₹12L', time: '1h ago', type: 'price_drop' },
+    { unread: true, title: 'New Listing Match', body: '3 new 2BHK Flats in Powai match your search', time: '3h ago', type: 'new_listing' },
+    { unread: false, title: 'Enquiry Confirmed', body: 'Owner of Villa in Gachibowli will contact you', time: '1d ago', type: 'check' },
+    { unread: false, title: 'Subscription Renewed', body: 'Your Premium plan was renewed successfully', time: '3d ago', type: 'star' },
+    { unread: false, title: 'Search Alert', body: '5 new listings for "Plots in Delhi NCR"', time: '5d ago', type: 'alert' },
+  ],
+  settings: {
+    emailAlerts: true,
+    pushNotifs: true,
+    priceDrops: true,
+    newListings: false,
+    newsletter: true,
+    twoFactor: false,
+  }
 };

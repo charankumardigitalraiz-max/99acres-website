@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
 import { SEARCH_TABS } from '../data/constants';
+import { setQuery } from '../store/slices/searchSlice';
+import { SearchIco, PinIco } from '../data/icons';
 import './Properties.css';
 
 // Detect mobile viewport
@@ -16,10 +18,11 @@ function useWindowWidth() {
 }
 
 export default function Properties() {
+  const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const isMobile = useWindowWidth() <= 1024;
   const { buyProperties, rentProperties, highRated } = useSelector(state => state.properties);
-  const activeTab = useSelector(state => state.search.activeTab);
+  const { activeTab, query } = useSelector(state => state.search);
 
   // Combine logic to simulate a real database fetch based on Redux
   const currentTabName = SEARCH_TABS[activeTab];
@@ -32,6 +35,21 @@ export default function Properties() {
   } else {
     allListings = buyProperties; // Commercial fallback
   }
+
+  // Live Filtering Logic
+  const filteredListings = allListings.filter(p => {
+    const lowerQuery = (query || '').toLowerCase();
+    if (!lowerQuery) return true;
+    return (
+      p.title?.toLowerCase().includes(lowerQuery) ||
+      p.city?.toLowerCase().includes(lowerQuery) ||
+      p.loc?.toLowerCase().includes(lowerQuery) ||
+      p.location?.city?.toLowerCase().includes(lowerQuery) ||
+      p.location?.locality?.toLowerCase().includes(lowerQuery) ||
+      p.location?.projectName?.toLowerCase().includes(lowerQuery) ||
+      p.propertyType?.toLowerCase().includes(lowerQuery)
+    );
+  });
 
   // Reusable filter panel content
   const FilterContent = () => (
@@ -64,7 +82,7 @@ export default function Properties() {
   return (
     <div className="properties-page">
 
-      {/* ── MOBILE ONLY: overlay + slide drawer (position:fixed, outside container) ── */}
+      {/* ── MOBILE ONLY: overlay + slide drawer ── */}
       {isFilterOpen && (
         <div className="filter-overlay" onClick={() => setIsFilterOpen(false)} />
       )}
@@ -79,36 +97,51 @@ export default function Properties() {
       <div className="container">
         <div className="properties-layout">
 
-          {/* ── DESKTOP ONLY: sticky sidebar inside flex layout ── */}
+          {/* ── DESKTOP ONLY: sticky sidebar ── */}
           <aside className="filter-sidebar">
-            <div className="filter-title" style={{ fontSize: '1rem', marginBottom: '20px' }}>Filters</div>
+            <div className="filter-title-main">Filters</div>
             <FilterContent />
           </aside>
 
           {/* RESULTS GRID */}
           <div className="results-area">
+            
+            {/* Search Input Row */}
+            <div className="properties-search-row">
+              <div className="prop-search-box">
+                <SearchIco />
+                <input 
+                  type="text" 
+                  placeholder={`Search for properties in ${currentTabName}...`}
+                  value={query || ''}
+                  onChange={(e) => dispatch(setQuery(e.target.value))}
+                />
+                {query && <button className="clear-search" onClick={() => dispatch(setQuery(''))}>✕</button>}
+              </div>
+            </div>
+
             <div className="results-header">
-              <div className="results-header-left">
+              <div className="results-count-wrap">
+                Showing <span className="highlight-count">{filteredListings.length}</span> {currentTabName} Properties
+              </div>
+              <div className="results-controls">
                 <button
                   className="mobile-filter-toggle"
                   onClick={() => setIsFilterOpen(true)}
                 >
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                   </svg>
-                  Filters
+                  <span>Filters</span>
                 </button>
-                <div className="results-count">
-                  Showing {allListings.length} {currentTabName} Properties
+                <div className="sort-wrap">
+                  <select className="sort-select">
+                    <option>Sort by: Relevancy</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Recently Added</option>
+                  </select>
                 </div>
-              </div>
-              <div>
-                <select className="sort-select">
-                  <option>Sort by: Relevancy</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Recently Added</option>
-                </select>
               </div>
             </div>
 
@@ -119,7 +152,7 @@ export default function Properties() {
                 : { gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))' }
               }
             >
-              {allListings.map(property => (
+              {filteredListings.map(property => (
                 <PropertyCard
                   key={property.id}
                   property={property}
@@ -128,10 +161,11 @@ export default function Properties() {
               ))}
             </div>
 
-            {allListings.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-3)' }}>
+            {filteredListings.length === 0 && (
+              <div className="no-results">
                 <h3>No properties found</h3>
-                <p>Try adjusting your search criteria</p>
+                <p>Try adjusting your search keywords or filters</p>
+                <button className="btn-reset" onClick={() => dispatch(setQuery(''))}>Clear Search</button>
               </div>
             )}
           </div>

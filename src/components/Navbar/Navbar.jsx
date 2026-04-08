@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,13 +8,34 @@ import { LogoIcon, MenuIco, CloseIco } from '../../data/icons';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const { isLoggedIn, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsProfileDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
+  };
+
+  const userDetails = {
+    name: localStorage.getItem('name') || 'User',
+    email: localStorage.getItem('email') || 'charanapalimara@gmail.com'
   };
 
   return (
@@ -59,13 +80,13 @@ export default function Navbar() {
 
           {/* ── Bottom: Profile + CTA ── */}
           <div className="nav-right-mobile">
-            {isLoggedIn ? (
+            {userDetails.name ? (
               <div className="user-profile-mobile">
                 <div className="user-avatar-row">
-                  <div className="user-avatar">{user.name?.charAt(0).toUpperCase()}</div>
+                  <div className="user-avatar">{userDetails.name}</div>
                   <div>
-                    <div className="user-avatar-name">{user.name}</div>
-                    <div className="user-avatar-email">{user.email || 'Member'}</div>
+                    <div className="user-avatar-name">{userDetails.name}</div>
+                    <div className="user-avatar-email">{userDetails.email || 'Member'}</div>
                   </div>
                 </div>
                 <Link to="/profile" className="btn-outline w-full" onClick={() => setIsMenuOpen(false)}>
@@ -86,11 +107,27 @@ export default function Navbar() {
         </div>
 
         <div className="nav-right">
-          {isLoggedIn ? (
-            <>
-              <span className="user-name">Hi, {user.name}</span>
-              <button className="btn-outline" onClick={handleLogout}>Logout</button>
-            </>
+          {userDetails.name ? (
+            <div className="profile-dropdown-container" ref={dropdownRef}>
+              <button
+                className="nav-avatar-btn"
+                title="My Profile"
+                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+              >
+                <div className="nav-avatar-circle">
+                  {userDetails.name.charAt(0).toUpperCase()}
+                </div>
+                <span className="nav-avatar-name">Hi, {userDetails.name.split(' ')[0]}</span>
+              </button>
+
+              {isProfileDropdownOpen && (
+                <div className="profile-dropdown">
+                  <Link to="/profile" onClick={() => setIsProfileDropdownOpen(false)}>My Profile</Link>
+                  <Link to="/profile/settings" onClick={() => setIsProfileDropdownOpen(false)}>Settings</Link>
+                  <button onClick={() => { handleLogout(); setIsProfileDropdownOpen(false); }} className="dropdown-logout">Logout</button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login" className="btn-outline">Login</Link>
           )}
@@ -100,6 +137,7 @@ export default function Navbar() {
             <span className="premium-tag">PREMIUM</span>
           </Link>
         </div>
+
       </div>
       {isMenuOpen && <div className="nav-overlay" onClick={() => setIsMenuOpen(false)} />}
     </nav>
