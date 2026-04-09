@@ -43,23 +43,10 @@ export default function SearchBar() {
   return (
     <div className="container" style={{ position: 'relative', zIndex: 10 }}>
       <div className="search-bar-section">
-        {/* Tabs */}
-        <div className="search-tabs">
-          {SEARCH_TABS.map((tab, i) => (
-            <button
-              key={tab}
-              className={`search-tab ${i === activeTab ? 'active' : ''}`}
-              onClick={() => dispatch(setActiveTab(i))}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
         {/* Search Row */}
         <div className="search-row">
           {/* Main Search Field */}
-          <div className="search-field" style={{ flex: 2 }} ref={dropdownRef}>
+          <div className="search-field" ref={dropdownRef}>
             <SearchIco />
             <input
               type="text"
@@ -96,37 +83,9 @@ export default function SearchBar() {
             )}
           </div>
 
-          <div className="search-divider-v" />
-
-          {/* Property Type Dropdown */}
-          <div className="search-field">
-            <select onChange={e => dispatch(setPropertyType(e.target.value))}>
-              <option value="">Any Type</option>
-              <option>Apartment</option>
-              <option>Villa</option>
-              <option>Plot</option>
-              <option>Commercial</option>
-              <option>Studio</option>
-            </select>
-          </div>
-
-          <div className="search-divider-v" />
-
-          {/* Budget Dropdown */}
-          <div className="search-field">
-            <select onChange={e => dispatch(setBudget(e.target.value))}>
-              <option value="">Any Budget</option>
-              <option>Under 50 Lac</option>
-              <option>50L – 1 Cr</option>
-              <option>1 – 2 Cr</option>
-              <option>2 – 5 Cr</option>
-              <option>5 Cr+</option>
-            </select>
-          </div>
-
           <button className="search-submit" onClick={handleSearch}>
             <SearchIco />
-            Search
+            <span>Search</span>
           </button>
         </div>
       </div>

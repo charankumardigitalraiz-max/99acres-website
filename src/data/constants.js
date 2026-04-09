@@ -29,20 +29,28 @@ export const SLIDES = [
 // ─── PROMO BANNERS ────────────────────────────────────────
 export const PROMO_BANNERS = [
   {
-    img: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80',
-    tag: 'HOME LOANS',
-    title: 'Get Home Loan at\n8.5% Interest Rate',
-    sub: 'Quick approval • Minimal paperwork • Up to ₹5 Cr',
-    cta: 'Apply Now',
-    accent: '#005ca8',
+    img: '/banners/promo-1.png',
+    tag: 'EXCLUSIVE',
+    title: 'Discover Luxury\nReimagined',
+    sub: 'Explore curated collection of premium properties',
+    cta: 'Explore Now',
+    accent: '#f59e0b',
   },
   {
-    img: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1200&q=80',
-    tag: 'SPECIAL OFFER',
-    title: 'Earn ₹10,000 for\nEvery Referral',
-    sub: 'Refer friends • They find a home • You earn rewards',
-    cta: 'Refer Now',
+    img: '/banners/promo-2.png',
+    tag: 'NEW DEAL',
+    title: 'Smart Investment\nSecure Future',
+    sub: 'Verified high-ROI properties in emerging localities',
+    cta: 'View Details',
     accent: '#059669',
+  },
+  {
+    img: '/banners/promo-3.png',
+    tag: 'LIMITED OFFER',
+    title: 'Your Family Deserves\nthe Best',
+    sub: 'Find spacious move-in ready homes for sale',
+    cta: 'Find Home',
+    accent: '#005ca8',
   },
 ];
 
@@ -54,8 +62,6 @@ export const CATEGORIES = [
   { img: '/categories/projects.png', name: 'New Projects', count: '1,200+' },
   { img: '/categories/land.png', name: 'Plots / Land', count: '22,000+' },
 ];
-
-
 // ─── BUY PROPERTIES ───────────────────────────────────────
 export const BUY_PROPERTIES = [
   { id: 'b1', type: 'buy', img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80', badge: 'Ready to Move', badgeClass: 'ready', price: '₹ 1.25 Cr', title: '3 BHK Premium Flat', loc: 'Whitefield, Bangalore', beds: '3', baths: '2', size: '1,850 sqft', rating: 4.7 },

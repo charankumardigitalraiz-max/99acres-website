@@ -1,0 +1,127 @@
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  height: 90vh;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* Full-section banner image — no overlay, no opacity */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/banners/hero-banner2.png");
+  background-size: cover;
+  background-position: center top;
+  z-index: 1;
+}
+
+/* Content overlaid on top of image, pinned near top */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  margin-top: 80px !important; /* Forced margin to move it down significantly */
+  text-align: center;
+}
+
+.hero-header {
+  margin-bottom: 12px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-label {
+  display: inline-block;
+  color: var(--primary-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 4px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .highlight {
+  color: var(--primary);
+  display: inline-block;
+  animation: wordPulse 0.5s ease-out forwards;
+}
+
+@keyframes wordPulse {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-desc {
+  display: none;
+}
+
+/* Search bar wrapper — full width centered */
+.hero-search-wrapper {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+  animation: fadeInUp 0.6s ease-out 0.15s backwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === MOBILE === */
+@media (max-width: 900px) {
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .hero-content {
+    padding-top: 30px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh;
+    min-height: 420px;
+  }
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-content {
+    padding-top: 20px;
+  }
+}
