@@ -3,7 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import './Hero.css';
 
 export default function Hero() {
-  const words = ['Property', 'Home', 'Villa', 'Apartment', 'Plot'];
+  const words = ['Legit', 'Hassle-free', 'Trusted'];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -20,7 +20,8 @@ export default function Hero() {
         <div className="hero-header">
           <span className="hero-label">Real Estate Excellence</span>
           <h1 className="hero-title">
-            Find Your <span className="highlight" key={words[index]}>{words[index]}</span>
+            Find <span className="highlight" key={words[index]}>{words[index]}</span> <br />
+            Property Listings
           </h1>
         </div>
 
