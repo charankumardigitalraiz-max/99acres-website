@@ -37,7 +37,7 @@
 .pill-badge-v7 {
   padding: 4px 10px;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   border-radius: 40px;
@@ -60,7 +60,7 @@
   gap: 3px;
   padding: 4px 8px;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   border-radius: 40px;
   color: #10b981;
   background: rgba(255, 255, 255, 0.95);
@@ -153,7 +153,7 @@
 
 .prop-price-v7 {
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--dark);
   margin-bottom: 4px;
   letter-spacing: -0.02em;
@@ -207,7 +207,7 @@
   align-items: center;
   gap: 4px;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--dark);
   white-space: nowrap;
   flex: 1;
@@ -230,7 +230,7 @@
 }
 
 .meta-val-v7 {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--dark);
 }
 
@@ -249,7 +249,7 @@
   padding: 11px;
   background: var(--primary);
   color: #fff;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.85rem;
   border-radius: 8px;
   border: none;
@@ -348,14 +348,14 @@
 
 .feat-price-compact {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--dark);
   letter-spacing: -0.01em;
 }
 
 .feat-rating-tag {
   font-size: 0.6rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--primary-dark);
   background: var(--primary-light);
   padding: 2px 6px;
@@ -364,7 +364,7 @@
 
 .feat-title-compact {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--dark);
   margin-bottom: 4px;
   line-height: 1.3;
@@ -402,7 +402,7 @@
   padding: 10px 0;
   background: none;
   color: var(--primary-dark);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -473,7 +473,7 @@
   bottom: 6px;
   left: 6px;
   font-size: 0.55rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 2px 7px;
@@ -501,7 +501,7 @@
 
 .prop-card-list-price {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--dark);
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -548,7 +548,7 @@
 
 .prop-card-list-title {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--dark);
   line-height: 1.35;
   white-space: nowrap;
@@ -594,7 +594,7 @@
   align-items: center;
   gap: 3px;
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 500;
   color: #10b981;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -639,7 +639,7 @@
 
 .v2-badge {
   font-size: 0.55rem;
-  font-weight: 800;
+  font-weight: 600;
   padding: 2px 6px;
   border-radius: 4px;
   background: var(--dark);
@@ -653,7 +653,7 @@
   gap: 3px;
   padding: 4px 8px;
   font-size: 0.5rem;
-  font-weight: 800;
+  font-weight: 600;
   border-radius: 40px;
   background: #10b981;
   color: #ffffff;
@@ -695,7 +695,7 @@
 
 .v2-price {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--dark);
   margin-bottom: 2px;
 }
@@ -743,7 +743,7 @@
 
 .v2-verified {
   font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #10b981;
   text-transform: uppercase;
   display: flex;

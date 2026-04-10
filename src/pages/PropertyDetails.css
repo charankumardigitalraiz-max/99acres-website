@@ -398,12 +398,22 @@
   font-size: 1rem;
 }
 
-.pd-amenity-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--pd-primary);
+.pd-amenity-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  opacity: 0.5;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  transition: all 0.2s;
+}
+
+.pd-amenity:hover .pd-amenity-ico {
+  background: var(--primary);
+  color: var(--dark);
+  transform: scale(1.05);
 }
 
 .pd-adv-grid {

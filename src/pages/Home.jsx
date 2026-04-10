@@ -8,11 +8,11 @@ import StatsStrip from '../components/StatsStrip/StatsStrip';
 import Cities from '../components/Cities/Cities';
 import Localities from '../components/Localities/Localities';
 import PromoBannerSlider from '../components/PromoBannerSlider/PromoBannerSlider';
-import SidebarAds from '../components/SidebarAds/SidebarAds';
+import FloatingVideo from '../components/FloatingVideo/FloatingVideo';
 import './Home.css';
 
 export default function Home() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <>
@@ -36,10 +36,13 @@ export default function Home() {
         </div>
 
         {/* Sidebar Ads */}
-        <div className="home-sidebar">
+        {/* <div className="home-sidebar">
           <SidebarAds isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-        </div>
+        </div> */}
 
+      </div>
+      <div className="home-sidebar">
+        <FloatingVideo />
       </div>
     </>
   );

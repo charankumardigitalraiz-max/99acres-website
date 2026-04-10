@@ -31,7 +31,7 @@ export default function HighRatedProperties({ isSidebarOpen }) {
             key={isSidebarOpen ? 'opened' : 'closed'}
             modules={[Navigation, Autoplay]}
             spaceBetween={20}
-            slidesPerView={2}
+            slidesPerView={1.2}
             navigation={{
               prevEl: '.slide-prev-btn',
               nextEl: '.slide-next-btn',

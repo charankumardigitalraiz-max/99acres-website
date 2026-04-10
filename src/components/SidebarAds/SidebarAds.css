@@ -19,46 +19,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0 12px 0;
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid rgba(226, 232, 240, 0.4);
-}
-
-.sidebar-ads-title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow: hidden;
-}
-
-.sidebar-featured-icon {
-  width: 14px;
-  height: 14px;
-  color: var(--primary);
-  flex-shrink: 0;
-  fill: rgba(245, 158, 11, 0.1);
-}
-
-.sidebar-ads-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--dark);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
+  margin-bottom: 4px;
+  min-height: 32px;
 }
 
 .sidebar-ads-content {
   opacity: 1;
-  transition: opacity 0.3s ease, visibility 0.3s;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s;
   visibility: visible;
+}
+
+@media (max-width: 690px) {
+  .sidebar-ads {
+    display: none;
+  }
 }
 
 .sidebar-ads--collapsed .sidebar-ads-content {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+.sidebar-ads-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .sidebar-toggle-btn {

@@ -22,9 +22,6 @@ export default function Hero() {
           <h1 className="hero-title">
             Find Your <span className="highlight" key={words[index]}>{words[index]}</span>
           </h1>
-          {/* <p className="hero-desc">
-            Verified properties from trusted developers and owners across India.
-          </p> */}
         </div>
 
         <div className="hero-search-wrapper">

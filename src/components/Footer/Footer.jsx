@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="footer-logo">
               <img src="/sherla-properties-text.png" alt="Sherla Properties" className="footer-logo-img" />
-              Sherla<span>Properties</span>
+              Sherla Properties
             </div>
             <p className="footer-desc">
               India's premium real estate marketplace connecting buyers,

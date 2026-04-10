@@ -1,0 +1,109 @@
+.floating-video {
+  /* CHANGED TO FIXED SO IT STAYS WHEN SCROLLING */
+  position: fixed;
+  right: 0px;
+  bottom: 40px; /* Sits nicely on the bottom right */
+  width: 240px;
+  height: 160px;
+  border-radius: 12px 0 0 12px;
+  border-right: none;
+  overflow: hidden;
+  box-shadow: -8px 12px 30px rgba(0, 0, 0, 0.25);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  z-index: 9999; /* Extremely high so it overlays everything */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--dark);
+}
+
+.floating-video.collapsed {
+  width: 64px;
+  height: 56px;
+  border-radius: 28px 0 0 28px;
+  border: none;
+  background: var(--primary);
+  box-shadow: -6px 8px 16px rgba(245, 158, 11, 0.4);
+}
+
+.floating-video.collapsed:hover {
+  transform: scale(1.05); /* Removed the translateY since it's bottom anchored now */
+}
+
+.video-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
+}
+
+.video-toggle:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.floating-video.collapsed .video-toggle {
+  position: relative;
+  top: auto;
+  right: auto;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.floating-video.collapsed .video-toggle:hover {
+  background: transparent;
+  transform: none;
+}
+
+.floating-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+  transform: scale(1.35);
+}
+
+.floating-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.v-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600; /* Maintained under 600 limit */
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 1260px) {
+  .floating-video {
+    width: 220px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .floating-video {
+    display: none;
+  }
+}

@@ -101,31 +101,33 @@ h4 {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .section-label {
   display: inline-block;
   color: var(--primary-dark);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 500;
   color: var(--dark);
   letter-spacing: -0.01em;
+  margin-bottom: 2px;
 }
 
 .section-sub {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--text-2);
-  margin-top: 6px;
+  margin-top: 2px;
   max-width: 600px;
+  font-weight: 400;
 }
 
 @media (max-width: 768px) {
@@ -160,8 +162,8 @@ h4 {
   align-items: center;
   gap: 8px;
   color: var(--primary-dark);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   transition: all 0.2s;
 }
 

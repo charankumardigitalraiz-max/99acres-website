@@ -1169,7 +1169,17 @@
   }
 
   .nav-drawer-header .nav-logo-text {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-logo-img {
+    height: 40px;
+    width: auto;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .navbar--scrolled {
@@ -1188,45 +1198,54 @@
     display: none;
   }
 
+  /* Adjust layout for mobile so search can take more space */
+  .nav-left {
+    flex: 0 0 auto;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+  }
+
   .nav-center {
     flex: 1;
-    overflow: hidden;
-  }
-
-  /* Hide location when scrolled */
-  .nav-location-wrapper {
-    transition: all 0.35s ease;
-    overflow: hidden;
-  }
-
-  .navbar--scrolled .nav-location-wrapper {
-    opacity: 0;
-    pointer-events: none;
-    max-width: 0;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
     padding: 0;
-    margin: 0;
   }
 
-  /* Hide logo when scrolled */
+  /* Hide location when scrolled on mobile to save space */
+  .navbar--scrolled .nav-location-wrapper {
+    display: none !important;
+  }
+
+  /* Handle logo on mobile */
   .nav-logo {
-    transition: all 0.35s ease;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0;
   }
 
-  .navbar--scrolled .nav-logo {
-    opacity: 0;
-    pointer-events: none;
-    max-width: 0;
-    overflow: hidden;
-    margin: 0;
+  .nav-logo-img {
+    height: 38px; /* Slightly smaller on mobile scrolled */
+    transition: all 0.3s ease;
   }
 
-  /* Show search bar when scrolled */
+  .navbar--scrolled .nav-logo-img {
+    height: 32px;
+  }
+
+  /* Only hide logo text on very small mobile if needed, but here we keep it clean */
+  .nav-logo-text {
+    display: none;
+  }
+
+  /* Show search bar when scrolled with proper width */
   .navbar-search-wrapper {
     display: none !important;
-    width: 0;
-    opacity: 0;
+    width: 100%;
+    max-width: none !important; /* Allow full expansion on mobile */
+    opacity: 1;
   }
 
   .navbar--scrolled .navbar-search-wrapper {
@@ -1236,27 +1255,29 @@
     animation: mobileSearchIn 0.35s ease;
   }
 
-  .navbar-search-desktop {
-    display: none;
-  }
-
   .navbar-search-mobile-trigger {
     display: block;
+    width: 100%;
+  }
+
+  .navbar-search-desktop {
+    display: none;
   }
 
   @keyframes mobileSearchIn {
     from {
       opacity: 0;
-      transform: translateX(16px);
+      transform: translateY(4px);
     }
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
   .navbar--scrolled .nav-toggle {
     flex-shrink: 0;
+    margin-left: 4px;
   }
 
   /* Location modal on mobile */

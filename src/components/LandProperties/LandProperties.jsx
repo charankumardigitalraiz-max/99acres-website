@@ -35,7 +35,7 @@ export default function LandProperties({ isSidebarOpen }) {
             key={isSidebarOpen ? 'opened' : 'closed'}
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={2}
+            slidesPerView={1.2}
             navigation={{
               prevEl: '.land-prev-btn',
               nextEl: '.land-next-btn',

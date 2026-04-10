@@ -54,18 +54,18 @@ export default function PropertyListings({ isSidebarOpen }) {
             key={isSidebarOpen ? 'open' : 'closed'}
             modules={[Navigation]}
             spaceBetween={16}
-            slidesPerView={2}
+            slidesPerView={1.2}
             navigation={{
               prevEl: '.prop-prev-btn',
               nextEl: '.prop-next-btn',
             }}
             breakpoints={{
-              480: { slidesPerView: 2, spaceBetween: 16 },
+              480: { slidesPerView: 2.2, spaceBetween: 16 },
               768: { slidesPerView: 2.5, spaceBetween: 20 },
               1024: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
             className="listings-swiper"
-          >
+          > 
             {propertiesToShow.map(property => (
               <SwiperSlide key={property.id}>
                 <PropertyCard property={property} />
