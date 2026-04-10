@@ -29,7 +29,7 @@ export default function Subscription() {
       {/* Dynamic Background Elements */}
       <div className="sub-bg-glow glow-1"></div>
       <div className="sub-bg-glow glow-2"></div>
-      
+
       <div className="sub-container">
         <header className="sub-header-modern">
           <div className="sub-badge">Agent & Developer Portal</div>
@@ -40,13 +40,13 @@ export default function Subscription() {
 
           <div className="sub-toggle-modern" data-active={billingCycle}>
             <div className="sub-toggle-pill"></div>
-            <button 
+            <button
               className={`sub-toggle-btn ${billingCycle === 'monthly' ? 'active' : ''}`}
               onClick={() => dispatch(setBillingCycle('monthly'))}
             >
               Billed Monthly
             </button>
-            <button 
+            <button
               className={`sub-toggle-btn ${billingCycle === 'annual' ? 'active' : ''}`}
               onClick={() => dispatch(setBillingCycle('annual'))}
             >
@@ -59,7 +59,7 @@ export default function Subscription() {
           {plans.map(plan => {
             const isPopular = plan.popular;
             const isActive = activeSubscriptionId === plan.id;
-            
+
             return (
               <div key={plan.id} className={`sub-card ${isPopular ? 'sub-card-popular' : ''}`}>
                 {isPopular && (
@@ -67,7 +67,7 @@ export default function Subscription() {
                     <span className="stripe-text">Recommended</span>
                   </div>
                 )}
-                
+
                 <div className="sub-card-header">
                   <h3 className="sub-tier-name">{plan.name}</h3>
                   <div className="sub-price-block">
@@ -85,7 +85,7 @@ export default function Subscription() {
                     {plan.features.map((feature, i) => (
                       <li key={i} className={`sub-feature-item ${!feature.included ? 'sub-excluded' : ''}`}>
                         <div className="sub-feature-icon">
-                          {feature.included ? <CheckCircle2 size={18} strokeWidth={2.5}/> : <X size={18} strokeWidth={2.5}/>}
+                          {feature.included ? <CheckCircle2 size={18} strokeWidth={2.5} /> : <X size={18} strokeWidth={2.5} />}
                         </div>
                         <span className="sub-feature-text">{feature.text}</span>
                       </li>
@@ -94,7 +94,7 @@ export default function Subscription() {
                 </div>
 
                 <div className="sub-card-footer">
-                  <button 
+                  <button
                     className={`sub-action-btn ${isPopular ? 'btn-glow' : 'btn-ghost'} ${isActive ? 'btn-active' : ''}`}
                     onClick={() => dispatch(subscribeToPlan(plan.id))}
                   >

@@ -23,7 +23,7 @@ export default function NotificationsPanel() {
           <div className="up-card-title">Notifications</div>
           <div className="up-card-sub">{unreadCount} unread alerts</div>
         </div>
-        <button className="up-btn up-btn-ghost" style={{ fontSize: '0.78rem' }} onClick={() => dispatch(markAllNotificationsRead())}>
+        <button className="up-btn up-btn-ghost" style={{ fontSize: '0.75rem', padding: '6px 12px' }} onClick={() => dispatch(markAllNotificationsRead())}>
           Mark all read
         </button>
       </div>
@@ -31,10 +31,12 @@ export default function NotificationsPanel() {
         {notifications.map((n, i) => (
           <div className={`up-notif-item ${n.unread ? 'unread' : ''}`} key={i}>
             <div className={`up-notif-dot ${n.unread ? '' : 'read'}`} />
-            <div style={{ fontSize: '1.3rem', lineHeight: 1 }}>{ICON_MAP[n.type] || '🔔'}</div>
+            <div className="up-notif-icon-wrap" style={{ fontSize: '1.2rem', color: n.unread ? '#f59e0b' : '#94a3b8', display: 'flex' }}>
+              {ICON_MAP[n.type] || '🔔'}
+            </div>
             <div className="up-notif-body">
-              <strong>{n.title}</strong>
-              <p>{n.body}</p>
+              <strong style={{ fontWeight: 600 }}>{n.title}</strong>
+              <p style={{ fontWeight: 400 }}>{n.body}</p>
             </div>
             <div className="up-notif-time">{n.time}</div>
           </div>

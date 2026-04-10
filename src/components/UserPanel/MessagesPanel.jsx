@@ -9,15 +9,17 @@ export default function MessagesPanel() {
       {/* Sidebar List */}
       <div className="up-chat-sidebar">
         <div className="up-chat-header">
-          <h3>Messages</h3>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>Messages</h3>
         </div>
         <div className="up-chat-list">
           {chats.map(c => (
             <div key={c.id} className={`up-chat-item ${c.unread ? 'unread' : ''}`}>
-              <div className="up-chat-avatar" style={{ background: 'var(--primary)', color: '#0f172a' }}>{c.avatar}</div>
+              <div className="up-chat-avatar" style={{ background: '#fff9eb', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
+                {c.avatar}
+              </div>
               <div className="up-chat-info">
                 <div className="up-chat-top">
-                  <span className="up-chat-name">{c.name}</span>
+                  <span className="up-chat-name" style={{ fontWeight: 600 }}>{c.name}</span>
                   <span className="up-chat-time">{c.time}</span>
                 </div>
                 <p className="up-chat-preview">{c.lastMsg}</p>
@@ -30,10 +32,12 @@ export default function MessagesPanel() {
       {/* Active Chat Window */}
       <div className="up-chat-window">
         <div className="up-chat-window-header">
-          <div className="up-chat-avatar" style={{ background: 'var(--primary)', color: '#0f172a' }}>P</div>
-          <div>
-            <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--dark)' }}>Priya Sharma</strong>
-            <div className="up-chat-status">Online</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div className="up-chat-avatar" style={{ background: '#fff9eb', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)', width: '38px', height: '38px', fontSize: '1rem' }}>P</div>
+            <div>
+              <strong style={{ display: 'block', fontSize: '0.95rem', fontWeight: 600, color: '#0f172a' }}>Priya Sharma</strong>
+              <div className="up-chat-status">Online</div>
+            </div>
           </div>
         </div>
 
@@ -51,7 +55,7 @@ export default function MessagesPanel() {
         <div className="up-chat-input-area">
           <input type="text" className="up-chat-input" placeholder="Type a message..." />
           <button className="up-chat-send">
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
           </button>
         </div>
       </div>

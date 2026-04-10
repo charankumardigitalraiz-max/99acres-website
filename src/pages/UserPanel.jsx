@@ -25,11 +25,11 @@ const IconMessage = () => <svg width="16" height="16" fill="none" stroke="curren
 const IconHelp = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>;
 
 const TABS = [
-  // { key: 'overview', label: 'Overview', icon: <IconHome />, },
+  // { key: 'overview', label: 'Overview', icon: <IconHome /> },
   { key: 'profile', label: 'My Profile', icon: <IconUser /> },
   { key: 'favourites', label: 'Favourites', icon: <IconHeart /> },
-  { key: 'notifications', label: 'Notifications', icon: <IconBell /> },
   { key: 'messages', label: 'Messages', icon: <IconMessage /> },
+  { key: 'notifications', label: 'Notifications', icon: <IconBell /> },
   { key: 'support', label: 'Support Chat', icon: <IconHelp /> },
   { key: 'settings', label: 'Settings', icon: <IconSettings /> },
 ];
@@ -41,7 +41,7 @@ export default function UserPanel() {
   const { profile } = useSelector(state => state.userPanel);
   const { wishlist } = useSelector(state => state.properties);
 
-  const tabName = tab || 'profile';
+  const tabName = tab || 'overview';
   const isLoggedIn = true; // For demo purposes, in production pull from auth state
 
   if (!isLoggedIn) {
@@ -67,6 +67,7 @@ export default function UserPanel() {
 
   const renderPanel = () => {
     switch (tabName) {
+      case 'overview': return <Overview />;
       case 'profile': return <ProfilePanel />;
       case 'favourites': return <FavouritesPanel />;
       case 'notifications': return <NotificationsPanel />;

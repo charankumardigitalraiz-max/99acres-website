@@ -24,11 +24,11 @@ export default function Overview() {
 
       <div className="up-card">
         <div className="up-card-title">Recent Activity</div>
-        <div className="up-card-sub">Your last 5 interactions on Sherla Properties</div>
+        <div className="up-card-sub">Your latest interactions and updates</div>
         <div className="up-activity-list">
           {activities.map((a, i) => (
             <div className="up-activity-item" key={i}>
-              <div className="up-activity-icon" style={{ background: a.bg }}>{a.icon}</div>
+              <div className="up-activity-icon" style={{ background: '#f8fafc', color: '#64748b' }}>{a.icon}</div>
               <div className="up-activity-text">
                 <strong>{a.text}</strong>
                 <span>{a.time}</span>

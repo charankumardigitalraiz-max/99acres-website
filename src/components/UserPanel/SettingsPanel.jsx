@@ -24,7 +24,7 @@ export default function SettingsPanel() {
           {rows.map(r => (
             <div className="up-setting-row" key={r.key}>
               <div className="up-setting-info">
-                <strong>{r.label}</strong>
+                <strong style={{ fontWeight: 600 }}>{r.label}</strong>
                 <p>{r.desc}</p>
               </div>
               <label className="up-toggle">
@@ -53,7 +53,7 @@ export default function SettingsPanel() {
             <input type="password" placeholder="••••••••" />
           </div>
         </div>
-        <div className="up-form-actions" style={{ marginTop: 16 }}>
+        <div className="up-form-actions">
           <button className="up-btn up-btn-primary">Update Password</button>
         </div>
       </div>
@@ -69,13 +69,13 @@ export default function SettingsPanel() {
             { label: 'Community Guidelines', desc: 'Rules for interacting with other users' },
             { label: 'Help Center', desc: 'Frequently asked questions and support' },
           ].map((item, i) => (
-            <div className="up-setting-row clickable" key={i} style={{ cursor: 'pointer' }}>
+            <div className="up-setting-row" key={i} style={{ cursor: 'pointer' }}>
               <div className="up-setting-info">
-                <strong>{item.label}</strong>
+                <strong style={{ fontWeight: 600 }}>{item.label}</strong>
                 <p>{item.desc}</p>
               </div>
-              <div style={{ color: 'var(--text-3)' }}>
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+              <div style={{ color: '#94a3b8' }}>
+                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
               </div>
             </div>
           ))}
@@ -83,7 +83,7 @@ export default function SettingsPanel() {
       </div>
 
       <div className="up-danger-zone">
-        <h3>⚠️ Danger Zone</h3>
+        <h3>Danger Zone</h3>
         <p>Once you delete your account, all your data will be permanently removed. This action cannot be undone.</p>
         <button className="up-btn-danger">Delete My Account</button>
       </div>
