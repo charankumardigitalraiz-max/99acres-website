@@ -15,7 +15,6 @@ export default function Categories() {
           {CATEGORIES.map(cat => (
             <div key={cat.name} className="cat-card-v4">
               <img src={cat.img} alt={cat.name} className="cat-img-bg" />
-              <div className="cat-overlay-v4"></div>
               <div className="cat-content-v4">
                 <div className="cat-name-v4">{cat.name}</div>
                 <div className="cat-count-v4">{cat.count} listings</div>
