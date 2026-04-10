@@ -1,17 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { setQuery, clearSuggestions, setLocation } from '../../store/slices/searchSlice';
 import { NAV_LINKS, MEGA_MENUS, CITIES } from '../../data/constants';
-import { LogoIcon, MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco } from '../../data/icons';
+import { MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco } from '../../data/icons';
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [activeMenuKey, setActiveMenuKey] = useState(null);
   const dropdownRef = useRef(null);
@@ -21,12 +22,17 @@ export default function Navbar() {
   const { query, location, suggestions } = useSelector(state => state.search);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const locationPath = useLocation();
+
+  const isHomePage = locationPath.pathname === '/';
 
   // Scroll detection — triggers at 80px so navbar
   // search appears earlier on mobile
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
+      const scrollPos = window.scrollY;
+      setIsScrolled(scrollPos > 40);
+      setIsPastHero(scrollPos > 450);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -79,22 +85,24 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''} ${isHomePage && !isScrolled ? 'navbar--transparent' : ''}`}>
         <div className="container">
           <div className="nav-left">
             {/* Logo */}
             <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
-              <div className="nav-logo-icon"><LogoIcon /></div>
-              Sherla<span>Properties</span>
+              <img src="/sherla-properties-text.png" alt="Sherla Properties" className="nav-logo-img" />
+              <span className="nav-logo-text">Sherla <span>Properties</span></span>
             </Link>
 
             {/* Location Selector */}
-            <div className="nav-location-wrapper">
+            <div
+              className="nav-location-wrapper"
+              onMouseEnter={() => window.innerWidth > 900 && setIsLocationModalOpen(true)}
+              onMouseLeave={() => window.innerWidth > 900 && setIsLocationModalOpen(false)}
+            >
               <div
                 className="nav-location-selector"
                 onClick={() => setIsLocationModalOpen(!isLocationModalOpen)}
-                onMouseEnter={() => window.innerWidth > 900 && setIsLocationModalOpen(true)}
-                onMouseLeave={() => window.innerWidth > 900 && setIsLocationModalOpen(false)}
               >
                 <PinIco className="location-pin" />
                 <span className="location-label">{location || 'All India'}</span>
@@ -179,7 +187,7 @@ export default function Navbar() {
                                   className="mega-menu-item"
                                   onClick={() => setActiveMenuKey(null)}
                                 >
-                                  <span className="item-icon">{item.icon}</span>
+                                  {item.icon && <span className="item-icon">{item.icon}</span>}
                                   <span className="item-label">{item.label}</span>
                                 </Link>
                               ))}
@@ -193,9 +201,9 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Compact Search – visible when scrolled */}
-            <div className={`navbar-search-wrapper ${isScrolled ? 'navbar-search-wrapper--visible' : ''}`}>
-              
+            {/* Compact Search – visible when scrolled past hero */}
+            <div className={`navbar-search-wrapper ${isPastHero ? 'navbar-search-wrapper--visible' : ''}`}>
+
               {/* Desktop Native Form */}
               <form
                 className="navbar-search-desktop"
@@ -248,7 +256,7 @@ export default function Navbar() {
               <div className="navbar-search-mobile-trigger">
                 <SearchBar isNavbar={true} />
               </div>
-              
+
             </div>
           </div>
 
@@ -325,18 +333,20 @@ export default function Navbar() {
         {/* Drawer Header */}
         <div className="nav-drawer-header">
           <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
-            <div className="nav-logo-icon"><LogoIcon /></div>
-            Sherla<span>Properties</span>
+            <img src="/sherla-properties-text.png" alt="Sherla Properties" className="nav-logo-img" />
+            <span className="nav-logo-text">Sherla<span>Properties</span></span>
           </Link>
           <button className="nav-drawer-close" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
             <CloseIco />
           </button>
         </div>
 
-        {/* Mobile Search */}
-        <div className="nav-drawer-search" ref={mobileSearchRef}>
-          <SearchBar isNavbar={true} />
-        </div>
+        {/* Mobile Search - Visible only when past hero */}
+        {isPastHero && (
+          <div className="nav-drawer-search" ref={mobileSearchRef}>
+            <SearchBar isNavbar={true} />
+          </div>
+        )}
 
         {/* Mobile Nav Links */}
         <div className="nav-drawer-links">

@@ -1,5 +1,4 @@
 import { FOOTER_LINKS } from '../../data/constants';
-import { LogoIcon } from '../../data/icons';
 import './Footer.css';
 
 export default function Footer() {
@@ -10,7 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="footer-logo">
-              <div className="nav-logo-icon"><LogoIcon /></div>
+              <img src="/sherla-properties-text.png" alt="Sherla Properties" className="footer-logo-img" />
               Sherla<span>Properties</span>
             </div>
             <p className="footer-desc">

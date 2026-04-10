@@ -9,20 +9,57 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid #f0f0f0;
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  left: 0;
   top: 0;
   z-index: 1000;
-  height: 62px;
+  height: 72px;
   display: flex;
   align-items: center;
-  transition:
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .navbar--scrolled {
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
-  background: rgba(255, 255, 255, 0.99);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 1);
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  left: 0;
+}
+
+.navbar--transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.navbar--transparent .nav-link-item,
+.navbar--transparent .location-label,
+.navbar--transparent .nav-logo {
+  color: var(--dark);
+}
+
+/* .navbar--transparent .nav-logo-img {
+  filter: brightness(0) invert(1);
+} */
+
+.navbar--transparent .nav-login-btn {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar--transparent .nav-login-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+.navbar--transparent .nav-toggle {
+  color: #ffffff;
 }
 
 .navbar .container {
@@ -34,38 +71,55 @@
 
 /* ── Left: Logo + Location ───────────────────────── */
 .nav-left {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-shrink: 0;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1.22rem;
+  gap: 10px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--dark);
   text-decoration: none;
   flex-shrink: 0;
-  letter-spacing: -0.3px;
-  transition: all 0.3s ease;
+  letter-spacing: -0.02em;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .nav-logo span {
   color: var(--primary);
+  transition: color 0.35s ease;
+}
+.nav-logo-text span {
+  color: var(--dark);
 }
 
-.nav-logo-icon {
-  width: 28px;
-  height: 28px;
-  background: var(--primary);
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+/* Ensure branding in solid drawers/modals stays dark even if parent navbar is transparent */
+.nav-drawer .nav-logo,
+.loc-popover .nav-logo {
+  color: var(--dark) !important;
+}
+
+.nav-drawer .nav-logo-img,
+.loc-popover .nav-logo-img {
+  filter: none !important;
+}
+
+.nav-drawer .nav-logo span,
+.loc-popover .nav-logo span {
+  color: var(--primary) !important;
+}
+
+.nav-logo-img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* ── Location Selector ───────────────────────────── */
@@ -305,10 +359,11 @@
 
 /* ── Center: Nav Links / Search ──────────────────── */
 .nav-center {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 .nav-links-desktop {
@@ -339,20 +394,39 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 14px;
-  font-size: 0.88rem;
+  padding: 8px 12px;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-2);
   text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   white-space: nowrap;
   position: relative;
+  letter-spacing: -0.01em;
+}
+
+.nav-link-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 2px;
 }
 
 .nav-link-item:hover {
-  color: var(--primary-dark);
-  background: #fef9ed;
+  color: var(--dark);
+}
+
+.nav-link-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .link-chevron {
@@ -372,24 +446,27 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 820px;
+  transform: translateX(-50%) translateY(15px) scale(0.98);
+  width: 860px;
   background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-  border: 1px solid var(--border);
-  padding: 26px;
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px -10px rgba(15, 23, 42, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  padding: 32px;
   z-index: 1001;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-50%) translateY(12px);
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  pointer-events: none;
 }
 
 .nav-link-wrapper:hover .properties-mega-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .mega-menu-inner {
@@ -404,14 +481,15 @@
 }
 
 .mega-menu-title {
-  font-size: 0.72rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--text-3);
-  margin-bottom: 14px;
-  font-weight: 600;
-  border-bottom: 1px solid #f0f4f8;
-  padding-bottom: 8px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
 }
 
 .mega-menu-links {
@@ -423,33 +501,33 @@
 .mega-menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 2px 0;
-  transition: all 0.18s;
+  gap: 12px;
+  padding: 4px 0;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   color: var(--text-2);
   text-decoration: none;
-  font-weight: 400;
-  font-size: 0.87rem;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .mega-menu-item::before {
   content: "";
-  width: 4px;
-  height: 4px;
-  background: #cbd5e1;
+  width: 5px;
+  height: 5px;
+  background: #e2e8f0;
   border-radius: 50%;
   flex-shrink: 0;
-  transition: all 0.2s;
+  transition: all 0.25s;
 }
 
 .mega-menu-item:hover {
   color: var(--primary-dark);
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 .mega-menu-item:hover::before {
   background: var(--primary);
-  transform: scale(1.5);
+  transform: scale(1.4);
 }
 
 /* ── Scrolled Search Bar in Navbar ───────────────── */
@@ -464,6 +542,7 @@
 .navbar-search-wrapper--visible {
   display: flex;
   width: 100%;
+  max-width: 600px;
   opacity: 1;
 }
 
@@ -610,10 +689,11 @@
 
 /* ── Right Area ──────────────────────────────────── */
 .nav-right {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
+  justify-content: flex-end;
 }
 
 .nav-post-property {
@@ -1084,6 +1164,18 @@
    MOBILE RESPONSIVE
 ════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
+  .nav-logo-text {
+    display: none;
+  }
+
+  .nav-drawer-header .nav-logo-text {
+    display: inline;
+  }
+
+  .navbar--scrolled {
+    border-radius: 0;
+  }
+
   .nav-right {
     display: none;
   }
@@ -1227,13 +1319,8 @@
     height: 56px;
   }
 
-  .nav-logo {
-    font-size: 1.1rem;
-  }
-
-  .nav-logo-icon {
-    width: 26px;
-    height: 26px;
+  .nav-logo-img {
+    height: 42px;
   }
 
   .loc-cities-grid {

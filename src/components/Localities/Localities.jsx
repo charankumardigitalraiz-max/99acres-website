@@ -29,6 +29,7 @@ export default function Localities({ isSidebarOpen }) {
 
         <div className="carousel-wrapper">
           <Swiper
+            key={isSidebarOpen ? 'opened' : 'closed'}
             modules={[Navigation]}
             spaceBetween={20}
             slidesPerView={2}
@@ -37,11 +38,11 @@ export default function Localities({ isSidebarOpen }) {
               nextEl: '.loc-next-btn',
             }}
             breakpoints={{
-              480: { slidesPerView: 2.5, spaceBetween: 16 },
-              768: { slidesPerView: 3.5, spaceBetween: 16 },
-              1024: { slidesPerView: isSidebarOpen ? 3.5 : 4.5, spaceBetween: 20 },
-              1280: { slidesPerView: isSidebarOpen ? 3.5 : 5.5, spaceBetween: 20 },
-              1536: { slidesPerView: isSidebarOpen ? 4.5 : 6.5, spaceBetween: 24 },
+              480: { slidesPerView: 2, spaceBetween: 16 },
+              768: { slidesPerView: 2.5, spaceBetween: 20 },
+              1024: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
+              1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
+              1536: { slidesPerView: isSidebarOpen ? 4 : 5, spaceBetween: 24 },
             }}
             className="localities-swiper"
           >

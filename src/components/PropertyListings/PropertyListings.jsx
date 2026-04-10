@@ -51,6 +51,7 @@ export default function PropertyListings({ isSidebarOpen }) {
 
         <div className="carousel-wrapper">
           <Swiper
+            key={isSidebarOpen ? 'open' : 'closed'}
             modules={[Navigation]}
             spaceBetween={16}
             slidesPerView={2}
@@ -67,7 +68,7 @@ export default function PropertyListings({ isSidebarOpen }) {
           >
             {propertiesToShow.map(property => (
               <SwiperSlide key={property.id}>
-                <PropertyCard property={property}  />
+                <PropertyCard property={property} />
               </SwiperSlide>
             ))}
           </Swiper>

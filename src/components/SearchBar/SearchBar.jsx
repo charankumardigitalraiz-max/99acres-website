@@ -12,7 +12,7 @@ import {
 import { SearchIco, PinIco, LocIco, IconFlats, CloseIco } from '../../data/icons';
 
 // ── Configuration ─────────────────────────────────────
-const SEARCH_TABS = ['Buy', 'Rent', 'Commercial'];
+const SEARCH_TABS = ['Buy', 'Commercial'];
 
 const PROPERTY_TYPES = {
   Buy: ['All Residential', 'Apartment', 'Villa / House', 'Independent Floor', 'Plot / Land'],
@@ -330,115 +330,115 @@ export default function SearchBar({ isNavbar = false }) {
             <form className="sb-desktop-row" onSubmit={handleSearch}>
 
               {/* Property Type */}
-            <div className="sb-field sb-type-field">
-              <select
-                value={propertyType}
-                onChange={e => dispatch(setPropertyType(e.target.value))}
-                aria-label="Property type"
-              >
-                {types.map(t => <option key={t}>{t}</option>)}
-              </select>
-            </div>
-
-            <div className="sb-sep" />
-
-            {/* Location */}
-            <div className="sb-field sb-location-field" ref={locationRef}>
-              <SearchIco />
-              <input
-                type="text"
-                placeholder={`Search city, locality or project`}
-                value={displayValue}
-                onChange={e => dispatch(setQuery(e.target.value))}
-                onFocus={() => setIsLocationFocused(true)}
-                autoComplete="off"
-              />
-              {displayValue && (
-                <button type="button" className="sb-clear" onClick={() => {
-                  dispatch(clearSuggestions());
-                  dispatch(setLocation(''));
-                }}>
-                  <CloseIco />
-                </button>
-              )}
-              {showDropdown && (
-                <SuggestionDropdown
-                  suggestions={suggestions}
-                  recentSearches={recentSearches}
-                  query={query}
-                  onSelect={handleSelect}
-                  onRecent={handleRecentSelect}
-                />
-              )}
-            </div>
-
-            <div className="sb-sep" />
-
-            {/* BHK */}
-            {showBhk && (
-              <>
-                <div className="sb-field sb-bhk-field">
-                  <div className="sb-bhk-trigger">
-                    <span className="sb-field-label">BHK</span>
-                    <span className="sb-bhk-value">
-                      {bhk.length === 0 ? 'Any' : bhk.map(b => b === '1 RK' ? '1RK' : `${b}BHK`).join(', ')}
-                    </span>
-                    <div className="sb-bhk-popup">
-                      {BHK_OPTIONS.map(b => (
-                        <button
-                          key={b} type="button"
-                          className={`sb-bhk-opt ${bhk.includes(b) ? 'active' : ''}`}
-                          onClick={() => dispatch(toggleBhk(b))}
-                        >{b === '1 RK' ? '1 RK' : `${b} BHK`}</button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="sb-sep" />
-              </>
-            )}
-
-            {/* Budget */}
-            <div className="sb-field sb-budget-field">
-              <span className="sb-field-label">Budget</span>
-              <div className="sb-budget-selects">
+              <div className="sb-field sb-type-field">
                 <select
-                  value={minBudget}
-                  onChange={e => dispatch(setMinBudget(e.target.value))}
-                  aria-label="Min budget"
+                  value={propertyType}
+                  onChange={e => dispatch(setPropertyType(e.target.value))}
+                  aria-label="Property type"
                 >
-                  {budgets.min.map(b => <option key={b}>{b}</option>)}
-                </select>
-                <span>–</span>
-                <select
-                  value={maxBudget}
-                  onChange={e => dispatch(setMaxBudget(e.target.value))}
-                  aria-label="Max budget"
-                >
-                  {budgets.max.map(b => <option key={b}>{b}</option>)}
+                  {types.map(t => <option key={t}>{t}</option>)}
                 </select>
               </div>
-            </div>
 
-            {/* Actions */}
-            <div className="sb-actions">
-              <button
-                type="button"
-                className={`sb-filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
-                onClick={() => dispatch(toggleAdvancedFilters())}
-                title="More filters"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="4" y1="6" x2="20" y2="6" />
-                  <line x1="8" y1="12" x2="16" y2="12" />
-                  <line x1="10" y1="18" x2="14" y2="18" />
-                </svg>
-                {activeFilterCount > 0 && <span className="sb-filter-badge">{activeFilterCount}</span>}
-              </button>
-              <button type="submit" className="sb-search-btn">
+              <div className="sb-sep" />
+
+              {/* Location */}
+              <div className="sb-field sb-location-field" ref={locationRef}>
                 <SearchIco />
-                <span>Search</span>
-              </button>
+                <input
+                  type="text"
+                  placeholder={`Search city, locality or project`}
+                  value={displayValue}
+                  onChange={e => dispatch(setQuery(e.target.value))}
+                  onFocus={() => setIsLocationFocused(true)}
+                  autoComplete="off"
+                />
+                {displayValue && (
+                  <button type="button" className="sb-clear" onClick={() => {
+                    dispatch(clearSuggestions());
+                    dispatch(setLocation(''));
+                  }}>
+                    <CloseIco />
+                  </button>
+                )}
+                {showDropdown && (
+                  <SuggestionDropdown
+                    suggestions={suggestions}
+                    recentSearches={recentSearches}
+                    query={query}
+                    onSelect={handleSelect}
+                    onRecent={handleRecentSelect}
+                  />
+                )}
+              </div>
+
+              <div className="sb-sep" />
+
+              {/* BHK */}
+              {showBhk && (
+                <>
+                  <div className="sb-field sb-bhk-field">
+                    <div className="sb-bhk-trigger">
+                      <span className="sb-field-label">BHK</span>
+                      <span className="sb-bhk-value">
+                        {bhk.length === 0 ? 'Any' : bhk.map(b => b === '1 RK' ? '1RK' : `${b}BHK`).join(', ')}
+                      </span>
+                      <div className="sb-bhk-popup">
+                        {BHK_OPTIONS.map(b => (
+                          <button
+                            key={b} type="button"
+                            className={`sb-bhk-opt ${bhk.includes(b) ? 'active' : ''}`}
+                            onClick={() => dispatch(toggleBhk(b))}
+                          >{b === '1 RK' ? '1 RK' : `${b} BHK`}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="sb-sep" />
+                </>
+              )}
+
+              {/* Budget */}
+              <div className="sb-field sb-budget-field">
+                <span className="sb-field-label">Budget</span>
+                <div className="sb-budget-selects">
+                  <select
+                    value={minBudget}
+                    onChange={e => dispatch(setMinBudget(e.target.value))}
+                    aria-label="Min budget"
+                  >
+                    {budgets.min.map(b => <option key={b}>{b}</option>)}
+                  </select>
+                  <span>–</span>
+                  <select
+                    value={maxBudget}
+                    onChange={e => dispatch(setMaxBudget(e.target.value))}
+                    aria-label="Max budget"
+                  >
+                    {budgets.max.map(b => <option key={b}>{b}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="sb-actions">
+                <button
+                  type="button"
+                  className={`sb-filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
+                  onClick={() => dispatch(toggleAdvancedFilters())}
+                  title="More filters"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="4" y1="6" x2="20" y2="6" />
+                    <line x1="8" y1="12" x2="16" y2="12" />
+                    <line x1="10" y1="18" x2="14" y2="18" />
+                  </svg>
+                  {activeFilterCount > 0 && <span className="sb-filter-badge">{activeFilterCount}</span>}
+                </button>
+                <button type="submit" className="sb-search-btn">
+                  <SearchIco />
+                  <span>Search</span>
+                </button>
               </div>
             </form>
           )}
