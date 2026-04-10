@@ -5,14 +5,15 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { PROMO_BANNERS } from '../../data/constants';
 
-export default function PromoBannerSlider() {
+export default function PromoBannerSlider({ isSidebarOpen }) {
   return (
-    <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+    <section className={`section promo-section ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="container">
         {/* Mount Check */}
 
 
         <Swiper
+          key={isSidebarOpen ? 'opened' : 'closed'}
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{ delay: 6000, disableOnInteraction: false }}

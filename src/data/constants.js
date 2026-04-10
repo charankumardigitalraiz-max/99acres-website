@@ -143,10 +143,10 @@ export const STATS = [
 // ─── NAV LINKS ────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: 'Buy', path: '/properties', hasMenu: true, menuKey: 'BUY' },
-  { label: 'Rent', path: '/properties', hasMenu: true, menuKey: 'RENT' },
-  { label: 'New Projects', path: '/properties', hasMenu: true, menuKey: 'NEW' },
-  // { label: 'Commercial', path: '/properties', hasMenu: true, menuKey: 'COMMERCIAL' },
-  { label: 'Plots', path: '/properties' },
+  // { label: 'Rent', path: '/properties', hasMenu: true, menuKey: 'RENT' },
+  // { label: 'New Projects', path: '/properties', hasMenu: true, menuKey: 'NEW' },
+  { label: 'Commercial', path: '/properties', hasMenu: true, menuKey: 'COMMERCIAL' },
+  // { label: 'Plots', path: '/properties' },
 ];
 
 // ─── PROPERTIES MEGA MENU DATA ────────────────────────────

@@ -19,8 +19,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
-  min-height: 32px;
+  padding: 0 0 12px 0;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid rgba(226, 232, 240, 0.4);
+}
+
+.sidebar-ads-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.sidebar-featured-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+  flex-shrink: 0;
+  fill: rgba(245, 158, 11, 0.1);
+}
+
+.sidebar-ads-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
 }
 
 .sidebar-ads-content {
@@ -35,14 +61,6 @@
   pointer-events: none;
 }
 
-.sidebar-ads-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-2);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 .sidebar-toggle-btn {
   width: 32px;
   height: 32px;
@@ -55,7 +73,7 @@
   color: var(--text-2);
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-toggle-btn:hover {
@@ -109,10 +127,12 @@
   background: #000;
 }
 
-.ad-video {
+.ad-video-frame {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: none;
+  pointer-events: none; /* Allows clicking the ad-btn and card through the video */
+  transform: scale(1.05); /* Slight scale to hide any YouTube branding/edges */
 }
 
 .ad-img-wrapper {
@@ -199,6 +219,6 @@
 }
 
 .ad-sell {
-  background: linear-gradient(135deg, #fffbev 0%, #fef3c7 100%);
+  background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
   border-color: #fde68a;
 }

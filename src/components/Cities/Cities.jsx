@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './Cities.css';
 
-export default function Cities() {
+export default function Cities({ isSidebarOpen }) {
   const cities = useSelector(state => state.properties.cities);
 
   return (
@@ -27,6 +27,7 @@ export default function Cities() {
 
         <div className="carousel-wrapper">
           <Swiper
+            key={isSidebarOpen ? 'open' : 'close'}
             modules={[Navigation]}
             spaceBetween={16}
             slidesPerView={2.2}
@@ -38,7 +39,9 @@ export default function Cities() {
               480: { slidesPerView: 3.2, spaceBetween: 16 },
               768: { slidesPerView: 4.2, spaceBetween: 20 },
               1024: { slidesPerView: 5.2, spaceBetween: 20 },
-              1280: { slidesPerView: 6, spaceBetween: 20 },
+              1280: { slidesPerView: isSidebarOpen ? 5 : 6, spaceBetween: 24 },
+              1536: { slidesPerView: isSidebarOpen ? 6 : 7, spaceBetween: 20 },
+              // 1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
             className="cities-swiper"
           >

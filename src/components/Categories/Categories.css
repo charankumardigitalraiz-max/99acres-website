@@ -25,7 +25,7 @@
   opacity: 0.85;
 }
 
-.cat-overlay-v4 {
+/* .cat-overlay-v4 {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -35,7 +35,7 @@
     transparent 100%
   );
   transition: all 0.4s ease;
-}
+} */
 
 .cat-content-v4 {
   position: absolute;
@@ -55,6 +55,7 @@
   margin-bottom: 4px;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: var(--primary);
 }
 
 .cat-count-v4 {
@@ -63,6 +64,7 @@
   opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 0.12em;
+  color: var(--white);
 }
 
 /* Elite Hover Effects */
@@ -76,14 +78,14 @@
   opacity: 1;
 }
 
-.cat-card-v4:hover .cat-overlay-v4 {
+/* .cat-card-v4:hover .cat-overlay-v4 {
   background: linear-gradient(
     to top,
     rgba(15, 23, 42, 1) 0%,
     rgba(15, 23, 42, 0.5) 60%,
     transparent 100%
   );
-}
+} */
 
 .cat-card-v4:hover .cat-content-v4 {
   transform: translateY(-4px);
@@ -106,7 +108,7 @@
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .cat-name-v4 {
     font-size: 1rem;
   }

@@ -20,19 +20,19 @@ export default function Home() {
 
       {/* Two Column Layout Wrapper */}
       <div className={`container home-layout ${!isSidebarOpen ? 'home-layout--collapsed' : ''}`}>
-        
+
         {/* Main Feed */}
         <div className="home-main">
           {/* Categories section */}
           <Categories />
-          <PromoBannerSlider />
+          <PromoBannerSlider isSidebarOpen={isSidebarOpen} />
 
           <PropertyListings isSidebarOpen={isSidebarOpen} />
           <Localities isSidebarOpen={isSidebarOpen} />
           <HighRatedProperties isSidebarOpen={isSidebarOpen} />
           <LandProperties isSidebarOpen={isSidebarOpen} />
           {/* <StatsStrip /> */}
-          <Cities />
+          <Cities isSidebarOpen={isSidebarOpen} />
         </div>
 
         {/* Sidebar Ads */}

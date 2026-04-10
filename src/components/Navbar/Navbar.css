@@ -95,8 +95,8 @@
   color: var(--primary);
   transition: color 0.35s ease;
 }
-.nav-logo-text span {
-  color: var(--dark);
+.nav-logo-text {
+  color: var(--dark) !important;
 }
 
 /* Ensure branding in solid drawers/modals stays dark even if parent navbar is transparent */

@@ -32,6 +32,7 @@ export default function LandProperties({ isSidebarOpen }) {
 
         <div className="carousel-wrapper">
           <Swiper
+            key={isSidebarOpen ? 'opened' : 'closed'}
             modules={[Navigation]}
             spaceBetween={20}
             slidesPerView={2}

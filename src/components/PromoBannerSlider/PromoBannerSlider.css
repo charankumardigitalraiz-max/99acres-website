@@ -1,28 +1,43 @@
 /* === PROMO BANNER SWIPER === */
+.promo-section {
+  padding: 0 !important;
+  margin: 8px 0 24px 0 !important;
+}
+
 .promo-swiper {
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   display: block;
   width: 100%;
-  height: 300px; /* Reduced from 400px to fix top/bottom space */
+  height: 170px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-open .promo-swiper {
+  height: 130px;
 }
 
 .promo-slide {
   position: relative;
-  height: 300px; /* Reduced from 400px */
+  height: 170px;
   width: 100%;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  background-color: transparent; /* Changed from white to blend gaps */
+  border-radius: 12px;
+  background-color: #000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-open .promo-slide {
+  height: 130px;
 }
 
 .promo-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  border-radius: 50px;
+  opacity: 0.9;
 }
 
 .promo-slide-overlay {
@@ -88,25 +103,47 @@
   filter: brightness(1.1);
 }
 
+.sidebar-open .promo-title {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.sidebar-open .promo-sub {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  max-width: 400px;
+}
+
+.sidebar-open .promo-tag {
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  font-size: 0.65rem;
+}
+
+.sidebar-open .banner-cta {
+  padding: 8px 24px;
+  font-size: 0.85rem;
+}
+
 @media (max-width: 1024px) {
+  .promo-swiper,
   .promo-slide {
-    padding: 0 40px;
-    height: 240px;
+    height: 160px;
   }
 }
 
 @media (max-width: 768px) {
+  .promo-swiper,
   .promo-slide {
-    height: 250px;
-    padding: 0;
+    height: 140px;
   }
 
   .promo-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .promo-sub {
-    font-size: 0.95rem;
+    display: none; /* Hide sub-text on mobile to save space in ribbon layout */
   }
 }
 

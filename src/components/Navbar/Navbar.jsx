@@ -91,7 +91,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
               <img src="/sherla-properties-text.png" alt="Sherla Properties" className="nav-logo-img" />
-              <span className="nav-logo-text">Sherla <span>Properties</span></span>
+              <span className="nav-logo-text">Sherla Properties</span>
             </Link>
 
             {/* Location Selector */}

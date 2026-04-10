@@ -28,6 +28,7 @@ export default function HighRatedProperties({ isSidebarOpen }) {
         </div>
         <div className="carousel-wrapper">
           <Swiper
+            key={isSidebarOpen ? 'opened' : 'closed'}
             modules={[Navigation, Autoplay]}
             spaceBetween={20}
             slidesPerView={2}
