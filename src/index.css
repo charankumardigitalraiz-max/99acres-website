@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
 
 *,
 *::before,
@@ -37,14 +37,16 @@ html {
 
 body {
   font-family:
-    "Inter",
+    "DM Sans",
     system-ui,
     -apple-system,
     sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -80,8 +82,9 @@ h2,
 h3,
 h4 {
   color: var(--dark);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 .section {
@@ -99,16 +102,17 @@ h4 {
   display: inline-block;
   color: var(--primary-dark);
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  margin-bottom: 10px;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 1.85rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--dark);
+  letter-spacing: -0.01em;
 }
 
 .section-sub {
@@ -151,7 +155,7 @@ h4 {
   gap: 8px;
   color: var(--primary-dark);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   transition: all 0.2s;
 }
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
-import { SEARCH_TABS } from '../data/constants';
 import { setQuery } from '../store/slices/searchSlice';
 import { SearchIco, PinIco } from '../data/icons';
 import './Properties.css';
@@ -24,8 +23,8 @@ export default function Properties() {
   const { buyProperties, rentProperties, highRated } = useSelector(state => state.properties);
   const { activeTab, query } = useSelector(state => state.search);
 
-  // Combine logic to simulate a real database fetch based on Redux
-  const currentTabName = SEARCH_TABS[activeTab];
+  // activeTab is now a string: 'Buy' | 'Rent' | 'Commercial'
+  const currentTabName = activeTab || 'Buy';
   let allListings = [];
 
   if (currentTabName === 'Buy' || currentTabName === 'New Projects') {

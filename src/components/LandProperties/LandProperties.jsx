@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { ArrowR, ChevronL, ChevronR, PinIco, AreaIco } from '../../data/icons';
+import { ArrowR, ChevronL, ChevronR, PinIco } from '../../data/icons';
 import { useDispatch } from 'react-redux';
 import { toggleWishlist } from '../../store/slices/propertiesSlice';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './LandProperties.css';
 
-export default function LandProperties() {
+export default function LandProperties({ isSidebarOpen }) {
   const lands = useSelector(state => state.properties.landProperties);
   const wishlist = useSelector(state => state.properties.wishlist);
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function LandProperties() {
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}
-            slidesPerView={1.2}
+            slidesPerView={2}
             navigation={{
               prevEl: '.land-prev-btn',
               nextEl: '.land-next-btn',
@@ -42,7 +42,8 @@ export default function LandProperties() {
             breakpoints={{
               640: { slidesPerView: 2.2, spaceBetween: 20 },
               1024: { slidesPerView: 3, spaceBetween: 24 },
-              1280: { slidesPerView: 4, spaceBetween: 24 },
+              1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
+              1536: { slidesPerView: isSidebarOpen ? 4 : 5, spaceBetween: 24 }
             }}
             className="land-swiper"
           >

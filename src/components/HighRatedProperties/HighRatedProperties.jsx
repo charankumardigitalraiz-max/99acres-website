@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './HighRatedProperties.css';
 
-export default function HighRatedProperties() {
+export default function HighRatedProperties({ isSidebarOpen }) {
   const highRated = useSelector(state => state.properties.highRated);
 
   return (
@@ -30,7 +30,7 @@ export default function HighRatedProperties() {
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={20}
-            slidesPerView={1.2}
+            slidesPerView={2}
             navigation={{
               prevEl: '.slide-prev-btn',
               nextEl: '.slide-next-btn',
@@ -38,7 +38,7 @@ export default function HighRatedProperties() {
             breakpoints={{
               640: { slidesPerView: 2.2, spaceBetween: 20 },
               1024: { slidesPerView: 3, spaceBetween: 24 },
-              1280: { slidesPerView: 4, spaceBetween: 24 },
+              1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
             className="rated-swiper"
           >

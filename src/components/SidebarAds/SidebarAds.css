@@ -1,0 +1,204 @@
+.sidebar-ads {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 80px;
+  width: 300px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible; /* Prevent sticky break */
+  z-index: 10;
+}
+
+.sidebar-ads--collapsed {
+  width: 44px;
+  align-items: center;
+}
+
+.sidebar-ads-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  min-height: 32px;
+}
+
+.sidebar-ads-content {
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0.3s;
+  visibility: visible;
+}
+
+.sidebar-ads--collapsed .sidebar-ads-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sidebar-ads-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-toggle-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sidebar-toggle-btn:hover {
+  background: var(--bg);
+  color: var(--dark);
+  transform: scale(1.05);
+}
+
+.sidebar-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ad-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+}
+
+.ad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+}
+
+.ad-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}
+
+.ad-video-wrapper {
+  width: 100%;
+  height: 180px; /* Slightly taller for video layout */
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.ad-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ad-img-wrapper {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+}
+
+.ad-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.ad-card:hover .ad-img {
+  transform: scale(1.05);
+}
+
+.ad-content {
+  padding: 20px;
+}
+
+.ad-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.ad-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.ad-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.ad-btn:hover {
+  background: var(--primary-dark);
+}
+
+.ad-btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary-dark);
+}
+
+.ad-btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.ad-btn-dark {
+  background: var(--dark);
+  color: #fff;
+}
+
+.ad-btn-dark:hover {
+  background: #000;
+}
+
+.ad-loan {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-color: #bae6fd;
+}
+
+.ad-loan .ad-badge {
+  background: var(--primary);
+}
+
+.ad-sell {
+  background: linear-gradient(135deg, #fffbev 0%, #fef3c7 100%);
+  border-color: #fde68a;
+}

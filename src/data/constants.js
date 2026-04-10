@@ -142,12 +142,89 @@ export const STATS = [
 
 // ─── NAV LINKS ────────────────────────────────────────────
 export const NAV_LINKS = [
-  { label: 'Buy', path: '/' },
-  { label: 'Rent', path: '/' },
-  { label: 'New Projects', path: '/' },
-  { label: 'Commercial', path: '/' },
-  { label: 'Agents', path: '/' },
+  { label: 'Buy', path: '/properties', hasMenu: true, menuKey: 'BUY' },
+  { label: 'Rent', path: '/properties', hasMenu: true, menuKey: 'RENT' },
+  { label: 'New Projects', path: '/properties', hasMenu: true, menuKey: 'NEW' },
+  // { label: 'Commercial', path: '/properties', hasMenu: true, menuKey: 'COMMERCIAL' },
+  { label: 'Plots', path: '/properties' },
 ];
+
+// ─── PROPERTIES MEGA MENU DATA ────────────────────────────
+export const MEGA_MENUS = {
+  BUY: {
+    'Popular Choices': [
+      { label: 'Ready to Move' },
+      { label: 'Owner Properties' },
+      { label: 'Budget Homes' },
+      { label: 'Luxury Homes' },
+    ],
+    'Residential': [
+      { label: 'Flats / Apartments' },
+      { label: 'Independent Houses' },
+      { label: 'Villas' },
+      { label: 'Penthouses' },
+    ],
+    'Top Cities': [
+      { label: 'Mumbai' },
+      { label: 'Bangalore' },
+      { label: 'Hyderabad' },
+      { label: 'Delhi NCR' },
+    ]
+  },
+  RENT: {
+    'Popular Choices': [
+      { label: 'Fully Furnished' },
+      { label: 'Bachelor Friendly' },
+      { label: 'Near IT Parks' },
+      { label: 'No Brokerage' },
+    ],
+    'Property Types': [
+      { label: 'Flats / Apartments' },
+      { label: 'Independent Floors' },
+      { label: 'Studio Apartments' },
+      { label: 'Shared Accommodation' },
+    ],
+    'Top Localities': [
+      { label: 'HSR Layout' },
+      { label: 'Whitefield' },
+      { label: 'Koramangala' },
+      { label: 'Indiranagar' },
+    ]
+  },
+  NEW: {
+    'By Development': [
+      { label: 'Newly Launched' },
+      { label: 'Under Construction' },
+      { label: 'Possession Next Year' },
+      { label: 'RERA Registered' },
+    ],
+    'Top Developers': [
+      { label: 'DLF' },
+      { label: 'Godrej Properties' },
+      { label: 'Brigade Group' },
+      { label: 'Lodha Group' },
+    ],
+    'Research Tools': [
+      { label: 'Price Trends' },
+      { label: 'Locality Reviews' },
+      { label: 'New Launch Alerts' },
+    ]
+  },
+  COMMERCIAL: {
+    'Buy Commercial': [
+      { label: 'Office Spaces' },
+      { label: 'Retail Shops' },
+      { label: 'Showrooms' },
+    ],
+    'Rent Commercial': [
+      { label: 'Warehouses' },
+      { label: 'Plots / Land' },
+      { label: 'Co-working Spaces' },
+    ]
+  }
+};
+
+
 
 // ─── SEARCH TABS ─────────────────────────────────────────
 export const SEARCH_TABS = ['Buy', 'Rent', 'New Projects', 'Commercial'];

@@ -15,15 +15,15 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-background"></div>
+      <div className="hero-background" />
       <div className="hero-content container">
         <div className="hero-header">
           <span className="hero-label">Real Estate Excellence</span>
           <h1 className="hero-title">
-            Discover Your <span className="highlight" key={words[index]}>Dream {words[index]}</span>
+            Find Your <span className="highlight" key={words[index]}>{words[index]}</span>
           </h1>
           <p className="hero-desc">
-            Verified properties from trusted developers and owners.
+            Verified properties from trusted developers and owners across India.
           </p>
         </div>
 

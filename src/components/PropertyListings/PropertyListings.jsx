@@ -3,18 +3,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
-import { SEARCH_TABS } from '../../data/constants';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './PropertyListings.css';
 
-export default function PropertyListings() {
+export default function PropertyListings({ isSidebarOpen }) {
   const { buyProperties, rentProperties } = useSelector(state => state.properties);
   const activeTab = useSelector(state => state.search.activeTab);
 
-  const currentTabName = SEARCH_TABS[activeTab];
+  // activeTab is now a string: 'Buy' | 'Rent' | 'Commercial'
+  const currentTabName = activeTab || 'Buy';
 
-  // Decide which list to show based on search bar tab
   let propertiesToShow = [];
   let title = '';
   let sub = '';
@@ -54,21 +53,21 @@ export default function PropertyListings() {
           <Swiper
             modules={[Navigation]}
             spaceBetween={16}
-            slidesPerView={1.2}
+            slidesPerView={2}
             navigation={{
               prevEl: '.prop-prev-btn',
               nextEl: '.prop-next-btn',
             }}
             breakpoints={{
               480: { slidesPerView: 2, spaceBetween: 16 },
-              768: { slidesPerView: 3, spaceBetween: 20 },
-              1024: { slidesPerView: 4, spaceBetween: 24 },
+              768: { slidesPerView: 2.5, spaceBetween: 20 },
+              1024: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
             className="listings-swiper"
           >
             {propertiesToShow.map(property => (
               <SwiperSlide key={property.id}>
-                <PropertyCard property={property} />
+                <PropertyCard property={property}  />
               </SwiperSlide>
             ))}
           </Swiper>
