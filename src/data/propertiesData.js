@@ -11,7 +11,8 @@ export const propertiesData = [
       locality: 'Powai',
       projectName: 'Palm Springs',
       fullAddress: 'Villa 12, Palm Springs, Powai, Mumbai - 400076',
-      landmark: 'Near Hiranandani Hospital'
+      landmark: 'Near Hiranandani Hospital',
+      coordinates: { lat: 19.1176, lng: 72.9060 }
     },
     city: 'Mumbai',
     uploader: {
@@ -36,7 +37,11 @@ export const propertiesData = [
     furnishingStatus: 'Fully Furnished',
     amenities: ['water supply', 'washrooms', 'bedrooms', 'kitchen', 'livving room', 'balcony', 'parking', 'garden', 'terrace', 'tv', 'sofa'],
     direction: 'north-east',
-    locationAdvantages: ['close metro station', 'close to highway', 'close to market'],
+    locationAdvantages: [
+      { name: 'Metro Station', lat: 19.1185, lng: 72.9075, type: 'transport' },
+      { name: 'Eastern Express Highway', lat: 19.1150, lng: 72.9040, type: 'road' },
+      { name: 'Hiranandani Market', lat: 19.1170, lng: 72.9080, type: 'market' }
+    ],
     availabilityStatus: 'ready to move',
     availableFrom: '2025-04-01',
     smartAlbum: {
@@ -142,7 +147,8 @@ export const propertiesData = [
       locality: 'Whitefield',
       projectName: 'Prestige Lakeside',
       fullAddress: 'A-402, Prestige Lakeside, Whitefield, Bangalore - 560066',
-      landmark: 'Opposite Forum Mall'
+      landmark: 'Opposite Forum Mall',
+      coordinates: { lat: 12.9698, lng: 77.7500 }
     },
     city: 'Bangalore',
     uploader: {
@@ -167,7 +173,10 @@ export const propertiesData = [
     furnishingStatus: 'Semi Furnished',
     amenities: ['water supply', 'washrooms', 'bedrooms', 'kitchen', 'livving room', 'parking', 'tv'],
     direction: 'east side',
-    locationAdvantages: ['close metro station', 'close to airport'],
+    locationAdvantages: [
+      { name: 'Whitefield Metro', lat: 12.9710, lng: 77.7520, type: 'transport' },
+      { name: 'Forum Shantiniketan', lat: 12.9680, lng: 77.7480, type: 'market' }
+    ],
     availabilityStatus: 'under construction',
     availableFrom: '2026-06-15',
     smartAlbum: {
@@ -211,7 +220,8 @@ export const propertiesData = [
       locality: 'Saket',
       projectName: 'Select Citywalk',
       fullAddress: 'Shop 45, Ground Floor, Select Citywalk, Saket, Delhi - 110017',
-      landmark: 'Near Main Entrance'
+      landmark: 'Near Main Entrance',
+      coordinates: { lat: 28.5244, lng: 77.2167 }
     },
     city: 'Delhi NCR',
     uploader: {
@@ -236,7 +246,10 @@ export const propertiesData = [
     furnishingStatus: 'Unfurnished',
     amenities: ['water supply', 'washrooms', 'parking'],
     direction: 'north-west',
-    locationAdvantages: ['close metro station', 'close to market'],
+    locationAdvantages: [
+      { name: 'Saket Metro Station', lat: 28.5204, lng: 77.2100, type: 'transport' },
+      { name: 'Max Super Speciality Hospital', lat: 28.5280, lng: 77.2190, type: 'hospital' }
+    ],
     availabilityStatus: 'ready to move',
     availableFrom: '2025-03-01',
     smartAlbum: {
@@ -277,7 +290,8 @@ export const propertiesData = [
       locality: 'Gachibowli',
       projectName: 'Green Acres',
       fullAddress: 'Plot 88, Green Acres Phase 2, Gachibowli, Hyderabad - 500032',
-      landmark: 'Next to Botanical Garden'
+      landmark: 'Next to Botanical Garden',
+      coordinates: { lat: 17.4401, lng: 78.3489 }
     },
     city: 'Hyderabad',
     uploader: {
@@ -308,8 +322,8 @@ export const propertiesData = [
     smartAlbum: {
       'Plot View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80']
     },
-    coverPhoto: 'https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80'],
+    coverPhoto: 'https://images.pexels.com/photos/1031700/pexels-photo-1031700.jpeg?auto=compress&cs=tinysrgb&w=1280',
+    images: ['https://images.pexels.com/photos/1031700/pexels-photo-1031700.jpeg?auto=compress&cs=tinysrgb&w=1280'],
     video: null,
     ownerVerification: {
       type: 'Adhaar',
@@ -322,7 +336,7 @@ export const propertiesData = [
       propertyTaxReceipt: 'plot_tax.pdf'
     },
     // --- Harmonization Fields ---
-    img: 'https://www.shutterstock.com/image-photo/aerial-view-developing-residential-area-260nw-2712823111.jpg',
+    img: 'https://images.pexels.com/photos/1031700/pexels-photo-1031700.jpeg?auto=compress&cs=tinysrgb&w=800',
     loc: 'Gachibowli, Hyderabad',
     beds: '0',
     baths: '0',
@@ -506,8 +520,8 @@ export const propertiesData = [
     smartAlbum: {
       'Land View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80']
     },
-    coverPhoto: 'https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80',
-    images: ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80'],
+    coverPhoto: 'https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1280',
+    images: ['https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1280'],
     video: null,
     ownerVerification: {
       type: 'Adhaar',
@@ -520,7 +534,7 @@ export const propertiesData = [
       propertyTaxReceipt: 'land_tax.pdf'
     },
     // --- Harmonization Fields ---
-    img: 'https://apollo.olx.in/v1/files/j6xrnig4nb3p2-IN/image',
+    img: 'https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=800',
     loc: 'Shadnagar, Hyderabad',
     beds: '0',
     baths: '0',
@@ -742,7 +756,7 @@ export const propertiesData = [
     city: 'Pune',
     pricing: { expectedPrice: 155000000 },
     price: '₹15.5 Cr',
-    img: 'https://apollo.olx.in/v1/files/j6xrnig4nb3p2-IN/image',
+    img: 'https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&w=800',
     loc: 'Aamby Valley, Pune',
     beds: '0',
     baths: '0',

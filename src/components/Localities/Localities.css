@@ -124,23 +124,27 @@
   transform: scale(1.1);
 }
 
+.hyd-wish-btn.wished {
+  background: #fff1f2;
+}
+
 .hyd-info-wrap {
   padding: 12px 14px;
 }
 
 .hyd-price {
   font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--dark);
+  font-weight: 700;
+  color: #0f172a;
   margin-bottom: 4px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .hyd-title {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-2);
-  margin-bottom: 10px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 12px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -151,16 +155,29 @@
 .hyd-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: var(--text-3);
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #94a3b8;
   font-weight: 500;
-  padding-top: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.hyd-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hyd-meta-item svg {
+  width: 12px;
+  height: 12px;
+  color: var(--primary);
+  opacity: 0.8;
 }
 
 .hyd-meta .dot {
-  color: #cbd5e1;
+  color: #e2e8f0;
 }
 
 @media (max-width: 768px) {

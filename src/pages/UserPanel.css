@@ -901,8 +901,9 @@
 /* ── SECTION HEADER ROW ── */
 .up-section-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
+
   margin-bottom: 24px;
 }
 
@@ -1577,14 +1578,14 @@
 }
 
 .up-btn-primary {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: var(--primary);
   color: white;
   border: none;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
-  height: 48px;
+  height: 40px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   transition: all 0.3s;
 }
 

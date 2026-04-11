@@ -29,9 +29,9 @@ const IconHelp = () => <svg width="16" height="16" fill="none" stroke="currentCo
 const TABS = [
   // { key: 'overview', label: 'Overview', icon: <IconHome /> },
   { key: 'profile', label: 'My Profile', icon: <IconUser /> },
-  { key: 'subscription', label: 'Subscription', icon: <IconPremium /> },
+  // { key: 'subscription', label: 'Subscription', icon: <IconPremium /> },
   { key: 'favourites', label: 'Favourites', icon: <IconHeart /> },
-  { key: 'messages', label: 'Messages', icon: <IconMessage /> },
+  // { key: 'messages', label: 'Messages', icon: <IconMessage /> },
   { key: 'notifications', label: 'Notifications', icon: <IconBell /> },
   { key: 'support', label: 'Support Chat', icon: <IconHelp /> },
   { key: 'settings', label: 'Settings', icon: <IconSettings /> },
@@ -70,15 +70,15 @@ export default function UserPanel() {
 
   const renderPanel = () => {
     switch (tabName) {
-      case 'overview': return <Overview />;
+      // case 'overview': return <Overview />;
       case 'profile': return <ProfilePanel />;
-      case 'subscription': return <SubscriptionPanel />;
+      // case 'subscription': return <SubscriptionPanel />;
       case 'favourites': return <FavouritesPanel />;
       case 'notifications': return <NotificationsPanel />;
-      case 'messages': return <MessagesPanel />;
+      // case 'messages': return <MessagesPanel />;
       case 'support': return <SupportPanel />;
       case 'settings': return <SettingsPanel />;
-      default: return null;
+      default: return <ProfilePanel />;
     }
   };
 

@@ -1,17 +1,14 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { ArrowR, ChevronL, ChevronR, PinIco } from '../../data/icons';
-import { useDispatch } from 'react-redux';
-import { toggleWishlist } from '../../store/slices/propertiesSlice';
+import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
+import PropertyCard from '../PropertyCard/PropertyCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './LandProperties.css';
 
 export default function LandProperties({ isSidebarOpen }) {
   const lands = useSelector(state => state.properties.landProperties);
-  const wishlist = useSelector(state => state.properties.wishlist);
-  const dispatch = useDispatch();
 
   return (
     <section className="section land-section">
@@ -48,42 +45,11 @@ export default function LandProperties({ isSidebarOpen }) {
             }}
             className="land-swiper"
           >
-            {lands.map(land => {
-              const isWished = wishlist.includes(land.id);
-              return (
-                <SwiperSlide key={land.id}>
-                  <div className="land-card">
-                    <div className="land-img-wrap">
-                      <img src={land.img} alt={land.title} loading="lazy" />
-                      <span className={`land-badge ${land.badgeClass}`}>{land.badge}</span>
-                      <button
-                        className="land-wish-btn"
-                        onClick={() => dispatch(toggleWishlist(land.id))}
-                      >
-                        {isWished ? '❤️' : '🤍'}
-                      </button>
-                      <div className="land-type-tag">{land.type}</div>
-                    </div>
-                    <div className="land-info">
-                      <div className="land-price">{land.price}</div>
-                      <h3 className="land-title">{land.title}</h3>
-                      <div className="land-loc"><PinIco /> {land.loc}</div>
-                      <div className="land-meta">
-                        <div className="land-meta-item">
-                          <span className="land-meta-label">Area</span>
-                          <span className="land-meta-value">{land.size}</span>
-                        </div>
-                        <div className="land-meta-sep"></div>
-                        <div className="land-meta-item">
-                          <span className="land-meta-label">Facing</span>
-                          <span className="land-meta-value">{land.facing}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+            {lands.map(land => (
+              <SwiperSlide key={land.id}>
+                <PropertyCard property={land} variant="land" />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

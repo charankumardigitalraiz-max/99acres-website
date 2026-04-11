@@ -48,24 +48,7 @@ export default function Localities({ isSidebarOpen }) {
           >
             {localities.map(property => (
               <SwiperSlide key={property.id}>
-                <div className="hyd-prop-card">
-                  <div className="hyd-img-wrap">
-                    <img src={property.img} alt={property.title} loading="lazy" />
-                    <div className="hyd-area-tag">📍 {property.badge}</div>
-                    <button className="hyd-wish-btn">🤍</button>
-                  </div>
-                  <div className="hyd-info-wrap">
-                    <div className="hyd-price">{property.price}</div>
-                    <h3 className="hyd-title">{property.title}</h3>
-                    <div className="hyd-meta">
-                      <span>{property.beds} Beds</span>
-                      <span className="dot">•</span>
-                      <span>{property.baths} Baths</span>
-                      <span className="dot">•</span>
-                      <span>{property.size}</span>
-                    </div>
-                  </div>
-                </div>
+                <PropertyCard property={property} variant="localities" />
               </SwiperSlide>
             ))}
           </Swiper>

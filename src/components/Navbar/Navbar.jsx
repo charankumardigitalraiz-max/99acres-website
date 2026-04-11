@@ -14,6 +14,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [locSearch, setLocSearch] = useState('');
   const [activeMenuKey, setActiveMenuKey] = useState(null);
   const dropdownRef = useRef(null);
   const searchRef = useRef(null);
@@ -115,28 +116,39 @@ export default function Navbar() {
                   <div className="loc-popover">
                     <div className="loc-popover-header">
                       <h3>Select your city</h3>
-                      <button className="loc-close-btn" onClick={() => setIsLocationModalOpen(false)}>
+                      <button className="loc-close-btn" onClick={() => { setIsLocationModalOpen(false); setLocSearch(''); }}>
                         <CloseIco />
                       </button>
                     </div>
 
-                    {/* <div className="loc-popover-search">
-                      <div className="loc-search-box">
-                        <svg className="loc-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                        <input type="text" className="loc-search-input" placeholder="Search for your city..." autoFocus />
-                      </div>
-                    </div> */}
+                    <div className="loc-search-box">
+                      <svg className="loc-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      </svg>
+                      <input
+                        type="text"
+                        className="loc-search-input"
+                        placeholder="Search city..."
+                        value={locSearch}
+                        onChange={e => setLocSearch(e.target.value)}
+                        autoFocus
+                      />
+                      {locSearch && (
+                        <button className="loc-search-clear" onClick={() => setLocSearch('')}>
+                          <CloseIco />
+                        </button>
+                      )}
+                    </div>
 
                     <div className="loc-cities-grid">
-                      {CITIES.map(city => (
+                      {CITIES.filter(c => c.name.toLowerCase().includes(locSearch.toLowerCase())).map(city => (
                         <div
                           key={city.name}
                           className="loc-city-card"
                           onClick={() => {
                             dispatch(setLocation(city.name));
                             setIsLocationModalOpen(false);
+                            setLocSearch('');
                           }}
                         >
                           <div className="loc-city-avatar">
@@ -148,9 +160,12 @@ export default function Navbar() {
                           </div>
                         </div>
                       ))}
+                      {CITIES.filter(c => c.name.toLowerCase().includes(locSearch.toLowerCase())).length === 0 && (
+                        <div className="loc-no-results">No cities found for &ldquo;{locSearch}&rdquo;</div>
+                      )}
                     </div>
                   </div>
-                  <div className="loc-backdrop" onClick={() => setIsLocationModalOpen(false)} />
+                  <div className="loc-backdrop" onClick={() => { setIsLocationModalOpen(false); setLocSearch(''); }} />
                 </>
               )}
             </div>
@@ -298,7 +313,7 @@ export default function Navbar() {
                       </div>
                     </div>
                     <div className="profile-dropdown-divider" />
-                    <Link to="/profile" onClick={() => setIsProfileDropdownOpen(false)}>
+                    <Link to="/profile/profile" onClick={() => setIsProfileDropdownOpen(false)}>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                       My Profile
                     </Link>

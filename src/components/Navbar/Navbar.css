@@ -252,6 +252,14 @@
   border-bottom: 1px solid #f0f4f8;
 }
 
+.loc-popover .loc-search-box {
+  margin: 0 22px 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f4f8;
+  width: 90%;
+  margin-top: 20px;
+}
+
 .loc-search-box {
   position: relative;
   width: 100%;
@@ -260,7 +268,7 @@
 .loc-search-icon {
   position: absolute;
   left: 14px;
-  top: 50%;
+  top: 35%;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
@@ -286,6 +294,44 @@
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
   outline: none;
+}
+
+.loc-search-clear {
+  position: absolute;
+  right: 12px;
+  top: 35%;
+  transform: translateY(-50%);
+  background: #e2e8f0;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  line-height: 0;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.loc-search-clear:hover {
+  background: #cbd5e1;
+}
+
+.loc-search-clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.loc-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 32px 16px;
+  font-size: 0.88rem;
+  color: #94a3b8;
+  font-weight: 500;
 }
 
 .loc-cities-grid {

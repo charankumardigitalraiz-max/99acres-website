@@ -5,13 +5,6 @@
   padding: 20px;
 }
 
-/* Pre-Footer Section */
-.footer-pre {
-  background: #f8fafc;
-  padding: 48px 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-
 .footer-pre-content {
   display: flex;
   justify-content: space-between;

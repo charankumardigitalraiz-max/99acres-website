@@ -73,7 +73,7 @@ export default function SupportPanel() {
           <div className="up-chat-messages" style={{ minHeight: '320px' }}>
             <div className="up-chat-bubble">
               <div className="up-chat-bubble-text">
-                Hello! We've received your ticket regarding **"{selectedTicket.subject}"**. 
+                Hello! We've received your ticket regarding **"{selectedTicket.subject}"**.
                 A support agent will be with you shortly.
               </div>
               <div className="up-chat-bubble-time">{selectedTicket.date}</div>
@@ -135,8 +135,8 @@ export default function SupportPanel() {
                   </span>
                 </td>
                 <td style={{ padding: '14px 16px', textAlign: 'right' }}>
-                  <button 
-                    className="up-btn up-btn-ghost" 
+                  <button
+                    className="up-btn up-btn-ghost"
                     style={{ padding: '5px 10px', fontSize: '0.75rem' }}
                     onClick={() => {
                       setSelectedTicket(t);

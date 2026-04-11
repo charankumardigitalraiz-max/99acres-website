@@ -5,23 +5,6 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer className="footer">
-      {/* ── Pre-Footer Newsletter ── */}
-      <div className="footer-pre">
-        <div className="container">
-          {/* <div className="footer-pre-content">
-            <div className="footer-pre-info">
-              <h3>Stay ahead of the market</h3>
-              <p>Join 50,000+ subscribers for exclusive property insights and early access deals.</p>
-            </div>
-            <div className="footer-newsletter">
-              <input type="email" placeholder="Enter your email address" />
-              <button className="btn-subscribe">
-                Subscribe <Send size={16} style={{ marginLeft: '8px', display: 'inline' }} />
-              </button>
-            </div>
-          </div> */}
-        </div>
-      </div>
 
       <div className="footer-main">
         <div className="container">
