@@ -281,3 +281,73 @@ export const MOCK_USER_DATA = {
     twoFactor: false,
   }
 };
+
+// ─── UPCOMING PROJECTS ────────────────────────────────────
+export const UPCOMING_PROJECTS = [
+  {
+    id: 'up1',
+    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    status: 'Pre-Launch',
+    developer: 'DLF Group',
+    name: 'DLF Crest View',
+    loc: 'Sector 54, Gurugram',
+    type: 'Luxury Apartments',
+    launch: 'Oct 2026',
+    price: '₹ 4.50 Cr+'
+  },
+  {
+    id: 'up2',
+    img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800&q=80',
+    status: 'Upcoming',
+    developer: 'Godrej Properties',
+    name: 'Godrej Woodside',
+    loc: 'Sarjapur, Bangalore',
+    type: 'Themed Villas',
+    launch: 'Jan 2027',
+    price: '₹ 2.10 Cr+'
+  },
+  {
+    id: 'up1',
+    img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+    status: 'Pre-Launch',
+    developer: 'Prestige Group',
+    name: 'Prestige Highfield',
+    loc: 'Financial District, Hyderabad',
+    type: 'High-Rise Living',
+    launch: 'Dec 2026',
+    price: '₹ 1.85 Cr+'
+  },
+  {
+    id: 'up4',
+    img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+    status: 'Launch Soon',
+    developer: 'Lodha Group',
+    name: 'Lodha Sea View',
+    loc: 'Malabar Hill, Mumbai',
+    type: 'Bespoke Penthouses',
+    launch: 'Aug 2026',
+    price: '₹ 12.50 Cr+'
+  },
+  {
+    id: 'up5',
+    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+    status: 'Upcoming',
+    developer: 'Brigade Group',
+    name: 'Brigade Oasis',
+    loc: 'Devanahalli, Bangalore',
+    type: 'Premium Plots',
+    launch: 'Mar 2027',
+    price: '₹ 85 Lac+'
+  },
+  {
+    id: 'up6',
+    img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+    status: 'Pre-Launch',
+    developer: 'Sobha Ltd.',
+    name: 'Sobha Waterfront',
+    loc: 'Somajiguda, Hyderabad',
+    type: 'Sky-Homes',
+    launch: 'Nov 2026',
+    price: '₹ 3.20 Cr+'
+  }
+];

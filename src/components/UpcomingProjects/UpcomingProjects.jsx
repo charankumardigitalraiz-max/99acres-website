@@ -5,7 +5,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { UPCOMING_PROJECTS } from '../../data/constants';
 import './UpcomingProjects.css';
-import { PinIco } from '../../data/icons';
+import { PinIco, ArrowR } from '../../data/icons';
+import { Link } from 'react-router-dom';
 
 export default function UpcomingProjects() {
   return (
@@ -17,6 +18,8 @@ export default function UpcomingProjects() {
             <p className="section-subtitle">Be the first to invest in premium developments before launch.</p>
           </div>
           <div className="up-nav-btns">
+            <Link to="/upcoming-projects" className="view-all-link">View All <ArrowR /></Link>
+            <div className="divider-v"></div>
             <button className="swiper-btn-prev-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
             <button className="swiper-btn-next-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
           </div>

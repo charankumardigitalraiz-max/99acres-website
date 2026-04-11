@@ -66,12 +66,18 @@
   flex-shrink: 0;
 }
 
+.slider-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 @media (max-width: 768px) {
-  .slider-controls .divider-v,
-  .slider-controls .view-all {
-    display: none;
+  .slider-controls {
+    width: 100%;
+    justify-content: space-between;
   }
-  
+
   .carousel-wrapper {
     margin: 0 -15px;
     padding: 8px 15px 8px;

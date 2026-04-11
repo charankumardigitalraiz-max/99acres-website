@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './HighRatedProperties.css';
@@ -20,10 +21,12 @@ export default function HighRatedProperties({ isSidebarOpen }) {
             <div className="section-sub">Properties loved by customers and highly reviewed</div>
           </div>
           <div className="slider-controls">
-            <button className="slide-prev-btn"><ChevronL /></button>
-            <button className="slide-next-btn"><ChevronR /></button>
-            <div className="divider-v"></div>
-            <a href="#" className="view-all">View All <ArrowR /></a>
+            <div className="slider-nav-btns">
+              <button className="slide-prev-btn"><ChevronL /></button>
+              <button className="slide-next-btn"><ChevronR /></button>
+              <div className="divider-v"></div>
+            </div>
+            <Link to="/high-rated-properties" className="view-all">View All <ArrowR /></Link>
           </div>
         </div>
         <div className="carousel-wrapper">

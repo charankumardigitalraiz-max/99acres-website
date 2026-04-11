@@ -9,6 +9,8 @@ import Properties from './pages/Properties';
 import Subscription from './pages/Subscription';
 import PropertyDetails from './pages/PropertyDetails';
 import UserPanel from './pages/UserPanel';
+import CollectionPage from './pages/CollectionPage';
+import UpcomingProjectsPage from './pages/UpcomingProjectsPage';
 
 export default function App() {
   return (
@@ -23,6 +25,22 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile/:tab?" element={<UserPanel />} />
+            <Route
+              path="high-rated-properties"
+              element={<CollectionPage type="high-rated" title="Highest Rated Properties" subtitle="Properties loved by customers and highly reviewed for their quality and location." />}
+            />
+            <Route
+              path="plots-land-properties"
+              element={<CollectionPage type="land" title="Plots & Land" subtitle="Explore premium residential plots, farmlands and industrial sites across top locations." />}
+            />
+            <Route
+              path="featured-properties"
+              element={<CollectionPage type="featured" title="Handpicked Featured Listings" subtitle="Exclusively sourced and verified properties curated by our real estate experts." />}
+            />
+            <Route
+              path="upcoming-projects"
+              element={<UpcomingProjectsPage />}
+            />
           </Route>
         </Routes>
       </Provider>

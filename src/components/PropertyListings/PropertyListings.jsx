@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
 import 'swiper/css';
@@ -42,10 +43,12 @@ export default function PropertyListings({ isSidebarOpen }) {
             <div className="section-sub">{sub}</div>
           </div>
           <div className="slider-controls">
-            <button className="prop-prev-btn"><ChevronL /></button>
-            <button className="prop-next-btn"><ChevronR /></button>
-            <div className="divider-v"></div>
-            <a href="#" className="view-all">View All <ArrowR /></a>
+            <div className="slider-nav-btns">
+              <button className="prop-prev-btn"><ChevronL /></button>
+              <button className="prop-next-btn"><ChevronR /></button>
+              <div className="divider-v"></div>
+            </div>
+            <Link to="/plots-land-properties" className="view-all">View All <ArrowR /></Link>
           </div>
         </div>
 
@@ -65,7 +68,7 @@ export default function PropertyListings({ isSidebarOpen }) {
               1024: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
             className="listings-swiper"
-          > 
+          >
             {propertiesToShow.map(property => (
               <SwiperSlide key={property.id}>
                 <PropertyCard property={property} />

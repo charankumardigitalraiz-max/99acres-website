@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { ArrowR } from '../../data/icons';
+import { Link } from 'react-router-dom';
 
 export default function FeaturedProperties() {
   const featured = useSelector(state => state.properties.featured);
@@ -14,7 +15,7 @@ export default function FeaturedProperties() {
             <div className="section-title">Handpicked for You</div>
             <div className="section-sub">Exclusively sourced from verified builders</div>
           </div>
-          <a href="#" className="view-all">View All <ArrowR /></a>
+          <Link to="/featured-properties" className="view-all">View All <ArrowR /></Link>
         </div>
         <div className="prop-grid">
           {featured.map(property => (

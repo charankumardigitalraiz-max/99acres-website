@@ -20,9 +20,11 @@ export default function Localities({ isSidebarOpen }) {
             <div className="section-sub">Explore premium homes across the city's top areas</div>
           </div>
           <div className="slider-controls">
-            <button className="loc-prev-btn"><ChevronL /></button>
-            <button className="loc-next-btn"><ChevronR /></button>
-            <div className="divider-v"></div>
+            <div className="slider-nav-btns">
+              <button className="loc-prev-btn"><ChevronL /></button>
+              <button className="loc-next-btn"><ChevronR /></button>
+              <div className="divider-v"></div>
+            </div>
             <a href="#" className="view-all">All Properties <ArrowR /></a>
           </div>
         </div>

@@ -7,8 +7,9 @@ const propertiesSlice = createSlice({
   initialState: {
     buyProperties: propertiesData.filter(p => p.purpose === 'selling'),
     rentProperties: propertiesData.filter(p => p.purpose === 'renting'),
-    highRated: propertiesData.slice(0, 4), // Fallback: first 4 as high rated
-    landProperties: propertiesData.filter(p => p.propertyType === 'Plots'),
+    highRated: propertiesData.slice(0, 10), // Expanded for "View All"
+    featured: propertiesData.filter(p => p.pricing?.expectedPrice > 50000000).slice(0, 8), // Premium listings
+    landProperties: propertiesData.filter(p => p.propertyType === 'Plots' || p.propertyType === 'Lands'),
     cities: CITIES,
     hydLocalities: propertiesData.filter(p => p.city === 'Hyderabad'),
     wishlist: [],

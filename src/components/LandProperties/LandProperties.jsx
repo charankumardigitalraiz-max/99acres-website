@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
 import PropertyCard from '../PropertyCard/PropertyCard';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './LandProperties.css';
@@ -20,10 +21,12 @@ export default function LandProperties({ isSidebarOpen }) {
             <div className="section-sub">Premium plots, farmlands & commercial sites across India</div>
           </div>
           <div className="slider-controls">
-            <button className="land-prev-btn"><ChevronL /></button>
-            <button className="land-next-btn"><ChevronR /></button>
-            <div className="divider-v"></div>
-            <a href="#" className="view-all">View All <ArrowR /></a>
+            <div className="slider-nav-btns">
+              <button className="land-prev-btn"><ChevronL /></button>
+              <button className="land-next-btn"><ChevronR /></button>
+              <div className="divider-v"></div>
+            </div>
+            <Link to="/plots-land-properties" className="view-all">View All <ArrowR /></Link>
           </div>
         </div>
 
