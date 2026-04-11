@@ -30,9 +30,12 @@ export default function FloatingVideo() {
       const newX = e.clientX - dragRef.current.offsetStartX;
       const newY = e.clientY - dragRef.current.offsetStartY;
 
-      // Basic bounds check
-      const boundedX = Math.max(0, Math.min(newX, window.innerWidth - (isExpanded ? 600 : 250)));
-      const boundedY = Math.max(0, Math.min(newY, window.innerHeight - (isExpanded ? 400 : 180)));
+      const width = isExpanded ? 700 : 280;
+      const height = isExpanded ? 420 : 180;
+
+      // Basic bounds check with margin
+      const boundedX = Math.max(20, Math.min(newX, window.innerWidth - width - 20));
+      const boundedY = Math.max(20, Math.min(newY, window.innerHeight - height - 20));
 
       setPosition({ x: boundedX, y: boundedY });
     };
@@ -75,7 +78,17 @@ export default function FloatingVideo() {
         <div className="v-badge">Live Tour</div>
         <div className="v-controls-v2">
           {!isCollapsed && (
-            <button className="v-btn-v2" onClick={() => setIsExpanded(!isExpanded)} title={isExpanded ? "Shrink" : "Maximize"}>
+            <button className="v-btn-v2" onClick={() => {
+              const nextExpanded = !isExpanded;
+              setIsExpanded(nextExpanded);
+              if (nextExpanded) {
+                // Ensure expanded version doesn't overflow right edge
+                setPosition(prev => ({
+                  ...prev,
+                  x: Math.min(prev.x, window.innerWidth - 720)
+                }));
+              }
+            }} title={isExpanded ? "Shrink" : "Maximize"}>
               {isExpanded ? (
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="4 14 10 14 10 20" /><polyline points="20 10 14 10 14 4" /></svg>
               ) : (
@@ -91,6 +104,12 @@ export default function FloatingVideo() {
               if (nextCollapsed) {
                 // Snap to right edge when collapsing
                 setPosition(prev => ({ ...prev, x: window.innerWidth - 65 }));
+              } else {
+                // When opening, pull it back from the edge so it doesn't overflow
+                setPosition(prev => ({
+                  ...prev,
+                  x: Math.min(prev.x, window.innerWidth - 300)
+                }));
               }
               if (isExpanded) setIsExpanded(false);
             }}
