@@ -30,6 +30,10 @@ export default function App() {
               element={<CollectionPage type="high-rated" title="Highest Rated Properties" subtitle="Properties loved by customers and highly reviewed for their quality and location." />}
             />
             <Route
+              path="high-rated-locality-properties"
+              element={<CollectionPage type="high-rated-locality" title="Highest Rated Properties in Hyderabad" subtitle="Properties loved by customers and highly reviewed for their quality and location." />}
+            />
+            <Route
               path="plots-land-properties"
               element={<CollectionPage type="land" title="Plots & Land" subtitle="Explore premium residential plots, farmlands and industrial sites across top locations." />}
             />

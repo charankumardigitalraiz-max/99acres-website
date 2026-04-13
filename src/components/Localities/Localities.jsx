@@ -25,7 +25,7 @@ export default function Localities({ isSidebarOpen }) {
               <button className="loc-next-btn"><ChevronR /></button>
               <div className="divider-v"></div>
             </div>
-            <a href="#" className="view-all">All Properties <ArrowR /></a>
+            <a href="/high-rated-locality-properties" className="view-all">All Properties <ArrowR /></a>
           </div>
         </div>
 

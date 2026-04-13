@@ -11,6 +11,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
     if (type === 'high-rated') return state.properties.highRated;
     if (type === 'land') return state.properties.landProperties;
     if (type === 'featured') return state.properties.featured;
+    if (type === 'high-rated-locality') return state.properties.hydLocalities;
     return [];
   });
 
@@ -31,7 +32,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
             <span className="breadcrumb-sep">/</span>
             <span className="breadcrumb-current">{title}</span>
           </nav>
-          
+
           <div className="hero-main-content">
             <h1 className="hero-title">{title}</h1>
             <p className="hero-subtitle">{subtitle}</p>
