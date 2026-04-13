@@ -2,7 +2,7 @@
 .support-wrapper {
   position: fixed;
   bottom: 30px; /* Lowered from 120px to provide more vertical space */
-  right: 30px;
+  left: 30px;
   z-index: 10001;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@
 .support-popup {
   position: absolute;
   bottom: calc(100% + 15px); /* Positioned relative to the button height */
-  right: 0;
+  left: 30%;
   width: 340px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);

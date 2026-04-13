@@ -10,8 +10,8 @@
     width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
     height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
     border-radius 0.3s ease;
-  width: 280px;
-  height: 180px;
+  width: 220px;
+  height: 360px; /* 9:16 ratio */
   display: flex;
   flex-direction: column;
 }

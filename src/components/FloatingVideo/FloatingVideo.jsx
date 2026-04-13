@@ -5,7 +5,7 @@ import './FloatingVideo.css';
 export default function FloatingVideo() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [position, setPosition] = useState({ x: window.innerWidth - 300, y: window.innerHeight - 400 });
+  const [position, setPosition] = useState({ x: window.innerWidth - 200, y: window.innerHeight - 600 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef({ offsetStartX: 0, offsetStartY: 0 });
 
@@ -30,7 +30,7 @@ export default function FloatingVideo() {
       const newX = e.clientX - dragRef.current.offsetStartX;
       const newY = e.clientY - dragRef.current.offsetStartY;
 
-      const width = isExpanded ? 700 : 280;
+      const width = isExpanded ? 700 : 220;
       const height = isExpanded ? 420 : 180;
 
       // Basic bounds check with margin
@@ -59,8 +59,8 @@ export default function FloatingVideo() {
   useEffect(() => {
     const handleResize = () => {
       setPosition(prev => ({
-        x: Math.min(prev.x, window.innerWidth - 300),
-        y: Math.min(prev.y, window.innerHeight - 250)
+        x: Math.min(prev.x, window.innerWidth - 200),
+        y: Math.min(prev.y, window.innerHeight - 400)
       }));
     };
     window.addEventListener('resize', handleResize);
@@ -103,12 +103,14 @@ export default function FloatingVideo() {
               setIsCollapsed(nextCollapsed);
               if (nextCollapsed) {
                 // Snap to right edge when collapsing
-                setPosition(prev => ({ ...prev, x: window.innerWidth - 65 }));
+                setPosition(prev => ({ ...prev, x: window.innerWidth - 65, y: window.innerHeight - 100 }));
+                
               } else {
                 // When opening, pull it back from the edge so it doesn't overflow
                 setPosition(prev => ({
                   ...prev,
-                  x: Math.min(prev.x, window.innerWidth - 300)
+                  x: Math.min(prev.x, window.innerWidth - 280),
+                  y: Math.min(prev.y, window.innerHeight - 400)
                 }));
               }
               if (isExpanded) setIsExpanded(false);
