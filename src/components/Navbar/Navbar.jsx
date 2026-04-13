@@ -312,7 +312,7 @@ export default function Navbar() {
                         <div className="profile-dropdown-email">{userDetails.email}</div>
                       </div>
                     </div>
-                    <div className="profile-dropdown-divider" />
+                    {/* <div className="profile-dropdown-divider" /> */}
                     <Link to="/profile/profile" onClick={() => setIsProfileDropdownOpen(false)}>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                       My Profile

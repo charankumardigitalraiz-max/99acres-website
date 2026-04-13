@@ -993,7 +993,7 @@
 /* ─── FLOATING WHATSAPP BUTTON ─── */
 .pd-floating-whatsapp {
   position: fixed;
-  bottom: 40px;
+  bottom: 13%;
   right: 30px;
   z-index: 998;
   width: 60px;

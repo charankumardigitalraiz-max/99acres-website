@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible; /* must be visible so search dropdown isn't clipped */
   background-color: #0f172a;
 }
 
@@ -22,10 +22,8 @@
   background-size: cover;
   background-position: center top;
   z-index: 1;
+  overflow: hidden; /* clip the scale animation here instead of on .hero */
   transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-  /* The user wants full opacity image that looks 'white light',
-     so we apply a subtle white gradient overlay to ensure text readability
-     at the very start without drowning the image in darkness. */
 }
 
 .hero-background::after {
@@ -139,10 +137,11 @@
     min-height: auto;
     padding: 80px 0 40px;
     align-items: flex-start;
+    overflow: visible;
   }
 
   .hero-background {
-    opacity: 0.8;
+    /* opacity: 0.8; */
   }
 
   .hero-header {

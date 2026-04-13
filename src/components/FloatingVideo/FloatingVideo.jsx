@@ -5,7 +5,7 @@ import './FloatingVideo.css';
 export default function FloatingVideo() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [position, setPosition] = useState({ x: window.innerWidth - 300, y: window.innerHeight - 250 });
+  const [position, setPosition] = useState({ x: window.innerWidth - 300, y: window.innerHeight - 400 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef({ offsetStartX: 0, offsetStartY: 0 });
 

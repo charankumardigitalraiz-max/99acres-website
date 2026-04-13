@@ -25,15 +25,15 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-2);
-  background: rgba(255, 255, 255, 0.6);
+  background: white;
   border: none;
-  border-radius: 8px 8px 0 0;
+  /* border-radius: 8px 8px 0 0; */
   cursor: pointer;
   transition: all 0.2s;
   font-family: "DM Sans", sans-serif;
   letter-spacing: 0.01em;
   position: relative;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   border-bottom: none;
 }
 
@@ -43,9 +43,10 @@
 }
 
 .sb-tab.active {
-  color: var(--primary-dark);
+  color: white;
+  background: var(--primary);
   font-weight: 600;
-  background: #fff;
+  /* background: #fff; */
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.02);
 }
 
@@ -316,6 +317,56 @@
   height: 14px;
 }
 
+/* ── GPS Button ── */
+.sb-gps-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.sb-gps-btn:hover {
+  background: white;
+  color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  transform: scale(1.08);
+}
+
+.sb-gps-btn.loading {
+  background: #fef9ed;
+  border-color: var(--primary);
+  color: var(--primary);
+  cursor: wait;
+}
+
+.sb-gps-loader {
+  animation: gpsSpin 1.2s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sb-gps-loader svg {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+}
+
+@keyframes gpsSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* ── BHK Field ───────────────────────────────────── */
 .sb-bhk-field {
   min-width: 120px;
@@ -512,16 +563,16 @@
 /* ── Suggestions Dropdown ────────────────────────── */
 .sb-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
-  left: -14px;
-  right: -14px;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-  border: 1px solid #e8edf2;
-  z-index: 600;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  border: 1.5px solid #e8edf2;
+  z-index: 900;
   overflow: hidden;
-  max-height: 300px;
+  max-height: 340px;
   overflow-y: auto;
 }
 
@@ -742,13 +793,17 @@
   .sb-tab {
     padding: 8px 18px;
     font-size: 0.82rem;
-    background: rgba(255, 255, 255, 0.12);
+    /* background: rgba(255, 255, 255, 0.12); */
+    background: #fff;
     border-radius: 8px 8px 0 0;
+    display: none;
   }
 
   .sb-tab.active {
-    background: #fff;
-    color: var(--primary-dark);
+    /* background: #fff;
+    color: var(--primary-dark); */
+    color: white;
+    background: var(--primary);
   }
 
   /* Hide desktop form */
@@ -1086,4 +1141,340 @@
     padding: 7px 11px;
     font-size: 0.8rem;
   }
+}
+
+/* ═══════════════════════════════════════════════════
+   MEGA DROPDOWN – Appears on search input focus
+   Desktop: Wide multi-column panel
+   Mobile: Scrollable inline panel (inside fullscreen)
+═══════════════════════════════════════════════════ */
+
+/* Wide panel override for the mega state */
+.sb-dropdown--mega {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  max-height: 480px; /* Increased for better visibility */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  animation: megaDropIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  z-index: 1000; /* Ensure it's above everything */
+}
+
+@keyframes megaDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Mega Content Wrapper ── */
+.sb-mega-content {
+  padding: 6px 0 4px;
+}
+
+/* ── Recent Searches Row (top) ── */
+.sb-mega-section.recent-mini {
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sb-recent-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sb-recent-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  border: 1.5px solid #e8edf2;
+  background: #f8fafc;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.15s;
+}
+
+.sb-recent-pill:hover {
+  border-color: var(--primary);
+  background: #fef9ed;
+  color: var(--primary-dark);
+}
+
+.sb-recent-pill svg {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+/* ── Three-Column Grid ── */
+.sb-mega-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1.6fr;
+  gap: 0;
+  min-height: 180px;
+}
+
+/* ── Each Column ── */
+.sb-mega-col {
+  padding: 20px 24px;
+  border-right: 1px solid rgba(241, 245, 249, 0.8);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.sb-mega-col:last-child {
+  border-right: none;
+  background: rgba(
+    248,
+    250,
+    252,
+    0.3
+  ); /* Subtle highlight for the filter column */
+}
+
+/* ── Section Labels (reuse sb-dropdown-heading) ── */
+.sb-mega-col .sb-dropdown-heading {
+  padding: 0 0 10px 0;
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── Category Tab Buttons (Col 1) ── */
+.sb-mega-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sb-mega-tab-btn {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.15s;
+}
+
+.sb-mega-tab-btn:hover {
+  background: #f8fafc;
+  color: var(--dark);
+}
+
+.sb-mega-tab-btn.active {
+  background: #fef9ed;
+  border-color: rgba(245, 158, 11, 0.3);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+/* ── Property Type List (Col 2) ── */
+.sb-mega-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sb-mega-list-item {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.15s;
+}
+
+.sb-mega-list-item:hover {
+  background: #f8fafc;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.sb-mega-list-item.active {
+  background: #fef9ed;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.sb-mega-list-item svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ── Subsections inside Col 3 ── */
+.sb-mega-sub-section {
+  margin-bottom: 18px;
+}
+
+.sb-mega-sub-section:last-child {
+  margin-bottom: 0;
+}
+
+/* BHK Pills Row */
+.sb-mega-bhk-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.sb-mega-bhk-pill {
+  padding: 6px 11px;
+  border-radius: 7px;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.15s;
+}
+
+.sb-mega-bhk-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.sb-mega-bhk-pill.active {
+  border-color: var(--primary);
+  background: #fef9ed;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+/* Budget Grid */
+.sb-mega-budget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.sb-mega-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sb-mega-select-wrap > span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sb-mega-select-wrap > select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--dark);
+  font-family: "DM Sans", sans-serif;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s;
+}
+
+.sb-mega-select-wrap > select:focus {
+  border-color: var(--primary);
+  background: #fff;
+}
+
+/* ── Mobile: Mega dropdown inside inline mode ── */
+.sb-dropdown--inline.sb-dropdown--mega {
+  box-shadow: none;
+  border: 1.5px solid #e8edf2;
+  border-radius: 12px;
+  animation: none;
+}
+
+.sb-dropdown--inline .sb-mega-grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.sb-dropdown--inline .sb-mega-col {
+  border-right: none;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 12px 14px 16px;
+}
+
+.sb-dropdown--inline .sb-mega-col:last-child {
+  border-bottom: none;
+}
+
+.sb-dropdown--inline .sb-mega-tabs {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sb-dropdown--inline .sb-mega-tab-btn {
+  width: auto;
+  flex: 1;
+  text-align: center;
+  min-width: 70px;
+}
+
+.sb-dropdown--inline .sb-mega-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sb-dropdown--inline .sb-mega-list-item {
+  width: auto;
+  justify-content: center;
+  padding: 6px 12px;
+  border: 1.5px solid #e2e8f0;
+}
+
+.sb-dropdown--inline .sb-mega-budget-grid {
+  grid-template-columns: 1fr 1fr;
 }

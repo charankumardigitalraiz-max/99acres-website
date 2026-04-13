@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Properties from './pages/Properties';
 import Subscription from './pages/Subscription';
 import PropertyDetails from './pages/PropertyDetails';
+import CategoryViewDetails from './pages/CategoryViewDetails';
 import UserPanel from './pages/UserPanel';
 import CollectionPage from './pages/CollectionPage';
 import UpcomingProjectsPage from './pages/UpcomingProjectsPage';
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="category/:categoryName" element={<CategoryViewDetails />} />
             <Route path="properties" element={<Properties />} />
             <Route path="property/:id" element={<PropertyDetails />} />
             <Route path="subscription" element={<Subscription />} />

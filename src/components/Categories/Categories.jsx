@@ -1,4 +1,5 @@
 import { CATEGORIES } from '../../data/constants';
+import { Link } from 'react-router-dom';
 import './Categories.css';
 
 export default function Categories() {
@@ -13,13 +14,14 @@ export default function Categories() {
         </div>
         <div className="categories-grid">
           {CATEGORIES.map(cat => (
-            <div key={cat.name} className="cat-card-v4">
+
+            <Link to={`/category/${cat.name}`} key={cat.name} className="cat-card-v4">
               <img src={cat.img} alt={cat.name} className="cat-img-bg" />
               <div className="cat-content-v4">
                 <div className="cat-name-v4">{cat.name}</div>
                 <div className="cat-count-v4">{cat.count} listings</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

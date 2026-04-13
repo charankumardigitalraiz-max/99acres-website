@@ -7,9 +7,9 @@ import {
   setActiveTab, setLocation, setQuery, clearSuggestions,
   setPropertyType, setMinBudget, setMaxBudget, toggleBhk,
   setFurnishing, setPostedBy, setPossessionStatus,
-  toggleAdvancedFilters, resetAllFilters,
+  toggleAdvancedFilters, setShowAdvancedFilters, resetAllFilters,
 } from '../../store/slices/searchSlice';
-import { SearchIco, PinIco, LocIco, IconFlats, CloseIco } from '../../data/icons';
+import { SearchIco, PinIco, LocIco, IconFlats, CloseIco, GpsIco } from '../../data/icons';
 
 // ── Configuration ─────────────────────────────────────
 const SEARCH_TABS = ['Buy', 'Commercial'];
@@ -46,8 +46,10 @@ export default function SearchBar({ isNavbar = false }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationRef = useRef(null);
+  const rootRef = useRef(null);
   const [isLocationFocused, setIsLocationFocused] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isGpsLoading, setIsGpsLoading] = useState(false);
 
   const {
     activeTab, location, query, suggestions, recentSearches,
@@ -79,9 +81,12 @@ export default function SearchBar({ isNavbar = false }) {
   // Close suggestions on outside click
   useEffect(() => {
     const handleOut = (e) => {
-      if (locationRef.current && !locationRef.current.contains(e.target)) {
+      if (rootRef.current && !rootRef.current.contains(e.target)) {
         setIsLocationFocused(false);
         dispatch(clearSuggestions());
+        if (showAdvancedFilters) {
+          dispatch(setShowAdvancedFilters(false));
+        }
       }
     };
     document.addEventListener('mousedown', handleOut);
@@ -90,7 +95,7 @@ export default function SearchBar({ isNavbar = false }) {
       document.removeEventListener('mousedown', handleOut);
       document.removeEventListener('touchstart', handleOut);
     };
-  }, [dispatch]);
+  }, [dispatch, showAdvancedFilters]);
 
   const handleSearch = (e) => {
     e?.preventDefault();
@@ -110,8 +115,35 @@ export default function SearchBar({ isNavbar = false }) {
     setIsLocationFocused(false);
   };
 
-  const showDropdown = isLocationFocused &&
-    (suggestions.length > 0 || recentSearches.length > 0);
+  const handleDetectLocation = (e) => {
+    e?.stopPropagation();
+    if (!navigator.geolocation) return;
+
+    setIsGpsLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const { latitude, longitude } = pos.coords;
+          const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+          const data = await res.json();
+          const cityName = data.city || data.locality || data.principalSubdivision;
+
+          if (cityName) {
+            dispatch(setLocation(cityName));
+            dispatch(setQuery('')); // clear search to show new location
+          }
+        } catch (err) {
+          console.error("GPS Error:", err);
+        } finally {
+          setIsGpsLoading(false);
+        }
+      },
+      () => setIsGpsLoading(false),
+      { timeout: 10000 }
+    );
+  };
+
+  const showDropdown = isLocationFocused;
 
   const displayValue = query || location;
 
@@ -150,7 +182,6 @@ export default function SearchBar({ isNavbar = false }) {
         <div className="sb-mobile-field" ref={locationRef}>
           <label>Location</label>
           <div className="sb-mobile-input-wrap">
-            <SearchIco />
             <input
               type="text"
               autoFocus
@@ -167,6 +198,18 @@ export default function SearchBar({ isNavbar = false }) {
                 <CloseIco />
               </button>
             )}
+            <button
+              type="button"
+              className={`sb-gps-btn mobile ${isGpsLoading ? 'loading' : ''}`}
+              onClick={handleDetectLocation}
+              aria-label="Detect my location"
+            >
+              {isGpsLoading ? (
+                <div className="sb-gps-loader">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
+                </div>
+              ) : <GpsIco />}
+            </button>
           </div>
           {showDropdown && (
             <SuggestionDropdown
@@ -175,6 +218,14 @@ export default function SearchBar({ isNavbar = false }) {
               query={query}
               onSelect={handleSelect}
               onRecent={handleRecentSelect}
+              activeTab={activeTab}
+              propertyType={propertyType}
+              bhk={bhk}
+              minBudget={minBudget}
+              maxBudget={maxBudget}
+              budgets={budgets}
+              types={types}
+              dispatch={dispatch}
               inline
             />
           )}
@@ -192,7 +243,7 @@ export default function SearchBar({ isNavbar = false }) {
         </div>
 
         {/* BHK */}
-        {showBhk && (
+        {/* {showBhk && (
           <div className="sb-mobile-field">
             <label>BHK Type</label>
             <div className="sb-bhk-row">
@@ -205,7 +256,7 @@ export default function SearchBar({ isNavbar = false }) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Budget */}
         <div className="sb-mobile-field">
@@ -289,7 +340,7 @@ export default function SearchBar({ isNavbar = false }) {
     <>
       {mobileModal}
 
-      <div className={`sb-root ${isNavbar ? 'sb-root--navbar' : ''}`}>
+      <div className={`sb-root ${isNavbar ? 'sb-root--navbar' : ''}`} ref={rootRef}>
         {/* Tabs (Hidden in Navbar mode) */}
         {!isNavbar && (
           <div className="sb-tabs">
@@ -344,7 +395,7 @@ export default function SearchBar({ isNavbar = false }) {
 
               {/* Location */}
               <div className="sb-field sb-location-field" ref={locationRef}>
-                <SearchIco />
+
                 <input
                   type="text"
                   placeholder={`Search city, locality or project`}
@@ -361,21 +412,25 @@ export default function SearchBar({ isNavbar = false }) {
                     <CloseIco />
                   </button>
                 )}
-                {showDropdown && (
-                  <SuggestionDropdown
-                    suggestions={suggestions}
-                    recentSearches={recentSearches}
-                    query={query}
-                    onSelect={handleSelect}
-                    onRecent={handleRecentSelect}
-                  />
-                )}
+
+                <button
+                  type="button"
+                  className={`sb-gps-btn ${isGpsLoading ? 'loading' : ''}`}
+                  onClick={handleDetectLocation}
+                  title="Detect my location"
+                >
+                  {isGpsLoading ? (
+                    <div className="sb-gps-loader">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
+                    </div>
+                  ) : <GpsIco />}
+                </button>
               </div>
 
               <div className="sb-sep" />
 
               {/* BHK */}
-              {showBhk && (
+              {/* {showBhk && (
                 <>
                   <div className="sb-field sb-bhk-field">
                     <div className="sb-bhk-trigger">
@@ -396,10 +451,10 @@ export default function SearchBar({ isNavbar = false }) {
                   </div>
                   <div className="sb-sep" />
                 </>
-              )}
+              )} */}
 
               {/* Budget */}
-              <div className="sb-field sb-budget-field">
+              {/* <div className="sb-field sb-budget-field">
                 <span className="sb-field-label">Budget</span>
                 <div className="sb-budget-selects">
                   <select
@@ -418,11 +473,11 @@ export default function SearchBar({ isNavbar = false }) {
                     {budgets.max.map(b => <option key={b}>{b}</option>)}
                   </select>
                 </div>
-              </div>
+              </div> */}
 
               {/* Actions */}
               <div className="sb-actions">
-                <button
+                {/* <button
                   type="button"
                   className={`sb-filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
                   onClick={() => dispatch(toggleAdvancedFilters())}
@@ -434,13 +489,33 @@ export default function SearchBar({ isNavbar = false }) {
                     <line x1="10" y1="18" x2="14" y2="18" />
                   </svg>
                   {activeFilterCount > 0 && <span className="sb-filter-badge">{activeFilterCount}</span>}
-                </button>
+                </button> */}
+
                 <button type="submit" className="sb-search-btn">
                   <SearchIco />
                   <span>Search</span>
                 </button>
               </div>
             </form>
+          )}
+
+          {/* ── Desktop Mega Dropdown (full card width) ── */}
+          {showDropdown && !isNavbar && (
+            <SuggestionDropdown
+              suggestions={suggestions}
+              recentSearches={recentSearches}
+              query={query}
+              onSelect={handleSelect}
+              onRecent={handleRecentSelect}
+              activeTab={activeTab}
+              propertyType={propertyType}
+              bhk={bhk}
+              minBudget={minBudget}
+              maxBudget={maxBudget}
+              budgets={budgets}
+              types={types}
+              dispatch={dispatch}
+            />
           )}
         </div>
 
@@ -498,61 +573,137 @@ export default function SearchBar({ isNavbar = false }) {
 }
 
 // ── Suggestion Dropdown ───────────────────────────────
-function SuggestionDropdown({ suggestions, recentSearches, query, onSelect, onRecent, inline }) {
-  return (
-    <div className={`sb-dropdown ${inline ? 'sb-dropdown--inline' : ''}`}>
-      {!query && recentSearches.length > 0 && (
-        <>
-          <div className="sb-dropdown-heading">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13">
-              <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-            </svg>
-            Recent
-          </div>
-          {recentSearches.map((r, i) => (
-            <div key={i} className="sb-suggestion-item" onClick={() => onRecent(r)}>
-              <div className="sb-sugg-icon recent">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
-                  <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <div className="sb-sugg-text">
-                <span className="sb-sugg-main">{r}</span>
-                <span className="sb-sugg-type">Recent search</span>
-              </div>
-            </div>
-          ))}
-          {suggestions.length > 0 && <div className="sb-dropdown-divider" />}
-        </>
-      )}
+function SuggestionDropdown({
+  suggestions, recentSearches, query, onSelect, onRecent, inline,
+  activeTab, propertyType, bhk, minBudget, maxBudget, budgets, types, dispatch
+}) {
+  const isInitial = !query;
 
-      {suggestions.length > 0 && (
-        <>
-          {query && (
-            <div className="sb-dropdown-heading">
-              <SearchIco /> Suggestions
+  return (
+    <div className={`sb-dropdown ${inline ? 'sb-dropdown--inline' : ''} ${isInitial ? 'sb-dropdown--mega' : ''}`}>
+      {isInitial ? (
+        <div className="sb-mega-content">
+          {/* Recent Searches Header */}
+          {recentSearches.length > 0 && (
+            <div className="sb-mega-section recent-mini">
+              <div className="sb-dropdown-heading">Recent Searches</div>
+              <div className="sb-recent-pills">
+                {recentSearches.map((r, i) => (
+                  <button key={i} className="sb-recent-pill" onClick={() => onRecent(r)}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="12" height="12">
+                      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {r}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
-          {suggestions.map((s, i) => (
-            <div key={i} className="sb-suggestion-item" onClick={() => onSelect(s)}>
-              <div className="sb-sugg-icon">
-                <SuggestionIcon type={s.type} />
-              </div>
-              <div className="sb-sugg-text">
-                <span className="sb-sugg-main">{s.text}</span>
-                <span className="sb-sugg-type">
-                  {s.type === 'property' ? 'Property' : s.type.charAt(0).toUpperCase() + s.type.slice(1)}
-                </span>
+
+          <div className="sb-mega-grid">
+            {/* Column 1: Categories/Tabs */}
+            <div className="sb-mega-col">
+              <div className="sb-dropdown-heading">Category</div>
+              <div className="sb-mega-tabs">
+                {SEARCH_TABS.map(tab => (
+                  <button
+                    key={tab}
+                    className={`sb-mega-tab-btn ${activeTab === tab ? 'active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); dispatch(setActiveTab(tab)); }}
+                  >{tab}</button>
+                ))}
               </div>
             </div>
-          ))}
-        </>
-      )}
 
-      {!query && suggestions.length === 0 && recentSearches.length === 0 && (
-        <div className="sb-dropdown-empty">
-          <span>Type to search cities, localities or projects</span>
+            {/* Column 2: Property Types */}
+            <div className="sb-mega-col">
+              <div className="sb-dropdown-heading">Property Type</div>
+              <div className="sb-mega-list">
+                {types.slice(0, 6).map(t => (
+                  <button
+                    key={t}
+                    className={`sb-mega-list-item ${propertyType === t ? 'active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); dispatch(setPropertyType(t)); }}
+                  >
+                    {t}
+                    {propertyType === t && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" width="12" height="12"><polyline points="20 6 9 17 4 12" /></svg>}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3: BHK & Budget */}
+            <div className="sb-mega-col">
+              {(activeTab === 'Buy' || activeTab === 'Rent') && (
+                <div className="sb-mega-sub-section">
+                  <div className="sb-dropdown-heading">BHK Type</div>
+                  <div className="sb-mega-bhk-row">
+                    {BHK_OPTIONS.map(b => (
+                      <button
+                        key={b}
+                        className={`sb-mega-bhk-pill ${bhk.includes(b) ? 'active' : ''}`}
+                        onClick={(e) => { e.stopPropagation(); dispatch(toggleBhk(b)); }}
+                      >{b === '1 RK' ? '1RK' : `${b} BHK`}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="sb-mega-sub-section">
+                <div className="sb-dropdown-heading">Budget</div>
+                <div className="sb-mega-budget-grid">
+                  <div className="sb-mega-select-wrap">
+                    <span>Min</span>
+                    <select
+                      value={minBudget || budgets.min[0]}
+                      onChange={e => { e.stopPropagation(); dispatch(setMinBudget(e.target.value)); }}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      {budgets.min.map(b => <option key={b} value={b}>{b}</option>)}
+                    </select>
+                  </div>
+                  <div className="sb-mega-select-wrap">
+                    <span>Max</span>
+                    <select
+                      value={maxBudget || budgets.max[0]}
+                      onChange={e => { e.stopPropagation(); dispatch(setMaxBudget(e.target.value)); }}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      {budgets.max.map(b => <option key={b} value={b}>{b}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      ) : (
+        <>
+          {suggestions.length > 0 ? (
+            <>
+              <div className="sb-dropdown-heading">
+                <SearchIco /> Suggestions
+              </div>
+              {suggestions.map((s, i) => (
+                <div key={i} className="sb-suggestion-item" onClick={() => onSelect(s)}>
+                  <div className="sb-sugg-icon">
+                    <SuggestionIcon type={s.type} />
+                  </div>
+                  <div className="sb-sugg-text">
+                    <span className="sb-sugg-main">{s.text}</span>
+                    <span className="sb-sugg-type">
+                      {s.type === 'property' ? 'Property' : s.type.charAt(0).toUpperCase() + s.type.slice(1)}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <div className="sb-dropdown-empty">
+              <span>No results found for "{query}"</span>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

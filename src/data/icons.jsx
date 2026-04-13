@@ -12,6 +12,8 @@ export const BedIco = () => <Ic d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8M3 1
 export const BathIco = () => <Ic d="M3 7h18M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7" />;
 export const AreaIco = () => <Ic d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />;
 export const ArrowR = () => <Ic d="M5 12h14M12 5l7 7-7 7" size={14} />;
+export const FilterIco = () => <Ic d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />;
+export const GpsIco = () => <Ic d="M12 2v3M12 19v3M2 12h3M19 12h3M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" />;
 export const LoaderIco = () => <Ic d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" size={14} />;
 
 export const MenuIco = () => <Ic d="M4 6h16M4 12h16M4 18h16" />;
