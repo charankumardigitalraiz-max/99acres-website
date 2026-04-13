@@ -14,7 +14,7 @@
 .support-float-btn {
   width: 58px;
   height: 58px;
-  background: #0f172a; /* Sophisticated dark navy */
+  background: var(--primary); /* Sophisticated dark navy */
   color: #fff;
   border: none;
   border-radius: 50%;
