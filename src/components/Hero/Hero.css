@@ -18,7 +18,7 @@
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url("/banners/Gemini_Generated_Image_b6haspb6haspb6ha.png");
+  background-image: url("/banners/Gemini_Generated_Image_bnpmzxbnpmzxbnpm.png");
   background-size: cover;
   background-position: center top;
   z-index: 1;
@@ -38,9 +38,9 @@
     ); */
 }
 
-.hero:hover .hero-background {
+/* .hero:hover .hero-background {
   transform: scale(1.03);
-}
+} */
 
 /* Content layer */
 .hero-content {
@@ -78,7 +78,8 @@
 .hero-title {
   font-size: 2.2rem;
   font-weight: 600;
-  color: var(--dark);
+  /* color: var(--dark); */
+  color: white !important;
   line-height: 1.2;
   margin: 0 0 10px;
   letter-spacing: -0.01em;

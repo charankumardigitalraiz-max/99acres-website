@@ -382,13 +382,18 @@ export default function SearchBar({ isNavbar = false }) {
 
               {/* Property Type */}
               <div className="sb-field sb-type-field">
-                <select
-                  value={propertyType}
-                  onChange={e => dispatch(setPropertyType(e.target.value))}
-                  aria-label="Property type"
-                >
-                  {types.map(t => <option key={t}>{t}</option>)}
-                </select>
+                <div className="sb-select-wrap">
+                  <select
+                    value={propertyType}
+                    onChange={e => dispatch(setPropertyType(e.target.value))}
+                    aria-label="Property type"
+                  >
+                    {types.map(t => <option key={t}>{t}</option>)}
+                  </select>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </div>
               </div>
 
               <div className="sb-sep" />

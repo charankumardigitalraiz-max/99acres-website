@@ -17,7 +17,9 @@
   display: flex;
   gap: 0;
   margin-bottom: 0;
-  padding-left: 18px;
+  /* padding-left: 18px; */
+  /* border-radius: 20px; */
+  /* border-top-left-radius: 20px !important; */
 }
 
 .sb-tab {
@@ -48,6 +50,13 @@
   font-weight: 600;
   /* background: #fff; */
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.sb-tab :first-child{
+  border-top-left-radius: 15px;
+}
+.sb-tab :last-child{
+  border-top-left-radius: 15px;
 }
 
 /* ── Search Card ────────────────────────────────── */
@@ -222,6 +231,7 @@
 .sb-field {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 0 14px;
   height: 100%;

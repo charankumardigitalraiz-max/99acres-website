@@ -5,6 +5,9 @@
   gap: 20px;
   padding: 24px 0;
 }
+.section{
+  padding-top: 24px !important;
+}
 
 .cat-card-v4 {
   position: relative;
