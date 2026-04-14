@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { setQuery, clearSuggestions, setLocation } from '../../store/slices/searchSlice';
 import { NAV_LINKS, MEGA_MENUS, CITIES } from '../../data/constants';
-import { MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco, buyIcon } from '../../data/icons';
+import { MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco, BuyIcon } from '../../data/icons';
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function Navbar() {
@@ -288,7 +288,7 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className="nav-right">
             <Link to="/properties" className={`nav-post-property ${isScrolled ? 'nav-post-property-buy--hidden' : ''}`} onClick={() => setIsMenuOpen(false)}>
-              <buyIcon />
+              <BuyIcon />
               Buy Properties
             </Link>
             <Link to="/subscription" className="nav-post-property">
@@ -404,7 +404,7 @@ export default function Navbar() {
           )}
 
           <Link to="/properties" className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>
-            <buyIcon />
+            <BuyIcon />
             Buy Properties
           </Link>
           <Link to="/subscription" className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>

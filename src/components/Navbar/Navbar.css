@@ -75,7 +75,7 @@
 
 /* ── Left: Logo + Location ───────────────────────── */
 .nav-left {
-  flex: 1;
+  flex: 0 0 auto; /* Protect branding and location from being squeezed */
   display: flex;
   align-items: center;
   gap: 20px;
@@ -440,7 +440,7 @@
 
 /* ── Center: Nav Links / Search ──────────────────── */
 .nav-center {
-  flex: 2;
+  flex: 1; /* Take all remaining middle space */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -772,7 +772,7 @@
 
 /* ── Right Area ──────────────────────────────────── */
 .nav-right {
-  flex: 1;
+  flex: 0 0 auto; /* Protect right-side actions from being squeezed */
   display: flex;
   align-items: center;
   gap: 10px;

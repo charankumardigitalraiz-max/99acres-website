@@ -5,7 +5,9 @@
   margin-top: 24px;
   margin-bottom: 60px;
   align-items: stretch; /* Stretch to keep sidebar container height */
-  transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1), gap 0.4s ease;
+  transition:
+    grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    gap 0.4s ease;
 }
 
 .home-layout--collapsed {
@@ -16,7 +18,7 @@
 .home-main {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 20px;
   width: 100%;
   min-width: 0; /* Prevents flex blowout */
 }

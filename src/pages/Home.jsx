@@ -27,7 +27,6 @@ export default function Home() {
 
           <Categories />
 
-
           <PropertyListings isSidebarOpen={isSidebarOpen} />
           <Localities isSidebarOpen={isSidebarOpen} />
           <HighRatedProperties isSidebarOpen={isSidebarOpen} />
