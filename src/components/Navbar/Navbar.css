@@ -39,14 +39,15 @@
 }
 
 .navbar--transparent .nav-link-item,
-.navbar--transparent ,
+.navbar--transparent,
 .navbar--transparent .nav-logo {
-  color: white;
+  color: var(--dark);
 }
 
-.location-label{
-  color: white;
+.location-label {
+  color: var(--primary-dark);
 }
+
 /* .navbar--transparent .nav-logo-img {
   filter: brightness(0) invert(1);
 } */
@@ -80,6 +81,14 @@
   gap: 20px;
 }
 
+.navbar--details-show .nav-logo-text {
+  color: var(--dark) !important;
+}
+
+.navbar--details-show .location-label {
+  color: var(--dark) !important;
+}
+
 .nav-logo {
   display: flex;
   align-items: center;
@@ -98,12 +107,13 @@
   color: var(--primary);
   transition: color 0.35s ease;
 }
+
 .nav-logo-text {
-  /* color: var(--dark) !important; */
-  color: white !important;
+  color: var(--dark) !important;
+  /* color: white !important; */
 }
 
-.navbar--scrolled .nav-logo-text{
+.navbar--scrolled .nav-logo-text {
   color: var(--dark) !important;
 }
 
@@ -146,18 +156,17 @@
   padding: 5px 8px;
   border-radius: 6px;
   transition: background 0.2s;
-  color: white;
+  color: var(--dark);
   border: 1px solid transparent;
 }
 
 .nav-location-selector span {
-  color: white !important;
-}
-
-.navbar--scrolled .location-label{
   color: var(--dark) !important;
 }
 
+.navbar--scrolled .location-label {
+  color: var(--dark) !important;
+}
 
 .nav-location-selector:hover {
   background: var(--bg);
@@ -218,6 +227,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -875,6 +885,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1294,7 +1305,8 @@
   }
 
   .nav-logo-img {
-    height: 38px; /* Slightly smaller on mobile scrolled */
+    height: 38px;
+    /* Slightly smaller on mobile scrolled */
     transition: all 0.3s ease;
   }
 
@@ -1311,7 +1323,8 @@
   .navbar-search-wrapper {
     display: none !important;
     width: 100%;
-    max-width: none !important; /* Allow full expansion on mobile */
+    max-width: none !important;
+    /* Allow full expansion on mobile */
     opacity: 1;
   }
 
@@ -1336,6 +1349,7 @@
       opacity: 0;
       transform: translateY(4px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -1371,6 +1385,7 @@
       opacity: 0;
       transform: translateY(12px) scale(0.97);
     }
+
     to {
       opacity: 1;
       transform: translateY(0) scale(1);

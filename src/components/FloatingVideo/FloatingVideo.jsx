@@ -5,7 +5,7 @@ import './FloatingVideo.css';
 export default function FloatingVideo() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [position, setPosition] = useState({ x: window.innerWidth - 200, y: window.innerHeight - 600 });
+  const [position, setPosition] = useState({ x: window.innerWidth - 250, y: window.innerHeight - 400 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef({ offsetStartX: 0, offsetStartY: 0 });
 
@@ -104,7 +104,7 @@ export default function FloatingVideo() {
               if (nextCollapsed) {
                 // Snap to right edge when collapsing
                 setPosition(prev => ({ ...prev, x: window.innerWidth - 65, y: window.innerHeight - 100 }));
-                
+
               } else {
                 // When opening, pull it back from the edge so it doesn't overflow
                 setPosition(prev => ({
@@ -129,8 +129,8 @@ export default function FloatingVideo() {
       {!isCollapsed && (
         <div className="v-body-v2">
           <iframe
-            src={`https://www.youtube.com/embed/ec_fXMrD7Ow?autoplay=1&mute=1&loop=1&playlist=ec_fXMrD7Ow&controls=${isExpanded ? 1 : 0}&modestbranding=1&rel=0`}
-            title="Draggable Tour"
+            src={`https://www.youtube.com/embed/rutCVOOj4KQ?si=3hwKPNKE2VpmYCXj&autoplay=1&mute=1&loop=1&playlist=rutCVOOj4KQ&controls=${isExpanded ? 1 : 0}&modestbranding=1&rel=0`}
+            title="Vertical Property Tour"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             className="v-iframe-v2"

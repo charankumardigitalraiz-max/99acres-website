@@ -5,8 +5,9 @@
   gap: 20px;
   padding: 24px 0;
 }
-.section{
-  padding-top: 24px !important;
+
+.section {
+  padding-top: 15px !important;
 }
 
 .cat-card-v4 {
@@ -15,9 +16,10 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .cat-img-bg {
@@ -54,14 +56,15 @@
 .cat-count-v4 {
   font-size: 0.75rem;
   font-weight: 500;
-  color: #f59e0b; /* Primary Amber */
+  color: #f59e0b;
+  /* Primary Amber */
 }
 
 /* Elite Hover Effects */
 .cat-card-v4:hover {
-  transform: translateY(-6px);
-  border-color: #f59e0b;
-  box-shadow: 0 20px 40px -12px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px -12px rgba(245, 158, 11, 0.12);
 }
 
 .cat-card-v4:hover .cat-img-bg {
@@ -85,6 +88,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
+
   .section {
     padding: 16px 0;
   }

@@ -5,12 +5,13 @@
 
 .hero {
   position: relative;
-  height: 82vh;
-  min-height: 560px;
+  height: 90vh;
+  min-height: 540px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible; /* must be visible so search dropdown isn't clipped */
+  overflow: visible;
+  /* must be visible so search dropdown isn't clipped */
   background-color: #0f172a;
 }
 
@@ -18,11 +19,12 @@
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url("/banners/Gemini_Generated_Image_bnpmzxbnpmzxbnpm.png");
+  background-image: url("/banners/real_estate_marketplace_hero_v2.png");
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   z-index: 1;
-  overflow: hidden; /* clip the scale animation here instead of on .hero */
+  overflow: hidden;
+  /* clip the scale animation here instead of on .hero */
   transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -42,6 +44,21 @@
   transform: scale(1.03);
 } */
 
+/* Transparent People Overlay at the Bottom */
+.hero-people-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  transform: translateX(-50%);
+  max-width: 100%;
+  height: auto;
+  max-height: 50vh; /* Keep it from overtaking the search bar and text */
+  object-fit: contain;
+  z-index: 2; /* Below the text content (z-index: 5) but above the background (z-index: 1) */
+  pointer-events: none; /* Let users click through to the search bar if it overlaps */
+  animation: heroFadeUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s both;
+}
+
 /* Content layer */
 .hero-content {
   position: relative;
@@ -50,7 +67,7 @@
   max-width: 900px;
   text-align: center;
   color: white;
-  padding: 80px 24px 0;
+  padding: 80px 24px 40px;
 }
 
 /* Header block (label + title + desc) */
@@ -78,8 +95,8 @@
 .hero-title {
   font-size: 2.2rem;
   font-weight: 600;
-  /* color: var(--dark); */
-  color: white !important;
+  color: var(--dark);
+  /* color: white !important; */
   line-height: 1.2;
   margin: 0 0 10px;
   letter-spacing: -0.01em;
@@ -98,6 +115,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -125,6 +143,7 @@
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

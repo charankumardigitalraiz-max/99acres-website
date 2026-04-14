@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 24px;
   margin-bottom: 60px;
   align-items: stretch; /* Stretch to keep sidebar container height */
   transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1), gap 0.4s ease;
@@ -16,7 +16,7 @@
 .home-main {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 48px;
   width: 100%;
   min-width: 0; /* Prevents flex blowout */
 }
@@ -26,7 +26,7 @@
   padding: 0;
   background: transparent !important;
   border-bottom: none !important;
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
 .home-main .container {

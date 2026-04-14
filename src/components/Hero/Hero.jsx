@@ -29,6 +29,12 @@ export default function Hero() {
           <SearchBar />
         </div>
       </div>
+
+      <img
+        src="/banners/people_group_transparent_v2.png"
+        alt="People exploring real estate"
+        className="hero-people-overlay"
+      />
     </section>
   );
 }

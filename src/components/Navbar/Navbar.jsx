@@ -26,6 +26,7 @@ export default function Navbar() {
   const locationPath = useLocation();
 
   const isHomePage = locationPath.pathname === '/';
+  const isnotHomePage = locationPath.pathname !== '/';
 
   // Scroll detection — triggers at 80px so navbar
   // search appears earlier on mobile
@@ -86,7 +87,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''} ${isHomePage && !isScrolled ? 'navbar--transparent' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''} ${isHomePage && !isScrolled ? 'navbar--transparent' : ''} ${isnotHomePage && !isScrolled ? 'navbar--details-show' : ''}`}>
         <div className="container">
           <div className="nav-left">
             {/* Logo */}

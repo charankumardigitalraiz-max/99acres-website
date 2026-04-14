@@ -7,13 +7,13 @@
   display: flex;
   flex-direction: column;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 10px 30px rgba(10, 18, 42, 0.03);
+  box-shadow: 0 4px 20px rgba(10, 18, 42, 0.04);
 }
 
 .prop-card-v7:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 45px rgba(10, 18, 42, 0.08);
-  border-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10, 18, 42, 0.08);
+  border-color: rgba(245, 158, 11, 0.1);
 }
 
 .prop-img-wrap-v7 {
@@ -49,6 +49,7 @@
 .pill-badge-v7.ready {
   background: var(--green);
 }
+
 .pill-badge-v7.new {
   background: var(--primary);
   color: #fff;
@@ -120,7 +121,8 @@
 /* Share button on desktop vertical card */
 .share-btn-v7 {
   position: absolute;
-  top: 48px; /* sits below the heart button */
+  top: 48px;
+  /* sits below the heart button */
   right: 10px;
   width: 32px;
   height: 32px;
@@ -256,7 +258,8 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(15px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy entry */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy entry */
   cursor: pointer;
 }
 
@@ -282,7 +285,8 @@
   position: relative;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 4px 12px rgba(10, 18, 42, 0.03);
-  height: 100%; /* Flexible height for Swiper */
+  height: 100%;
+  /* Flexible height for Swiper */
 }
 
 .prop-card-feat-compact:hover {
@@ -293,7 +297,8 @@
 
 .feat-img-square {
   width: 100%;
-  height: 110px; /* Compact height */
+  height: 110px;
+  /* Compact height */
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
