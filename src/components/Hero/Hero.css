@@ -5,7 +5,7 @@
 
 .hero {
   position: relative;
-  height: 80vh;
+  height: 70vh;
   min-height: 540px;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url("/banners/real_estate_dark_blue_hero_v2.png");
+  background-image: url("/banners/real_estate_family_absolute_left.png");
   background-size: cover;
   background-position: center bottom;
   z-index: 1;
@@ -67,7 +67,8 @@
   max-width: 900px;
   text-align: center;
   color: white;
-  padding: 80px 24px 40px;
+  padding: 20px 24px 40px;
+  transform: translateY(-40px); /* Move search and title up slightly */
 }
 
 /* Header block (label + title + desc) */

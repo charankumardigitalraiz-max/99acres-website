@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { Link } from 'react-router-dom';
@@ -33,9 +33,11 @@ export default function LandProperties({ isSidebarOpen }) {
         <div className="carousel-wrapper">
           <Swiper
             key={isSidebarOpen ? 'opened' : 'closed'}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={20}
             slidesPerView={1.2}
+            autoplay={{ delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            loop
             navigation={{
               prevEl: '.land-prev-btn',
               nextEl: '.land-next-btn',

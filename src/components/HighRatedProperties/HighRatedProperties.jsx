@@ -44,6 +44,8 @@ export default function HighRatedProperties({ isSidebarOpen }) {
               1024: { slidesPerView: 3, spaceBetween: 24 },
               1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
             }}
+            autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            loop
             className="rated-swiper"
           >
             {highRated.map(property => (

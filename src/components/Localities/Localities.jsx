@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { ArrowR, ChevronL, ChevronR } from '../../data/icons';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import 'swiper/css';
@@ -32,13 +32,15 @@ export default function Localities({ isSidebarOpen }) {
         <div className="carousel-wrapper">
           <Swiper
             key={isSidebarOpen ? 'opened' : 'closed'}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={20}
             slidesPerView={1.2}
             navigation={{
               prevEl: '.loc-prev-btn',
               nextEl: '.loc-next-btn',
             }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            loop
             breakpoints={{
               480: { slidesPerView: 2.2, spaceBetween: 16 },
               768: { slidesPerView: 2.5, spaceBetween: 20 },
