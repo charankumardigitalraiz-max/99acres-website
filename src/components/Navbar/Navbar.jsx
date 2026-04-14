@@ -63,6 +63,9 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('email');
     dispatch(logout());
     navigate('/');
   };
@@ -80,9 +83,12 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const token = localStorage.getItem('token');
+  const isAuthenticated = isLoggedIn || !!token;
+
   const userDetails = {
-    name: localStorage.getItem('name') || 'User',
-    email: localStorage.getItem('email') || 'charanapalimara@gmail.com'
+    name: user?.name || localStorage.getItem('name') || 'User',
+    email: user?.email || localStorage.getItem('email') || ''
   };
 
   return (
@@ -296,7 +302,7 @@ export default function Navbar() {
               <span className="nav-premium-tag">FREE</span>
             </Link>
 
-            {userDetails.name ? (
+            {isAuthenticated ? (
               <div className="profile-dropdown-container" ref={dropdownRef}>
                 <button
                   className="nav-avatar-btn"
@@ -387,7 +393,7 @@ export default function Navbar() {
 
         {/* Mobile Bottom Actions */}
         <div className="nav-drawer-footer">
-          {userDetails.name ? (
+          {isAuthenticated ? (
             <div className="user-profile-mobile">
               <div className="user-avatar-row">
                 <div className="user-avatar">{userDetails.name.charAt(0).toUpperCase()}</div>

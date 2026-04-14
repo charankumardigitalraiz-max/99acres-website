@@ -192,9 +192,18 @@
   }
 }
 
+@media (max-width: 790px) {
+  .hero-content {
+    padding-top: 30px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .hero {
     padding: 70px 0 32px;
+  }
+  .hero-content {
+    padding-top: 30px !important;
   }
 
   .hero-title {
