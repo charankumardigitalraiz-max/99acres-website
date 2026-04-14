@@ -5,7 +5,7 @@
 
 .hero {
   position: relative;
-  height: 90vh;
+  height: 80vh;
   min-height: 540px;
   display: flex;
   align-items: center;
@@ -19,9 +19,9 @@
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url("/banners/real_estate_marketplace_hero_v2.png");
+  background-image: url("/banners/real_estate_dark_blue_hero_v2.png");
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
   z-index: 1;
   overflow: hidden;
   /* clip the scale animation here instead of on .hero */
@@ -95,8 +95,8 @@
 .hero-title {
   font-size: 2.2rem;
   font-weight: 600;
-  color: var(--dark);
-  /* color: white !important; */
+  /* color: var(--dark); */
+  color: white !important;
   line-height: 1.2;
   margin: 0 0 10px;
   letter-spacing: -0.01em;

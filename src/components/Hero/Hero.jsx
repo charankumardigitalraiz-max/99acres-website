@@ -30,11 +30,11 @@ export default function Hero() {
         </div>
       </div>
 
-      <img
+      {/* <img
         src="/banners/people_group_transparent_v2.png"
         alt="People exploring real estate"
         className="hero-people-overlay"
-      />
+      /> */}
     </section>
   );
 }

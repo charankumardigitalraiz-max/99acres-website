@@ -17,15 +17,16 @@ export default function Home() {
   return (
     <>
       <Hero />
-
+      <PromoBannerSlider isSidebarOpen={isSidebarOpen} />
       {/* Two Column Layout Wrapper */}
       <div className={`container home-layout ${!isSidebarOpen ? 'home-layout--collapsed' : ''}`}>
 
         {/* Main Feed */}
         <div className="home-main">
           {/* Categories section */}
+
           <Categories />
-          <PromoBannerSlider isSidebarOpen={isSidebarOpen} />
+
 
           <PropertyListings isSidebarOpen={isSidebarOpen} />
           <Localities isSidebarOpen={isSidebarOpen} />

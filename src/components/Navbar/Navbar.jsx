@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { setQuery, clearSuggestions, setLocation } from '../../store/slices/searchSlice';
 import { NAV_LINKS, MEGA_MENUS, CITIES } from '../../data/constants';
-import { MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco } from '../../data/icons';
+import { MenuIco, CloseIco, PinIco, LocIco, IconFlats, SearchIco, buyIcon } from '../../data/icons';
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function Navbar() {
@@ -177,7 +177,7 @@ export default function Navbar() {
           <div className="nav-center">
             {/* Nav Links – visible when NOT scrolled */}
             <div className={`nav-links-desktop ${isScrolled ? 'nav-links-desktop--hidden' : ''}`}>
-              {NAV_LINKS.map(link => (
+              {/* {NAV_LINKS.map(link => (
                 <div
                   key={link.label}
                   className="nav-link-wrapper"
@@ -214,7 +214,7 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-              ))}
+              ))} */}
             </div>
 
             {/* Compact Search – visible when scrolled past hero */}
@@ -287,6 +287,10 @@ export default function Navbar() {
 
           {/* Right Actions */}
           <div className="nav-right">
+            <Link to="/properties" className={`nav-post-property ${isScrolled ? 'nav-post-property-buy--hidden' : ''}`} onClick={() => setIsMenuOpen(false)}>
+              <buyIcon />
+              Buy Properties
+            </Link>
             <Link to="/subscription" className="nav-post-property">
               Post Property
               <span className="nav-premium-tag">FREE</span>
@@ -398,6 +402,11 @@ export default function Navbar() {
           ) : (
             <Link to="/login" className="btn-outline w-full" onClick={() => setIsMenuOpen(false)}>Login</Link>
           )}
+
+          <Link to="/properties" className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>
+            <buyIcon />
+            Buy Properties
+          </Link>
           <Link to="/subscription" className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>
             Post Property
             <span className="premium-tag">FREE</span>
