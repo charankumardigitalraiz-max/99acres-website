@@ -9,11 +9,14 @@
 .promo-swiper {
   border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05); /* Subtle border for luxury feel */
   display: block;
   width: 100%;
   height: 170px; /* Perfect ribbon height */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #020617;
 }
 
 .sidebar-open .promo-swiper {
@@ -51,10 +54,46 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(15, 23, 42, 0.4) 0%,
-    rgba(15, 23, 42, 0.2) 40%,
+    rgba(2, 6, 23, 0.7) 0%,
+    rgba(2, 6, 23, 0.3) 40%,
     transparent 100%
   );
+}
+
+/* Featured Badge */
+.promo-featured-badge {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #f59e0b;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .promo-slide-content {
@@ -77,24 +116,27 @@
 .promo-tag {
   display: inline-flex;
   align-items: center;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 800;
-  color: var(--primary);
-  padding: 3px 10px;
-  border-radius: 4px;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 50px;
   text-transform: uppercase;
-  border: 1px solid var(--primary);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
   white-space: nowrap;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
 }
 
 .promo-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: white;
-  line-height: 1;
-  letter-spacing: -0.01em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .promo-sub {
@@ -141,6 +183,25 @@
   font-size: 0.85rem;
 }
 
+/* Bottom Progress Bar */
+.promo-progress-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 20;
+}
+
+.promo-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  width: calc(var(--progress, 0) * 100%);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
 @media (max-width: 1024px) {
   .promo-swiper,
   .promo-slide {
@@ -150,7 +211,7 @@
 
 @media (max-width: 768px) {
   .promo-section {
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   .promo-swiper,
@@ -177,6 +238,17 @@
   .banner-cta {
     font-size: 0.7rem;
     padding: 6px 16px;
+  }
+
+  /* Adjust/Hide new elements for tiny mobile */
+  .promo-featured-badge {
+    top: 10px;
+    left: 10px;
+    padding: 2px 8px;
+    font-size: 0.55rem;
+  }
+  .promo-progress-wrap {
+    height: 2px;
   }
 }
 

@@ -16,8 +16,10 @@ export default function Home() {
 
   return (
     <>
+    <div className="home-top-fold">
       <Hero />
       <PromoBannerSlider isSidebarOpen={isSidebarOpen} />
+    </div>
       {/* Two Column Layout Wrapper */}
       <div className={`container home-layout ${!isSidebarOpen ? 'home-layout--collapsed' : ''}`}>
 

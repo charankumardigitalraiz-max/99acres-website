@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -25,7 +26,7 @@ const BANNERS = [
   // },
   {
     type: 'image',
-    img: '/banners/banner_highlight (1).png',
+    img: '/banners/slim_banner_1.png',
     fullImage: true, /* Hide code overlays and use full opacity for custom-made banners */
     tag: 'Smart Investment',
     title: 'Secure Your\nFinancial Future',
@@ -46,6 +47,16 @@ const BANNERS = [
 ];
 
 export default function PromoBannerSlider({ isSidebarOpen }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    if (progressCircle.current) {
+      progressCircle.current.style.setProperty('--progress', 1 - progress);
+    }
+  };
+
   return (
     <section className={`promo-section ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <Swiper
@@ -54,6 +65,8 @@ export default function PromoBannerSlider({ isSidebarOpen }) {
         pagination={{ clickable: true }}
         autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="promo-swiper"
       >
         {BANNERS.map((banner, i) => (
@@ -72,6 +85,12 @@ export default function PromoBannerSlider({ isSidebarOpen }) {
 
               <div className="promo-slide-overlay" style={banner.fullImage ? { display: 'none' } : {}} />
 
+              {/* Featured Badge */}
+              <div className="promo-featured-badge">
+                <span className="badge-dot"></span>
+                Featured
+              </div>
+
               {!banner.fullImage && (
                 <div className="promo-slide-content">
                   <div className="promo-text-group">
@@ -89,7 +108,12 @@ export default function PromoBannerSlider({ isSidebarOpen }) {
               )}
 
               <div className="promo-counter">
-                {i + 1} / {BANNERS.length}
+                {activeIndex + 1} / {BANNERS.length}
+              </div>
+
+              {/* Bottom Progress Bar */}
+              <div className="promo-progress-wrap">
+                <div className="promo-progress-bar" ref={progressCircle}></div>
               </div>
             </div>
           </SwiperSlide>

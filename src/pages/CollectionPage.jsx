@@ -21,30 +21,30 @@ const CollectionPage = ({ type, title, subtitle }) => {
   );
 
   return (
-    <div className="collection-page">
+    <div className="cp-page">
       {/* ── HERO SECTION ── */}
-      <section className="collection-hero">
+      <section className="cp-hero">
         <div className="container">
-          <nav className="collection-breadcrumb">
-            <Link to="/" className="breadcrumb-link">
+          <nav className="cp-breadcrumb">
+            <Link to="/" className="cp-breadcrumb-link">
               <ChevronL /> Home
             </Link>
-            <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-current">{title}</span>
+            <span className="cp-breadcrumb-sep">/</span>
+            <span className="cp-breadcrumb-current">{title}</span>
           </nav>
 
-          <div className="hero-main-content">
-            <h1 className="hero-title">{title}</h1>
-            <p className="hero-subtitle">{subtitle}</p>
+          <div className="cp-hero-content">
+            <h1 className="cp-hero-title">{title}</h1>
+            <p className="cp-hero-subtitle">{subtitle}</p>
           </div>
         </div>
       </section>
 
       <div className="container">
         {/* ── TOOLBAR / CONTROLS ── */}
-        <div className="collection-toolbar">
-          <div className="toolbar-left">
-            <div className="collection-search-wrap">
+        <div className="cp-toolbar">
+          <div className="cp-toolbar-left">
+            <div className="cp-search-wrap">
               <SearchIco />
               <input
                 type="text"
@@ -55,12 +55,12 @@ const CollectionPage = ({ type, title, subtitle }) => {
             </div>
           </div>
 
-          <div className="toolbar-right">
-            <div className="collection-stats-badge">
+          <div className="cp-toolbar-right">
+            <div className="cp-stats-badge">
               <span>{filteredProperties.length}</span> Results Found
             </div>
-            <div className="collection-sort">
-              <select className="sort-dropdown">
+            <div className="cp-sort">
+              <select className="cp-sort-dropdown">
                 <option>Sort by: Featured</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -72,8 +72,8 @@ const CollectionPage = ({ type, title, subtitle }) => {
 
         {/* ── RESULTS GRID ── */}
         {filteredProperties.length > 0 ? (
-          <div className="collection-grid-container">
-            <div className="collection-grid">
+          <div className="cp-grid-container">
+            <div className="cp-grid">
               {filteredProperties.map(property => (
                 <PropertyCard
                   key={property.id}
@@ -84,8 +84,8 @@ const CollectionPage = ({ type, title, subtitle }) => {
             </div>
           </div>
         ) : (
-          <div className="collection-empty">
-            <div className="empty-icon">📂</div>
+          <div className="cp-empty">
+            <div className="cp-empty-icon">📂</div>
             <h3>No results found</h3>
             <p>We couldn't find any properties matching your search in this collection.</p>
             <button className="btn-primary" onClick={() => setSearchQuery('')}>
@@ -96,14 +96,14 @@ const CollectionPage = ({ type, title, subtitle }) => {
       </div>
 
       {/* CALL TO ACTION */}
-      <section className="collection-cta">
+      <section className="cp-cta">
         <div className="container">
-          <div className="cta-card">
-            <div className="cta-text">
+          <div className="cp-cta-card">
+            <div className="cp-cta-text">
               <h2>Didn't find what you're looking for?</h2>
               <p>Explore our full database of 50,000+ properties across India.</p>
             </div>
-            <Link to="/properties" className="cta-btn">
+            <Link to="/properties" className="cp-cta-btn">
               Browse All Properties <ArrowR />
             </Link>
           </div>

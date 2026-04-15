@@ -5,26 +5,23 @@
 
 .hero {
   position: relative;
-  height: 70vh;
-  min-height: 540px;
+  flex: 1; /* Grow to fill available space in .home-top-fold */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
-  /* must be visible so search dropdown isn't clipped */
-  background-color: #0f172a;
+  background-color: #020617; /* Deeper dark for premium feel */
 }
 
 /* Background image with subtle scale-on-hover */
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url("/banners/final_scaled_v5.png");
+  background-image: url("/banners/real_estate_edited_v1.png"); /* user will copy to this path */
   background-size: cover;
-  background-position: center bottom;
+  background-position: center center;
   z-index: 1;
   overflow: hidden;
-  /* clip the scale animation here instead of on .hero */
   transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -32,12 +29,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  /* background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.85) 0%,
-      rgba(255, 255, 255, 0.4) 40%,
-      rgba(255, 255, 255, 0.1) 100%
-    ); */
+  /* Balanced overlay to respect the image's own glow */
+  /* background: radial-gradient(
+    circle at center 50%,
+    rgba(2, 6, 23, 0) 0%,
+    rgba(2, 6, 23, 0.2) 45%,
+    rgba(2, 6, 23, 0.6) 100%
+  ); */
 }
 
 /* .hero:hover .hero-background {
@@ -64,16 +62,18 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  max-width: 900px;
+  max-width: 960px;
   text-align: center;
   color: white;
-  padding: 20px 24px 40px;
-  transform: translateY(-40px); /* Move search and title up slightly */
+  padding: 0 24px;
+  transform: translateY(
+    -50px
+  ); /* Perfectly aligned with the 21:9 image's central glow */
 }
 
 /* Header block (label + title + desc) */
 .hero-header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   animation: heroFadeUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) both;
 }
 
@@ -134,9 +134,28 @@
 /* Search wrapper */
 .hero-search-wrapper {
   width: 100%;
-  max-width: 860px;
+  max-width: 880px;
   margin: 0 auto;
   animation: heroFadeUp 0.8s ease-out 0.2s both;
+  /* Glow effect to highlight search */
+  position: relative;
+}
+
+.hero-search-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 140%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(59, 130, 246, 0.15) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes heroFadeUp {
