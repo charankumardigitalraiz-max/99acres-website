@@ -182,6 +182,7 @@ export default function SearchBar({ isNavbar = false }) {
         <div className="sb-mobile-field" ref={locationRef}>
           <label>Location</label>
           <div className="sb-mobile-input-wrap">
+            <SearchIco className="sb-main-search-icon" />
             <input
               type="text"
               autoFocus
@@ -195,7 +196,7 @@ export default function SearchBar({ isNavbar = false }) {
                 className="sb-clear"
                 onClick={() => { dispatch(clearSuggestions()); dispatch(setLocation('')); }}
               >
-                <CloseIco />
+                <CloseIco style={{ width: 14, height: 14 }} />
               </button>
             )}
             <button

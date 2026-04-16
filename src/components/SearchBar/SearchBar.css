@@ -267,8 +267,8 @@
   width: 100%;
   background: #fff;
   border-radius: 20px;
-  box-shadow: 
-    0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 25px 50px -12px rgba(0, 0, 0, 0.15);
   border: 1px solid #e2e8f0;
   z-index: 500;
@@ -279,8 +279,14 @@
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .sb-dropdown--inline {
@@ -373,6 +379,10 @@
 .sb-sugg-text {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .sb-sugg-main {
@@ -416,11 +426,13 @@
 }
 
 .sb-dropdown-empty {
-  padding: 40px 20px;
+  padding: 60px 40px;
   text-align: center;
   color: #94a3b8;
-  font-size: 0.9rem;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 /* ── Mega Dropdown Specifics ──────────────────────── */
@@ -862,6 +874,71 @@
   .sb-navbar-trigger {
     height: 44px;
     border-radius: 12px;
+  }
+
+  /* ── Responsive Mega-Menu ── */
+  .sb-mega-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .sb-mega-col {
+    padding: 18px 0;
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .sb-mega-col:last-child {
+    border-bottom: none;
+  }
+
+  .sb-mega-bhk-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sb-mega-bhk-pill {
+    flex: 1 1 calc(33.33% - 10px);
+    text-align: center;
+    padding: 10px;
+  }
+
+  .sb-mega-budget-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sb-dropdown {
+    width: 100%;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+    border: none;
+  }
+
+  .sb-dropdown-heading {
+    padding: 16px 4px 8px;
+  }
+
+  .sb-suggestion-item {
+    padding: 14px 4px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .sb-sugg-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .sb-sugg-main {
+    font-size: 0.9rem;
+  }
+
+  .sb-sugg-type {
+    font-size: 0.65rem;
   }
 }
 
