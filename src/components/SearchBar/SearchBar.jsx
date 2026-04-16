@@ -36,10 +36,10 @@ const POSTED_BY_OPTIONS = ['Owner', 'Builder / Developer', 'Agent'];
 const POSSESSION_OPTIONS = ['Ready to Move', 'Under Construction', 'New Launch'];
 
 function SuggestionIcon({ type }) {
-  if (type === 'city') return <PinIco />;
-  if (type === 'locality') return <LocIco />;
-  if (type === 'property') return <SearchIco />;
-  return <IconFlats />;
+  if (type === 'city') return <PinIco className="sb-sugg-ico-svg" />;
+  if (type === 'locality') return <LocIco className="sb-sugg-ico-svg" />;
+  if (type === 'property') return <SearchIco className="sb-sugg-ico-svg" />;
+  return <IconFlats className="sb-sugg-ico-svg" />;
 }
 
 export default function SearchBar({ isNavbar = false }) {
@@ -341,7 +341,6 @@ export default function SearchBar({ isNavbar = false }) {
       {mobileModal}
 
       <div className={`sb-root ${isNavbar ? 'sb-root--navbar' : ''}`} ref={rootRef}>
-        {/* Tabs (Hidden in Navbar mode) */}
         {!isNavbar && (
           <div className="sb-tabs">
             {SEARCH_TABS.map(tab => (
@@ -353,6 +352,7 @@ export default function SearchBar({ isNavbar = false }) {
             ))}
           </div>
         )}
+
 
         {/* Card */}
         <div className="sb-card">
@@ -381,42 +381,38 @@ export default function SearchBar({ isNavbar = false }) {
             </div>
           </button>
 
+
           {/* ── Desktop Form (Hidden on mobile OR if isNavbar) ── */}
           {!isNavbar && (
             <div className="sb-desktop-form">
               <form className="sb-desktop-row" onSubmit={handleSearch}>
-                {/* Location / Search Input */}
-                <div className="sb-field sb-location-field" ref={locationRef}>
-                  <div className="sb-search-icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
+                {/* Unified Search Input */}
+                <div className="sb-segment sb-location-segment" onClick={() => setIsLocationFocused(true)}>
+                  <div className="sb-segment-input-wrap">
+                    <SearchIco className="sb-main-search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search for locality, project, or landmark"
+                      value={displayValue}
+                      onChange={e => dispatch(setQuery(e.target.value))}
+                      onFocus={() => setIsLocationFocused(true)}
+                      autoComplete="off"
+                    />
+                    {displayValue && (
+                      <button type="button" className="sb-clear" onClick={() => {
+                        dispatch(clearSuggestions());
+                        dispatch(setLocation(''));
+                        dispatch(setQuery(''));
+                      }}>
+                        <CloseIco />
+                      </button>
+                    )}
                   </div>
-                  <input
-                    type="text"
-                    placeholder="Search by city, locality, project or landmark"
-                    value={displayValue}
-                    onChange={e => dispatch(setQuery(e.target.value))}
-                    onFocus={() => setIsLocationFocused(true)}
-                    autoComplete="off"
-                  />
-                  {displayValue && (
-                    <button type="button" className="sb-clear" onClick={() => {
-                      dispatch(clearSuggestions());
-                      dispatch(setLocation(''));
-                    }}>
-                      <CloseIco />
-                    </button>
-                  )}
                 </div>
 
                 <div className="sb-actions">
                   <button type="submit" className="sb-search-btn">
                     <span>Search</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
                   </button>
                 </div>
               </form>
@@ -438,8 +434,8 @@ export default function SearchBar({ isNavbar = false }) {
             </div>
           )}
 
-          {/* ── Desktop Mega Dropdown (full card width) ── */}
-          {showDropdown && !isNavbar && (
+          {/* ── Desktop Mega Dropdown (full width matching bar) ── */}
+          {isLocationFocused && !isNavbar && (
             <SuggestionDropdown
               suggestions={suggestions}
               recentSearches={recentSearches}
@@ -523,7 +519,7 @@ function SuggestionDropdown({
       {isInitial ? (
         <div className="sb-mega-content">
           {/* Recent Searches Header */}
-          {recentSearches.length > 0 && (
+          {/* {recentSearches.length > 0 && (
             <div className="sb-mega-section recent-mini">
               <div className="sb-dropdown-heading">Recent Searches</div>
               <div className="sb-recent-pills">
@@ -537,7 +533,7 @@ function SuggestionDropdown({
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
           <div className="sb-mega-grid">
             {/* Column 1: Categories/Tabs */}
@@ -573,7 +569,7 @@ function SuggestionDropdown({
 
             {/* Column 3: BHK & Budget */}
             <div className="sb-mega-col">
-              {(activeTab === 'Buy' || activeTab === 'Rent') && (
+              {(activeTab === 'Buy' || activeTab === 'Rent') && !propertyType.toLowerCase().includes('plot') && !propertyType.toLowerCase().includes('land') && (
                 <div className="sb-mega-sub-section">
                   <div className="sb-dropdown-heading">BHK Type</div>
                   <div className="sb-mega-bhk-row">
@@ -620,22 +616,22 @@ function SuggestionDropdown({
         <>
           {suggestions.length > 0 ? (
             <>
-              <div className="sb-dropdown-heading">
-                <SearchIco /> Suggestions
+              <div className="sb-suggestion-list">
+                <div className="sb-dropdown-heading">Suggestions</div>
+                {suggestions.map((s, i) => (
+                  <div key={i} className="sb-suggestion-item" onClick={() => onSelect(s)}>
+                    <div className="sb-sugg-icon">
+                      <SuggestionIcon type={s.type} />
+                    </div>
+                    <div className="sb-sugg-text">
+                      <span className="sb-sugg-main">{s.text}</span>
+                      <span className="sb-sugg-type">
+                        {s.type === 'property' ? 'Property' : s.type.charAt(0).toUpperCase() + s.type.slice(1)}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              {suggestions.map((s, i) => (
-                <div key={i} className="sb-suggestion-item" onClick={() => onSelect(s)}>
-                  <div className="sb-sugg-icon">
-                    <SuggestionIcon type={s.type} />
-                  </div>
-                  <div className="sb-sugg-text">
-                    <span className="sb-sugg-main">{s.text}</span>
-                    <span className="sb-sugg-type">
-                      {s.type === 'property' ? 'Property' : s.type.charAt(0).toUpperCase() + s.type.slice(1)}
-                    </span>
-                  </div>
-                </div>
-              ))}
             </>
           ) : (
             <div className="sb-dropdown-empty">

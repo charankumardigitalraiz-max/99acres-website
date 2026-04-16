@@ -1,25 +1,35 @@
 // Shared inline SVG icon components
-export const Ic = ({ d, size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+export const Ic = ({ d, size = 16, ...props }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    {...props}
+  >
     <path d={d} />
   </svg>
 );
 
-export const SearchIco = () => <Ic d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />;
-export const PinIco = () => <Ic d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6" />;
-export const LocIco = () => <Ic d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z" size={14} />;
-export const BedIco = () => <Ic d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8M3 14h18M5 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />;
-export const BathIco = () => <Ic d="M3 7h18M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7" />;
-export const AreaIco = () => <Ic d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />;
-export const ArrowR = () => <Ic d="M5 12h14M12 5l7 7-7 7" size={14} />;
-export const FilterIco = () => <Ic d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />;
-export const GpsIco = () => <Ic d="M12 2v3M12 19v3M2 12h3M19 12h3M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" />;
-export const LoaderIco = () => <Ic d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" size={14} />;
+export const SearchIco = (props) => <Ic d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" {...props} />;
+export const PinIco = (props) => <Ic d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6" {...props} />;
+export const LocIco = (props) => <Ic d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z" size={14} {...props} />;
+export const BedIco = (props) => <Ic d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8M3 14h18M5 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" {...props} />;
+export const BathIco = (props) => <Ic d="M3 7h18M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7" {...props} />;
+export const AreaIco = (props) => <Ic d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" {...props} />;
+export const ArrowR = (props) => <Ic d="M5 12h14M12 5l7 7-7 7" size={14} {...props} />;
+export const FilterIco = (props) => <Ic d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" {...props} />;
+export const GpsIco = (props) => <Ic d="M12 2v3M12 19v3M2 12h3M19 12h3M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" {...props} />;
+export const LoaderIco = (props) => <Ic d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" size={14} {...props} />;
 
-export const MenuIco = () => <Ic d="M4 6h16M4 12h16M4 18h16" />;
-export const CloseIco = () => <Ic d="M18 6L6 18M6 6l12 12" />;
-export const ChevronL = () => <Ic d="M15 18l-6-6 6-6" size={18} />;
-export const ChevronR = () => <Ic d="M9 18l6-6-6-6" size={18} />;
+export const MenuIco = (props) => <Ic d="M4 6h16M4 12h16M4 18h16" {...props} />;
+export const CloseIco = (props) => <Ic d="M18 6L6 18M6 6l12 12" {...props} />;
+export const ChevronL = (props) => <Ic d="M15 18l-6-6 6-6" size={18} {...props} />;
+export const ChevronR = (props) => <Ic d="M9 18l6-6-6-6" size={18} {...props} />;
 
 export const IconFlats = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 22V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16" /><path d="M14 22v-4a2 2 0 0 0-4 0v4" /><path d="M8 10h.01" /><path d="M12 10h.01" /><path d="M16 10h.01" /><path d="M8 14h.01" /><path d="M12 14h.01" /><path d="M16 14h.01" /><path d="M8 18h.01" /><path d="M12 18h.01" /><path d="M16 18h.01" /></svg>;
 export const IconCommercial = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2" ry="2" /><path d="M9 22v-4h6v4" /><path d="M8 6h.01" /><path d="M16 6h.01" /><path d="M12 6h.01" /><path d="M12 10h.01" /><path d="M12 14h.01" /><path d="M16 10h.01" /><path d="M16 14h.01" /><path d="M8 10h.01" /><path d="M8 14h.01" /></svg>;
