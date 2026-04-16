@@ -15,10 +15,19 @@ export default function Hero() {
 
   return (
     <section className="hero">
+      {/* This background will use your custom 'hero_final_custom.png' image */}
       <div className="hero-background" />
-      <div className="hero-content container">
+      
+      {/* Family Overlay on the Left Side */}
+      <img 
+        src="/banners/family_1248x832_smaller_left (1).png" 
+        alt="Family Searching" 
+        className="hero-family-overlay" 
+      />
+
+      {/* Removed 'container' class — using absolute positioning for right-side placement */}
+      <div className="hero-content">
         <div className="hero-header">
-          <span className="hero-label">Real Estate Excellence</span>
           <h1 className="hero-title">
             Find <span className="highlight" key={words[index]}>{words[index]}</span> <br />
             Property Listings
@@ -29,12 +38,6 @@ export default function Hero() {
           <SearchBar />
         </div>
       </div>
-
-      {/* <img
-        src="/banners/people_group_transparent_v2.png"
-        alt="People exploring real estate"
-        className="hero-people-overlay"
-      /> */}
     </section>
   );
 }

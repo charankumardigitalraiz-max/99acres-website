@@ -1,9 +1,9 @@
 .home-top-fold {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #020617;
-  overflow: hidden;
+  background: #f8fafc;
+  /* overflow: hidden; Removed to allow search dropdowns to bleed over sections */
   position: relative;
 }
 
@@ -13,7 +13,8 @@
   gap: 30px;
   margin-top: 24px;
   margin-bottom: 60px;
-  align-items: stretch; /* Stretch to keep sidebar container height */
+  align-items: stretch;
+  /* Stretch to keep sidebar container height */
   transition:
     grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     gap 0.4s ease;
@@ -29,7 +30,8 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  min-width: 0; /* Prevents flex blowout */
+  min-width: 0;
+  /* Prevents flex blowout */
 }
 
 /* Override inner containers to prevent double padding and weird backgrounds when trapped in a column */
@@ -51,6 +53,7 @@
     height: auto;
     overflow: visible;
   }
+
   .home-layout {
     grid-template-columns: 1fr;
     gap: 0;

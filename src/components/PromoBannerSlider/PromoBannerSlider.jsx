@@ -6,43 +6,15 @@ import 'swiper/css/pagination';
 import './PromoBannerSlider.css';
 
 const BANNERS = [
-  // {
-  //   type: 'image',
-  //   img: '/real_estate_banner_luxury_living_1776160444319.png',
-  //   tag: 'Limited Edition',
-  //   title: 'Luxury Living\nRedefined',
-  //   sub: 'Experience the pinnacle of architecture and comfort in our latest villa collections.',
-  //   cta: 'Explore Villas',
-  //   accent: '#f59e0b'
-  // },
-  // {
-  //   type: 'gradient',
-  //   bg: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-  //   tag: 'Quick Seller',
-  //   title: 'Selling Made\nEffortless',
-  //   sub: 'List your property in under 5 minutes and get verified leads instantly.',
-  //   cta: 'Post Property',
-  //   accent: '#10b981'
-  // },
   {
     type: 'image',
-    img: '/banners/slim_banner_1.png',
-    fullImage: true, /* Hide code overlays and use full opacity for custom-made banners */
-    tag: 'Smart Investment',
-    title: 'Secure Your\nFinancial Future',
-    sub: 'Handpicked high-yield commercial properties in emerging business hubs.',
-    cta: 'View Analysis',
-    accent: '#3b82f6'
+    img: '/banners/luxury_living_v1.png',
+    fullImage: true,
   },
   {
     type: 'image',
-    img: '/banners/banner_land (1).png',
+    img: '/banners/smart_investment_v1.png',
     fullImage: true,
-    tag: 'Premium Access',
-    title: 'Unlock Verified\nGold Listings',
-    sub: 'Access thousands of RERA-approved properties with 0% brokerage.',
-    cta: 'Join Pro',
-    accent: '#1e293b'
   }
 ];
 
@@ -85,12 +57,8 @@ export default function PromoBannerSlider({ isSidebarOpen }) {
 
               <div className="promo-slide-overlay" style={banner.fullImage ? { display: 'none' } : {}} />
 
-              {/* Featured Badge */}
-              <div className="promo-featured-badge">
-                <span className="badge-dot"></span>
-                Featured
-              </div>
-
+              {/* Featured Badge Removed for pure visual mode */}
+              
               {!banner.fullImage && (
                 <div className="promo-slide-content">
                   <div className="promo-text-group">

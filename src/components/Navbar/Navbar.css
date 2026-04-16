@@ -110,7 +110,7 @@
 
 .nav-logo-text {
   /* color: var(--dark) !important; */
-  color: white !important;
+  color: black !important;
 }
 
 .navbar--scrolled .nav-logo-text {
@@ -157,13 +157,13 @@
   border-radius: 6px;
   transition: background 0.2s;
   /* color: var(--dark); */
-  color: white !important;
+  color: black !important;
   border: 1px solid transparent;
 }
 
 .nav-location-selector span {
   /* color: var(--dark) !important; */
-  color: white !important;
+  color: black !important;
 }
 
 .navbar--scrolled .location-label {
@@ -817,21 +817,24 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 7px 14px;
-  border: 1.5px solid var(--border);
+  padding: 7px 18px;
+  border: 1.5px solid #111827 !important; /* Rich dark border */
   border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827 !important; /* Force dark text */
   text-decoration: none;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   white-space: nowrap;
+  background: transparent;
+  backdrop-filter: blur(4px);
 }
 
 .nav-login-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary-dark);
-  background: #fef9ed;
+  background: #111827;
+  color: #ffffff !important;
+  border-color: #111827;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-user-ico {

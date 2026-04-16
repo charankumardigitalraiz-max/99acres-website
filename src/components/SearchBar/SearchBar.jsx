@@ -357,10 +357,15 @@ export default function SearchBar({ isNavbar = false }) {
         {/* Card */}
         <div className="sb-card">
 
-          {/* ── Navbar compact trigger OR Mobile Trigger ── */}
+          {/* ── Mobile Trigger (only fires on actual mobile screens ≤768px) ── */}
           <button
             className={`sb-mobile-trigger ${isNavbar ? 'sb-navbar-trigger' : ''}`}
-            onClick={() => setIsMobileOpen(true)}
+            onClick={() => {
+              // Guard: only open mobile modal on actual mobile/small screens
+              if (window.innerWidth <= 768) {
+                setIsMobileOpen(true);
+              }
+            }}
             aria-label="Open search"
           >
             <div className="sb-trigger-icon"><SearchIco /></div>
@@ -378,130 +383,59 @@ export default function SearchBar({ isNavbar = false }) {
 
           {/* ── Desktop Form (Hidden on mobile OR if isNavbar) ── */}
           {!isNavbar && (
-            <form className="sb-desktop-row" onSubmit={handleSearch}>
-
-              {/* Property Type */}
-              <div className="sb-field sb-type-field">
-                <div className="sb-select-wrap">
-                  <select
-                    value={propertyType}
-                    onChange={e => dispatch(setPropertyType(e.target.value))}
-                    aria-label="Property type"
-                  >
-                    {types.map(t => <option key={t}>{t}</option>)}
-                  </select>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="sb-sep" />
-
-              {/* Location */}
-              <div className="sb-field sb-location-field" ref={locationRef}>
-
-                <input
-                  type="text"
-                  placeholder={`Search city, locality or project`}
-                  value={displayValue}
-                  onChange={e => dispatch(setQuery(e.target.value))}
-                  onFocus={() => setIsLocationFocused(true)}
-                  autoComplete="off"
-                />
-                {displayValue && (
-                  <button type="button" className="sb-clear" onClick={() => {
-                    dispatch(clearSuggestions());
-                    dispatch(setLocation(''));
-                  }}>
-                    <CloseIco />
-                  </button>
-                )}
-
-                <button
-                  type="button"
-                  className={`sb-gps-btn ${isGpsLoading ? 'loading' : ''}`}
-                  onClick={handleDetectLocation}
-                  title="Detect my location"
-                >
-                  {isGpsLoading ? (
-                    <div className="sb-gps-loader">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
-                    </div>
-                  ) : <GpsIco />}
-                </button>
-              </div>
-
-              <div className="sb-sep" />
-
-              {/* BHK */}
-              {/* {showBhk && (
-                <>
-                  <div className="sb-field sb-bhk-field">
-                    <div className="sb-bhk-trigger">
-                      <span className="sb-field-label">BHK</span>
-                      <span className="sb-bhk-value">
-                        {bhk.length === 0 ? 'Any' : bhk.map(b => b === '1 RK' ? '1RK' : `${b}BHK`).join(', ')}
-                      </span>
-                      <div className="sb-bhk-popup">
-                        {BHK_OPTIONS.map(b => (
-                          <button
-                            key={b} type="button"
-                            className={`sb-bhk-opt ${bhk.includes(b) ? 'active' : ''}`}
-                            onClick={() => dispatch(toggleBhk(b))}
-                          >{b === '1 RK' ? '1 RK' : `${b} BHK`}</button>
-                        ))}
-                      </div>
-                    </div>
+            <div className="sb-desktop-form">
+              <form className="sb-desktop-row" onSubmit={handleSearch}>
+                {/* Location / Search Input */}
+                <div className="sb-field sb-location-field" ref={locationRef}>
+                  <div className="sb-search-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
                   </div>
-                  <div className="sb-sep" />
-                </>
-              )} */}
-
-              {/* Budget */}
-              {/* <div className="sb-field sb-budget-field">
-                <span className="sb-field-label">Budget</span>
-                <div className="sb-budget-selects">
-                  <select
-                    value={minBudget}
-                    onChange={e => dispatch(setMinBudget(e.target.value))}
-                    aria-label="Min budget"
-                  >
-                    {budgets.min.map(b => <option key={b}>{b}</option>)}
-                  </select>
-                  <span>–</span>
-                  <select
-                    value={maxBudget}
-                    onChange={e => dispatch(setMaxBudget(e.target.value))}
-                    aria-label="Max budget"
-                  >
-                    {budgets.max.map(b => <option key={b}>{b}</option>)}
-                  </select>
+                  <input
+                    type="text"
+                    placeholder="Search by city, locality, project or landmark"
+                    value={displayValue}
+                    onChange={e => dispatch(setQuery(e.target.value))}
+                    onFocus={() => setIsLocationFocused(true)}
+                    autoComplete="off"
+                  />
+                  {displayValue && (
+                    <button type="button" className="sb-clear" onClick={() => {
+                      dispatch(clearSuggestions());
+                      dispatch(setLocation(''));
+                    }}>
+                      <CloseIco />
+                    </button>
+                  )}
                 </div>
-              </div> */}
 
-              {/* Actions */}
-              <div className="sb-actions">
-                {/* <button
-                  type="button"
-                  className={`sb-filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
-                  onClick={() => dispatch(toggleAdvancedFilters())}
-                  title="More filters"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="4" y1="6" x2="20" y2="6" />
-                    <line x1="8" y1="12" x2="16" y2="12" />
-                    <line x1="10" y1="18" x2="14" y2="18" />
-                  </svg>
-                  {activeFilterCount > 0 && <span className="sb-filter-badge">{activeFilterCount}</span>}
-                </button> */}
+                <div className="sb-actions">
+                  <button type="submit" className="sb-search-btn">
+                    <span>Search</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
 
-                <button type="submit" className="sb-search-btn">
-                  <SearchIco />
-                  <span>Search</span>
-                </button>
+              {/* Trending Row */}
+              <div className="sb-trending">
+                <span className="sb-trending-label">Trending:</span>
+                <div className="sb-trending-tags">
+                  {['Mumbai', 'Bangalore', 'Gurugram', 'Hyderabad'].map(tag => (
+                    <button key={tag} className="sb-trending-tag" onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(setLocation(tag));
+                    }}>
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </form>
+            </div>
           )}
 
           {/* ── Desktop Mega Dropdown (full card width) ── */}
