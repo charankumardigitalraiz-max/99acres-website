@@ -5,7 +5,7 @@ const CATEGORIES_ELITE = [
   {
     name: 'Apartments',
     count: '42,000+',
-    img: '/categories/apartments.png',
+    img: '/categories/apartments_1776438375347.png',
     path: '/category/Apartments',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
@@ -18,7 +18,7 @@ const CATEGORIES_ELITE = [
   {
     name: 'Villas',
     count: '8,500+',
-    img: '/categories/villas.png',
+    img: '/categories/villas_1776438506118.png',
     path: '/category/Villas',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
@@ -30,7 +30,7 @@ const CATEGORIES_ELITE = [
   {
     name: 'Commercial',
     count: '15,000+',
-    img: '/categories/commercial.png',
+    img: '/categories/commercial_1776438564126.png',
     path: '/category/Commercial',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
@@ -42,7 +42,7 @@ const CATEGORIES_ELITE = [
   {
     name: 'New Projects',
     count: '1,200+',
-    img: '/categories/projects.png',
+    img: '/categories/projects_1776439106753.png',
     path: '/category/New Projects',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
@@ -53,7 +53,7 @@ const CATEGORIES_ELITE = [
   {
     name: 'Plots & Land',
     count: '22,000+',
-    img: '/categories/land.png',
+    img: '/categories/land_1776439133923.png',
     path: '/category/Plots / Land',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
