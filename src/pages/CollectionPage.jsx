@@ -43,8 +43,8 @@ const CollectionPage = ({ type, title, subtitle }) => {
           <div className="container">
             <div className="cp-bc-inner">
               <Link to="/" className="cp-bc-link"><ChevronL /> Home</Link>
-              <span className="cp-bc-sep">/</span>
-              <span className="cp-bc-current">{title}</span>
+              {/* <span className="cp-bc-sep">/</span>
+              <span className="cp-bc-current">{title}</span> */}
             </div>
           </div>
         </nav>

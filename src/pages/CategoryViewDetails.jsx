@@ -84,8 +84,8 @@ const CategoryViewDetails = () => {
           <div className="container">
             <nav className="cvd-breadcrumb">
               <Link to="/" className="cvd-back-link"><ChevronL /> Home</Link>
-              <span className="cvd-sep">/</span>
-              <span className="cvd-current">{categoryName}</span>
+              {/* <span className="cvd-sep">/</span> */}
+              {/* <span className="cvd-current">{categoryName}</span> */}
             </nav>
           </div>
         </section>
@@ -112,34 +112,37 @@ const CategoryViewDetails = () => {
       {/* ── TOOLBAR ── */}
       <section className="cvd-toolbar-section">
         <div className="container">
-          <div className="cvd-toolbar">
-            <div
-              className="cvd-search-bar"
-              onClick={() => searchInputRef.current?.focus()}
-            >
-              <SearchIco />
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder={`Search in ${categoryName}...`}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <div className="cvd-actions">
-              <div className="cvd-sort">
-                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                  <option>Featured</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Newest First</option>
-                </select>
+          <div className="cvd-toolbar-layout">
+            <div className="cvd-toolbar">
+              <div
+                className="cvd-search-bar"
+                onClick={() => searchInputRef.current?.focus()}
+              >
+                <SearchIco />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder={`Search in ${categoryName}...`}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
-              {/* <button className="cvd-filter-btn">
-                <FilterIco />
-                <span>Filters</span>
-              </button> */}
+              <div className="cvd-actions">
+                <div className="cvd-sort">
+                  <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                    <option>Featured</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest First</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            
+            <button className="cvd-filter-btn">
+              <FilterIco />
+              <span>Filters</span>
+            </button>
           </div>
         </div>
       </section>
