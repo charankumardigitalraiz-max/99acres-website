@@ -21,7 +21,10 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border);
   position: sticky;
-  top: 80px;
+  top: 72px; /* Precision align with 72px Fixed Navbar */
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 /* ─── MOBILE SLIDE DRAWER ────────────────────────────────── */
@@ -57,13 +60,21 @@
 }
 
 /* Drawer header (close button row) */
-.filter-drawer-header {
+.filter-drawe.props-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.results-count span {
+  font-weight: 800;
+  color: var(--primary);
 }
 
 .filter-drawer-header h3 {

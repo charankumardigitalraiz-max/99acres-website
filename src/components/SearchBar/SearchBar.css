@@ -705,6 +705,9 @@
 .sb-trigger-text {
   flex: 1;
   text-align: left;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .sb-trigger-main {
@@ -712,10 +715,14 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .sb-trigger-sub {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #94a3b8;
   font-weight: 500;
 }
@@ -738,23 +745,38 @@
 .sb-mobile-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  justify-content: flex-start;
+  padding: 12px 18px;
   border-bottom: 1px solid #f1f5f9;
   background: #fff;
   flex-shrink: 0;
+  gap: 14px;
+  z-index: 10;
 }
 
 .sb-mobile-back {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   border: 1px solid #e2e8f0;
   background: #f8fafc;
-  color: #475569;
+  color: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.sb-mobile-back:active {
+  transform: scale(0.92);
+}
+
+.sb-mobile-header span {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
 }
 
 .sb-mobile-tabs {
@@ -812,21 +834,30 @@
 .sb-mobile-input-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 12px 14px;
   border: 1.5px solid #e2e8f0;
-  border-radius: 14px;
-  background: #f8fafc;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s;
+}
+
+.sb-mobile-input-wrap:focus-within {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
 }
 
 .sb-mobile-input-wrap input {
   flex: 1;
   border: none;
+  border-radius: 0;
   outline: none;
   background: transparent;
-  font-size: 1rem;
+  font-size: 1rem; /* Better for iOS to prevent zoom */
   font-weight: 600;
   color: #1e293b;
+  width: 100%;
 }
 
 .sb-mobile-footer {
@@ -915,30 +946,46 @@
     transform: none;
     border-radius: 0;
     border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .sb-suggestion-list {
+    padding: 0;
+    max-height: none;
   }
 
   .sb-dropdown-heading {
-    padding: 16px 4px 8px;
+    padding: 24px 8px 12px;
+    font-size: 0.7rem;
   }
 
   .sb-suggestion-item {
-    padding: 14px 4px;
-    margin: 0;
-    border-radius: 0;
+    padding: 16px 12px;
+    margin: 4px 0;
+    border-radius: 14px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+  }
+
+  .sb-suggestion-item:active {
+    background: #f1f5f9;
   }
 
   .sb-sugg-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #fff;
   }
 
   .sb-sugg-main {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 700;
   }
 
   .sb-sugg-type {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
   }
 }
 

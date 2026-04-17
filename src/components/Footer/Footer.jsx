@@ -18,13 +18,23 @@ export default function Footer() {
               <p className="footer-desc">
                 The most trusted platform for premium real estate. Connecting you with verified listings and top-rated builders across India.
               </p>
-              <div className="footer-socials">
-                {/* <a href="#" className="social-btn" title="Facebook"><Facebook size={18} /></a>
-                <a href="#" className="social-btn" title="Twitter"><Twitter size={18} /></a>
-                <a href="#" className="social-btn" title="Instagram"><Instagram size={18} /></a>
-                <a href="#" className="social-btn" title="LinkedIn"><Linkedin size={18} /></a> */}
+              <div className="footer-awards">
+                <span className="award-badge">★ Trusted Since 2008</span>
+                <span className="award-badge">✓ 100% RERA Certified</span>
               </div>
             </div>
+
+            {/* Special Products Column */}
+            {/* <div className="footer-col">
+              <h4>Elite Collections</h4>
+              <ul>
+                <li><a href="/category/Apartments">Premium Apartments</a></li>
+                <li><a href="/category/Villas">Luxury Villas</a></li>
+                <li><a href="/category/Commercial">Office & Retail</a></li>
+                <li><a href="/category/New Projects">New Launch Phase</a></li>
+                <li><a href="/category/Plots / Land">Investment Plots</a></li>
+              </ul>
+            </div> */}
 
             {/* Dynamic Link Columns */}
             {Object.entries(FOOTER_LINKS).map(([heading, items]) => (

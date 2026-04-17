@@ -18,7 +18,7 @@ export default function FeaturedProperties() {
           <Link to="/featured-properties" className="view-all">View All <ArrowR /></Link>
         </div>
         <div className="prop-grid">
-          {featured.map(property => (
+          {featured.map(property => ( 
             <PropertyCard key={property.id} property={property} />
           ))}
         </div>
