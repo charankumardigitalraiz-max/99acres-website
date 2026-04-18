@@ -122,13 +122,36 @@ export default function PropertyDetails() {
 
   return (
     <div className="pd-page">
-      {/* ─── NAVIGATION BAR ─── */}
-      <nav className="pd-nav">
-        <div className="pd-container">
-          <button className="pd-back" onClick={() => navigate(-1)}>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
-            <span>Back</span>
-          </button>
+      {/* ─── NAVIGATION & ACTIONS BAR ─── */}
+      <nav className="pd-top-bar">
+        <div className="pd-container pd-top-bar-inner">
+          <div className="pd-breadcrumb-wrap">
+            <button className="pd-back-icon-btn" onClick={() => navigate(-1)} title="Go Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+            </button>
+            <div className="pd-breadcrumbs">
+              <span onClick={() => navigate('/')}>Home</span>
+              <span className="pd-sep">/</span>
+              <span>{isLand ? 'Land' : (isCommercial ? 'Commercial' : 'Residential')}</span>
+              <span className="pd-sep">/</span>
+              <span className="pd-current">{property.title}</span>
+            </div>
+          </div>
+
+          <div className="pd-top-actions">
+            <button className="pd-top-btn" onClick={() => shareProperty(property, setCopied)}>
+              {copied ? (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
+              )}
+              {copied ? 'Copied' : 'Share'}
+            </button>
+            {/* <button className="pd-top-btn" onClick={() => window.print()}>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></svg>
+              Print
+            </button> */}
+          </div>
         </div>
       </nav>
       <div className="pd-container">

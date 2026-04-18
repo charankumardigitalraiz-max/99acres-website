@@ -253,8 +253,8 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-03-01',
     smartAlbum: {
-      'Main Hall': ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'],
-      'Parking': ['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80']
+      'Main Hall': ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'],
+      'Parking': ['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80']
     },
     coverPhoto: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
     images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'],
@@ -320,7 +320,7 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-01-01',
     smartAlbum: {
-      'Plot View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80']
+      'Plot View': ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
     },
     coverPhoto: 'https://images.pexels.com/photos/1031700/pexels-photo-1031700.jpeg?auto=compress&cs=tinysrgb&w=1280',
     images: ['https://images.pexels.com/photos/1031700/pexels-photo-1031700.jpeg?auto=compress&cs=tinysrgb&w=1280'],
@@ -385,8 +385,8 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-04-15',
     smartAlbum: {
-      'Living Room': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'],
-      'Terrace': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80']
+      'Living Room': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'],
+      'Terrace': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80']
     },
     coverPhoto: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
     images: ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'],
@@ -451,9 +451,9 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-05-01',
     smartAlbum: {
-      'Exterior': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'],
-      'Living Room': ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80'],
-      'Bedrooms': ['https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&q=80']
+      'Exterior': ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'],
+      'Living Room': ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80'],
+      'Bedrooms': ['https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
     },
     coverPhoto: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
     images: ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'],
@@ -518,7 +518,7 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2024-01-01',
     smartAlbum: {
-      'Land View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80']
+      'Land View': ['https://images.unsplash.com/photo-1500382017468-9049fee74a62?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80']
     },
     coverPhoto: 'https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1280',
     images: ['https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1280'],
@@ -583,8 +583,8 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-05-01',
     smartAlbum: {
-      'Exterior': ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80'],
-      'Pool': ['https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80']
+      'Exterior': ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'],
+      'Pool': ['https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
     },
     coverPhoto: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80',
     images: ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80', 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80'],
@@ -647,7 +647,7 @@ export const propertiesData = [
     availabilityStatus: 'ready to move',
     availableFrom: '2025-04-10',
     smartAlbum: {
-      'Location': ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80']
+      'Location': ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80']
     },
     coverPhoto: 'https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80',
     images: ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80'],
@@ -686,7 +686,8 @@ export const propertiesData = [
     baths: '6',
     size: '6,500 sqft',
     badge: 'Sea Facing',
-    badgeClass: 'new'
+    badgeClass: 'new',
+    images: ['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   },
   {
     id: 11,
@@ -705,7 +706,8 @@ export const propertiesData = [
     baths: '4',
     size: '12,000 sqft',
     badge: 'Premium Grade A',
-    badgeClass: 'ready'
+    badgeClass: 'ready',
+    images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   },
   {
     id: 12,
@@ -724,7 +726,8 @@ export const propertiesData = [
     baths: '0',
     size: '4,500 sqft',
     badge: 'Corner Plot',
-    badgeClass: 'ready'
+    badgeClass: 'ready',
+    images: ['https://images.unsplash.com/photo-1524813686514-a57563d77965?w=600&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   },
   {
     id: 13,
@@ -743,7 +746,8 @@ export const propertiesData = [
     baths: '4',
     size: '2,400 sqft',
     badge: 'Terrace Garden',
-    badgeClass: 'new'
+    badgeClass: 'new',
+    images: ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   },
   {
     id: 14,
@@ -762,7 +766,8 @@ export const propertiesData = [
     baths: '0',
     size: '3 Acres',
     badge: 'Resort Grade',
-    badgeClass: 'ready'
+    badgeClass: 'ready',
+    images: ['https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&w=800', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   },
   {
     id: 15,
@@ -781,6 +786,7 @@ export const propertiesData = [
     baths: '2',
     size: '950 sqft',
     badge: 'Bestseller',
-    badgeClass: 'ready'
+    badgeClass: 'ready',
+    images: ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80']
   }
 ];

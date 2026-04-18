@@ -18,7 +18,7 @@
 
 .prop-img-wrap-v7 {
   position: relative;
-  height: 190px;
+  height: 170px;
   overflow: hidden;
   background: #f1f5f9;
 }
@@ -63,8 +63,9 @@
   font-size: 0.65rem;
   font-weight: 600;
   border-radius: 40px;
-  color: #10b981;
-  background: rgba(255, 255, 255, 0.95);
+  color: white;
+  background: #10b981;
+  /* background: rgba(255, 255, 255, 0.95); */
   backdrop-filter: blur(4px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-transform: uppercase;
@@ -97,8 +98,8 @@
 
 .wish-btn-v7 {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 10px;
+  right: 15%;
   width: 32px;
   height: 32px;
   background: rgba(255, 255, 255, 0.9);
@@ -121,9 +122,8 @@
 /* Share button on desktop vertical card */
 .share-btn-v7 {
   position: absolute;
-  top: 48px;
-  /* sits below the heart button */
-  right: 10px;
+  bottom: 10px;
+  right: 2%;
   width: 32px;
   height: 32px;
   background: rgba(255, 255, 255, 0.9);
@@ -147,69 +147,69 @@
 }
 
 .prop-body-v7 {
-  padding: 16px;
+  padding: 12px 14px;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .prop-price-v7 {
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 500;
   color: var(--dark);
-  margin-bottom: 4px;
-  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
 }
 
 .prop-title-v7 {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--dark);
-  margin-bottom: 6px;
-  line-height: 1.4;
+  margin-bottom: 4px;
+  line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .prop-loc-v7 {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: var(--text-3);
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 16px;
+  gap: 3px;
+  margin-bottom: 12px;
 }
 
 .prop-loc-v7 svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   opacity: 0.8;
 }
 
 .prop-meta-v7 {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
-  padding: 12px 0;
+  /* gap: 8px; */
+  padding: 8px 0;
   margin-top: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease-in-out;
   overflow: hidden;
 }
 
-.prop-card-v7:hover .prop-meta-v7 {
+/* .prop-card-v7:hover .prop-meta-v7 {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-}
+} */
 
 .meta-tile-v7 {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--dark);
   white-space: nowrap;
   flex: 1;
@@ -217,9 +217,9 @@
 }
 
 .meta-tile-v7 svg {
-  width: 14px;
-  height: 14px;
-  opacity: 0.6;
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
   flex-shrink: 0;
 }
 
@@ -237,9 +237,9 @@
 }
 
 .meta-label-v7 {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--text-3);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
 }
 
 .btn-action-v7 {
@@ -279,14 +279,13 @@
   display: flex;
   flex-direction: column;
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 12px rgba(10, 18, 42, 0.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
   height: 100%;
-  /* Flexible height for Swiper */
 }
 
 .prop-card-feat-compact:hover {
@@ -297,8 +296,7 @@
 
 .feat-img-square {
   width: 100%;
-  height: 110px;
-  /* Compact height */
+  aspect-ratio: 16/10;
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
@@ -337,6 +335,33 @@
   transform: scale(1.1);
 }
 
+.share-btn-compact {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.65rem;
+  z-index: 5;
+  transition: all 0.2s;
+  color: #64748b;
+  border: none;
+  cursor: pointer;
+}
+
+.share-btn-compact:hover {
+  transform: scale(1.1);
+  background: #fff;
+  color: var(--primary-dark);
+}
+
 .feat-info-compact {
   padding: 12px;
   flex: 1;
@@ -352,27 +377,30 @@
 }
 
 .feat-price-compact {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--dark);
   letter-spacing: -0.01em;
 }
 
 .feat-rating-tag {
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-  background: var(--primary-light);
-  padding: 2px 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #f59e0b;
+  background: rgba(251, 191, 36, 0.08);
+  padding: 3px 6px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .feat-title-compact {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--dark);
-  margin-bottom: 4px;
-  line-height: 1.3;
+  margin-bottom: 3px;
+  line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -392,10 +420,11 @@
   align-items: center;
   gap: 6px;
   font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-2);
+  font-weight: 500;
+  color: #94a3b8;
   margin-top: auto;
-  flex-wrap: wrap;
+  border-top: 1px solid #f8fafc;
+  padding-top: 8px;
 }
 
 .feat-strip-compact .dot {

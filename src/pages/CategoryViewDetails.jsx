@@ -10,7 +10,7 @@ const CATEGORY_DESCRIPTIONS = {
   'Villas': 'Exquisite independent homes offering privacy, luxury, and curated spaces.',
   'Commercial': 'Prime business locations and office spaces designed for corporate excellence.',
   'New Projects': 'Be the first to own. Explore upcoming and under-construction developments.',
-  'Plots / Land': 'Premium residential and agricultural lands in high-growth investment zones.'
+  'Plots-Land': 'Premium residential and agricultural lands in high-growth investment zones.'
 };
 
 const CATEGORY_IMAGES = {
@@ -18,7 +18,7 @@ const CATEGORY_IMAGES = {
   'Villas': 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80',
   'Commercial': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&q=80',
   'New Projects': 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80',
-  'Plots / Land': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=80',
+  'Plots-Land': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=80',
 };
 
 const CATEGORY_THEMES = {
@@ -26,7 +26,7 @@ const CATEGORY_THEMES = {
   'Villas': { color: '#f59e0b', bg: '#fffbeb' },
   'Commercial': { color: '#0ea5e9', bg: '#f0f9ff' },
   'New Projects': { color: '#10b981', bg: '#ecfdf5' },
-  'Plots / Land': { color: '#f97316', bg: '#fff7ed' },
+  'Plots-Land': { color: '#f97316', bg: '#fff7ed' },
 };
 
 const CategoryViewDetails = () => {
@@ -47,7 +47,7 @@ const CategoryViewDetails = () => {
       if (cat === 'apartments') return type.includes('apartment') || type.includes('flat');
       if (cat === 'villas') return type.includes('villa') || type.includes('independent house');
       if (cat === 'commercial') return type.includes('commercial') || type.includes('office') || type.includes('retail');
-      if (cat === 'plots / land' || cat === 'plots' || cat === 'land') return type.includes('plot') || type.includes('land');
+      if (cat === 'plots-land' || cat === 'plots' || cat === 'land') return type.includes('plot') || type.includes('land');
       if (cat === 'new projects') return p.status === 'new' || p.availabilityStatus === 'under construction';
       return type === cat;
     });
@@ -138,7 +138,7 @@ const CategoryViewDetails = () => {
                 </div>
               </div>
             </div>
-            
+
             <button className="cvd-filter-btn">
               <FilterIco />
               <span>Filters</span>

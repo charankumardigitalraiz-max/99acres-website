@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import './Categories.css';
 
 const CATEGORIES_ELITE = [
   {
     name: 'Apartments',
     count: '42,000+',
-    img: '/categories/apartments_1776438375347.png',
+    img: '/categories/luxury_apartments_portrait_1776492494419.png',
     path: '/category/Apartments',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
@@ -54,7 +58,7 @@ const CATEGORIES_ELITE = [
     name: 'Plots & Land',
     count: '22,000+',
     img: '/categories/land_1776439133923.png',
-    path: '/category/Plots / Land',
+    path: '/category/Plots-Land',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="22" height="22">
         <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
@@ -79,27 +83,46 @@ export default function Categories() {
           </Link> */}
         </div>
 
-        <div className="cat-elite-grid">
-          {CATEGORIES_ELITE.map(cat => (
-            <Link
-              key={cat.name}
-              to={cat.path}
-              className="cat-elite-card"
-            >
-              <img src={cat.img} alt={cat.name} className="cat-elite-img" loading="lazy" />
-              {/* <div className="cat-elite-overlay" /> */}
+        <div className="cat-slider-wrapper">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            spaceBetween={20}
+            slidesPerView={1.3}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            breakpoints={{
+              640: { slidesPerView: 2.3, spaceBetween: 20 },
+              900: { slidesPerView: 3.3, spaceBetween: 24 },
+              1200: { slidesPerView: 5, spaceBetween: 24, autoplay: false }
+            }}
+            className="cat-elite-swiper"
+          >
+            {CATEGORIES_ELITE.map(cat => (
+              <SwiperSlide key={cat.name}>
+                <Link
+                  to={cat.path}
+                  className="cat-elite-card"
+                >
+                  <img src={cat.img} alt={cat.name} className="cat-elite-img" loading="lazy" />
+                  {/* <div className="cat-elite-overlay" /> */}
 
-              <div className="cat-elite-content">
-                <div className="cat-elite-icon">
-                  {cat.icon}
-                </div>
-                <div className="cat-elite-bottom">
-                  <h3 className="cat-elite-name">{cat.name}</h3>
-                  <div className="cat-elite-count">{cat.count} Signature Listings</div>
-                </div>
-              </div>
-            </Link>
-          ))}
+                  <div className="cat-elite-content">
+                    <div className="cat-elite-icon">
+                      {cat.icon}
+                    </div>
+                    <div className="cat-elite-bottom">
+                      <h3 className="cat-elite-name">{cat.name}</h3>
+                      {/* <div className="cat-elite-count">{cat.count} Signature Listings</div> */}
+                    </div>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
       </div>

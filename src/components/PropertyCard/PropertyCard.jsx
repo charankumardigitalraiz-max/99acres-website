@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleWishlist } from '../../store/slices/propertiesSlice';
-import { PinIco, BedIco, BathIco, AreaIco } from '../../data/icons';
+import { PinIco, BedIco, BathIco, AreaIco, IconPlots } from '../../data/icons';
 import { shareProperty } from '../../utils/share';
 import './PropertyCard.css';
 import '../LandProperties/LandProperties.css';
@@ -51,7 +51,7 @@ export default function PropertyCard({ property, variant = "vertical" }) {
       return [
         { val: property.size, icon: <AreaIco />, label: '' },
         { val: property.direction || property.facing || 'East', icon: <PinIco />, label: 'Facing' },
-        { val: property.propertyType?.replace('s', '') || 'Plot', icon: null, label: '' }
+        { val: property.propertyType?.replace('s', '') || 'Plot', icon: <IconPlots />, label: '' }
       ];
     }
 
@@ -77,6 +77,7 @@ export default function PropertyCard({ property, variant = "vertical" }) {
   if (variant === "land") {
     return (
       <div className="lc-card" onClick={handleClick}>
+
         <div className="lc-img-wrap">
           <img src={property.img} alt={property.title} loading="lazy" />
           <div className="lc-img-overlay" />
@@ -92,14 +93,15 @@ export default function PropertyCard({ property, variant = "vertical" }) {
             <button className={`lc-wish-btn ${isWished ? 'wished' : ''}`} onClick={handleWish} title={isWished ? 'Remove' : 'Save'}>
               <HeartIco isWished={isWished} size={14} />
             </button>
-            <button className="lc-share-btn" onClick={handleShare} title="Share">
-              {copied ? (
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-              ) : (
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
-              )}
-            </button>
           </div>
+
+          <button className="lc-share-btn" onClick={handleShare} title="Share">
+            {copied ? (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
+            )}
+          </button>
 
           <div className="lc-price-overlay">
             <span className="lc-price">{property.price}</span>
@@ -134,10 +136,10 @@ export default function PropertyCard({ property, variant = "vertical" }) {
             )}
           </div>
 
-          <button className="lc-cta" onClick={(e) => { e.stopPropagation(); handleClick(); }}>
+          {/* <button className="lc-cta" onClick={(e) => { e.stopPropagation(); handleClick(); }}>
             View Details
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
-          </button>
+          </button> */}
         </div>
       </div>
     );
@@ -156,6 +158,9 @@ export default function PropertyCard({ property, variant = "vertical" }) {
           </div>
           <button className="wish-btn-compact" onClick={handleWish}>
             <HeartIco isWished={isWished} size={14} />
+          </button>
+          <button className="share-btn-compact" onClick={handleShare}>
+            {copied ? '✅' : <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>}
           </button>
         </div>
         <div className="feat-info-compact">
@@ -265,32 +270,24 @@ export default function PropertyCard({ property, variant = "vertical" }) {
       <div className="hyd-prop-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
         <div className="hyd-img-wrap">
           <img src={property.img} alt={property.title} loading="lazy" />
-          <div className="hyd-area-tag">📍 {property.badge || 'New'}</div>
-          <button
-            className={`hyd-wish-btn ${isWished ? 'wished' : ''}`}
-            onClick={handleWish}
-          >
-            <HeartIco isWished={isWished} size={12} />
+          <div className="hyd-area-tag"><PinIco /> {property.loc?.split(',')[0]}</div>
+          <button className="hyd-wish-btn" onClick={handleWish}>
+            <HeartIco isWished={isWished} size={15} />
+          </button>
+          <button className="hyd-share-btn" onClick={handleShare}>
+            {copied ? '✅' : <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>}
           </button>
         </div>
         <div className="hyd-info-wrap">
+          <h3 className="hyd-title" title={property.title}>{property.title || 'Premium Property'}</h3>
           <div className="hyd-price">{property.price}</div>
-          <h3 className="hyd-title" title={property.title}>{property.title}</h3>
           <div className="hyd-meta">
-            <div className="hyd-meta-item">
-              <BedIco />
-              <span>{property.beds} <small>Beds</small></span>
-            </div>
-            <span className="dot">•</span>
-            <div className="hyd-meta-item">
-              <BathIco />
-              <span>{property.baths} <small>Baths</small></span>
-            </div>
-            <span className="dot">•</span>
-            <div className="hyd-meta-item">
-              <AreaIco />
-              <span>{property.size}</span>
-            </div>
+            {stats.slice(0, 3).map((s, i) => (
+              <div key={i} className="hyd-meta-tile">
+                {s.icon}
+                <span className="hyd-meta-val">{s.val} {s.label && <small>{s.label}</small>}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -303,10 +300,10 @@ export default function PropertyCard({ property, variant = "vertical" }) {
       <div className="prop-img-wrap-v7">
         <img src={property.img} alt={property.title} loading="lazy" />
         <div className="prop-badges-v7">
-          <span className={`pill-badge-v7 ${property.badgeClass}`}>{property.badge}</span>
+          {/* <span className={`pill-badge-v7 ${property.badgeClass}`}>{property.badge}</span> */}
           <span className="verified-badge-v7">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
-            100% Verified
+            {/* <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg> */}
+            Verified
           </span>
         </div>
         <button className="wish-btn-v7" onClick={handleWish}>
@@ -334,7 +331,7 @@ export default function PropertyCard({ property, variant = "vertical" }) {
           ))}
         </div>
 
-        <button className="btn-action-v7" onClick={(e) => { e.stopPropagation(); handleClick(); }}>View Property</button>
+        {/* <button className="btn-action-v7" onClick={(e) => { e.stopPropagation(); handleClick(); }}>View Property</button> */}
       </div>
     </div>
   );

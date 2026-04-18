@@ -31,7 +31,7 @@ export default function Cities({ isSidebarOpen }) {
   }, [cities, searchQuery]);
 
   return (
-    <section className="section">
+    <section className="section" style={{ marginBottom: '40px' }}>
       <div className="container">
         <div className="section-head">
           <div>
