@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { propertiesData } from '../data/propertiesData';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
-import { ChevronL, SearchIco, ArrowR, FilterIco } from '../data/icons';
+import { ChevronL, SearchIco, ArrowR, FilterIco, CloseIco, BedIco, IconCheckCircle } from '../data/icons';
 import './CategoryViewDetails.css';
 
 const CATEGORY_DESCRIPTIONS = {
@@ -33,7 +33,27 @@ const CategoryViewDetails = () => {
   const { categoryName } = useParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('Featured');
+  const [activePopover, setActivePopover] = useState(null); // 'budget', 'bhk', 'status', 'sort'
+  const [filters, setFilters] = useState({
+    minPrice: 0,
+    maxPrice: 500000000, // 50 Cr
+    beds: [],
+    status: [],
+    furnishing: []
+  });
   const searchInputRef = useRef(null);
+  const toolbarRef = useRef(null);
+
+  // Close popovers on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (toolbarRef.current && !toolbarRef.current.contains(event.target)) {
+        setActivePopover(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const theme = CATEGORY_THEMES[categoryName] || CATEGORY_THEMES['Apartments'];
   const bannerImg = CATEGORY_IMAGES[categoryName] || CATEGORY_IMAGES['Apartments'];
@@ -59,11 +79,50 @@ const CategoryViewDetails = () => {
       );
     }
 
+    // --- NEW FILTERS LOGIC ---
+    results = results.filter(p => {
+      const price = p.pricing?.expectedPrice || 0;
+      const priceMatch = price >= filters.minPrice && price <= filters.maxPrice;
+
+      const bhkMatch = filters.beds.length === 0 || filters.beds.includes(Number(p.beds));
+      const statusMatch = filters.status.length === 0 || filters.status.includes(p.availabilityStatus?.toLowerCase());
+      const furnishingMatch = filters.furnishing.length === 0 || filters.furnishing.includes(p.furnishingStatus?.toLowerCase());
+
+      return priceMatch && bhkMatch && statusMatch && furnishingMatch;
+    });
+
     if (sortBy === 'Price: Low to High') results.sort((a, b) => (a.pricing?.expectedPrice || 0) - (b.pricing?.expectedPrice || 0));
     else if (sortBy === 'Price: High to Low') results.sort((a, b) => (b.pricing?.expectedPrice || 0) - (a.pricing?.expectedPrice || 0));
 
     return results;
-  }, [categoryName, searchQuery, sortBy]);
+  }, [categoryName, searchQuery, sortBy, filters]);
+
+  const clearFilters = () => {
+    setFilters({
+      minPrice: 0,
+      maxPrice: 500000000,
+      beds: [],
+      status: [],
+      furnishing: []
+    });
+    setSearchQuery('');
+    setSortBy('Featured');
+  };
+
+  const handleBHKToggle = (bhk) => {
+    setFilters(prev => ({
+      ...prev,
+      beds: prev.beds.includes(bhk)
+        ? prev.beds.filter(b => b !== bhk)
+        : [...prev.beds, bhk]
+    }));
+  };
+
+  const formatPrice = (p) => {
+    if (p >= 10000000) return `₹${(p / 10000000).toFixed(1)} Cr`;
+    if (p >= 100000) return `₹${(p / 100000).toFixed(1)} L`;
+    return `₹${p}`;
+  };
 
   return (
     <div className="cvd-page" style={{ '--theme-color': theme.color, '--theme-bg': theme.bg }}>
@@ -112,40 +171,150 @@ const CategoryViewDetails = () => {
       {/* ── TOOLBAR ── */}
       <section className="cvd-toolbar-section">
         <div className="container">
-          <div className="cvd-toolbar-layout">
-            <div className="cvd-toolbar">
-              <div
-                className="cvd-search-bar"
-                onClick={() => searchInputRef.current?.focus()}
-              >
-                <SearchIco />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder={`Search in ${categoryName}...`}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+          <div className="cvd-toolbar-layout" ref={toolbarRef}>
+            <div className="cvd-toolbar-main">
+              {/* Inline Filters */}
+              <div className="cvd-filters-inline">
+                {/* Budget Dropdown */}
+                <div className="cvd-filter-item">
+                  <button
+                    className={`cvd-inline-btn ${activePopover === 'budget' ? 'active' : ''} ${filters.minPrice > 0 || filters.maxPrice < 500000000 ? 'filtered' : ''}`}
+                    onClick={() => setActivePopover(activePopover === 'budget' ? null : 'budget')}
+                  >
+                    Budget <span className="cvd-chevron">▾</span>
+                  </button>
+                  {activePopover === 'budget' && (
+                    <div className="cvd-popover cvd-popover-budget">
+                      <h4 className="cvd-popover-title">Price Range</h4>
+                      <div className="cvd-price-inputs">
+                        <div className="cvd-price-field">
+                          <span>Min Price</span>
+                          <input
+                            type="number"
+                            value={filters.minPrice}
+                            onChange={(e) => setFilters(prev => ({ ...prev, minPrice: Number(e.target.value) }))}
+                            placeholder="Min"
+                          />
+                        </div>
+                        <div className="cvd-price-field">
+                          <span>Max Price</span>
+                          <input
+                            type="number"
+                            value={filters.maxPrice}
+                            onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
+                            placeholder="Max"
+                          />
+                        </div>
+                      </div>
+                      <div className="cvd-popover-footer">
+                        <span className="cvd-popover-info">{formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}</span>
+                        <button className="cvd-popover-done" onClick={() => setActivePopover(null)}>Done</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* BHK Dropdown */}
+                <div className="cvd-filter-item">
+                  <button
+                    className={`cvd-inline-btn ${activePopover === 'bhk' ? 'active' : ''} ${filters.beds.length > 0 ? 'filtered' : ''}`}
+                    onClick={() => setActivePopover(activePopover === 'bhk' ? null : 'bhk')}
+                  >
+                    BHK {filters.beds.length > 0 && `(${filters.beds.length})`} <span className="cvd-chevron">▾</span>
+                  </button>
+                  {activePopover === 'bhk' && (
+                    <div className="cvd-popover cvd-popover-bhk">
+                      <h4 className="cvd-popover-title">Select BHK</h4>
+                      <div className="cvd-filter-chips">
+                        {[1, 2, 3, 4, 5].map(bhk => (
+                          <button
+                            key={bhk}
+                            className={`cvd-chip ${filters.beds.includes(bhk) ? 'active' : ''}`}
+                            onClick={() => handleBHKToggle(bhk)}
+                          >
+                            <BedIco size={14} />
+                            <span>{bhk} BHK</span>
+                          </button>
+                        ))}
+                      </div>
+                      <div className="cvd-popover-footer">
+                        <button className="cvd-popover-done" style={{ width: '100%' }} onClick={() => setActivePopover(null)}>Apply</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Status Dropdown */}
+                <div className="cvd-filter-item">
+                  <button
+                    className={`cvd-inline-btn ${activePopover === 'status' ? 'active' : ''} ${filters.status.length > 0 ? 'filtered' : ''}`}
+                    onClick={() => setActivePopover(activePopover === 'status' ? null : 'status')}
+                  >
+                    Status <span className="cvd-chevron">▾</span>
+                  </button>
+                  {activePopover === 'status' && (
+                    <div className="cvd-popover cvd-popover-status">
+                      <h4 className="cvd-popover-title">Property Status</h4>
+                      <div className="cvd-filter-chips">
+                        {['ready to move', 'under construction'].map(stat => (
+                          <button
+                            key={stat}
+                            className={`cvd-chip ${filters.status.includes(stat) ? 'active' : ''}`}
+                            onClick={() => setFilters(prev => ({
+                              ...prev,
+                              status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat]
+                            }))}
+                          >
+                            <IconCheckCircle size={14} />
+                            <span>{stat}</span>
+                          </button>
+                        ))}
+                      </div>
+                      <div className="cvd-popover-footer">
+                        <button className="cvd-popover-done" style={{ width: '100%' }} onClick={() => setActivePopover(null)}>Apply</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="cvd-actions">
-                <div className="cvd-sort">
-                  <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                    <option>Featured</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest First</option>
-                  </select>
+
+              {/* Search at the end */}
+              <div className="cvd-search-wrap">
+                <div
+                  className="cvd-search-bar"
+                  onClick={() => searchInputRef.current?.focus()}
+                >
+                  <SearchIco />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder={`Search in ${categoryName}...`}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
 
-            <button className="cvd-filter-btn">
-              <FilterIco />
-              <span>Filters</span>
-            </button>
+            <div className="cvd-toolbar-actions">
+              <div className="cvd-sort-inline">
+                <span className="cvd-sort-label">Sort By:</span>
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                  <option>Featured</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Newest First</option>
+                </select>
+              </div>
+              {filteredProperties.length < propertiesData.length && (
+                <button className="cvd-reset-inline" onClick={clearFilters}>Reset</button>
+              )}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* DRAWER REMOVED AS PER USER REQUEST */}
 
       {/* ── MAIN LAYOUT: GRID + SIDEBAR ── */}
       <div className="cvd-body-layout">
@@ -176,7 +345,7 @@ const CategoryViewDetails = () => {
               </div>
               <h3>No Properties Found</h3>
               <p>We couldn't find any {categoryName} matching your current filters.</p>
-              <button className="cvd-clear-btn" onClick={() => { setSearchQuery(''); setSortBy('Featured'); }}>
+              <button className="cvd-clear-btn" onClick={clearFilters}>
                 Clear All Filters
               </button>
             </div>

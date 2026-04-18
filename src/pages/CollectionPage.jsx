@@ -97,7 +97,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
             <div className="cp-section-head">
               <div className="cp-section-accent" />
               <h2 className="cp-section-title">Featured Highlights</h2>
-              <span className="cp-section-count">{filteredProperties.slice(0, 3).length} of {filteredProperties.length}</span>
+              {/* <span className="cp-section-count">{filteredProperties.slice(0, 3).length} of {filteredProperties.length}</span> */}
             </div>
 
             {/* First 3 — highlighted grid */}
