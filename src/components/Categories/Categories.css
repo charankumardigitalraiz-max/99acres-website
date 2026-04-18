@@ -54,7 +54,7 @@
 /* ── Slider Wrapper ── */
 .cat-slider-wrapper {
   margin: 0 -10px; /* Slight overflow correction for mobile */
-  padding: 10px 10px 40px;
+  padding: 10px 10px 10px;
 }
 
 .cat-elite-swiper {

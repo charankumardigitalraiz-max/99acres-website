@@ -34,7 +34,7 @@ export default function PropertyListings({ isSidebarOpen }) {
   }
 
   return (
-    <section className="section" style={{ background: '#fff' }}>
+    <section className="section" style={{ background: '#fff', marginTop: '10px !important' }}>
       <div className="container">
         <div className="section-head">
           <div>
