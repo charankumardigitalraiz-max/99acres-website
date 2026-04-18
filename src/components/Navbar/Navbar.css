@@ -166,6 +166,36 @@
   color: black !important;
 }
 
+.nav-location-selector svg {
+  /* color: var(--dark) !important; */
+  color: black !important;
+}
+
+@media (max-width: 640px) {
+  .nav-location-selector {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    /* color: var(--dark); */
+    color: white !important;
+    border: 1px solid transparent;
+  }
+
+  .nav-location-selector span {
+    /* color: var(--dark) !important; */
+    color: white !important;
+  }
+
+  .nav-location-selector svg {
+    /* color: var(--dark) !important; */
+    color: white !important;
+  }
+}
+
 .navbar--scrolled .location-label {
   color: var(--dark) !important;
 }

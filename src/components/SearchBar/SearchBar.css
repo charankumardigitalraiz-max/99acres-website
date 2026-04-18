@@ -903,8 +903,31 @@
   }
 
   .sb-navbar-trigger {
-    height: 44px;
-    border-radius: 12px;
+    height: 40px;
+    padding: 0 12px;
+    gap: 10px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+  }
+
+  .sb-navbar-trigger .sb-trigger-icon {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    color: #94a3b8;
+    padding: 0;
+  }
+
+  .sb-navbar-trigger .sb-trigger-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sb-navbar-trigger .sb-trigger-main {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
   }
 
   /* ── Responsive Mega-Menu ── */

@@ -233,7 +233,7 @@ export default function SearchBar({ isNavbar = false }) {
         </div>
 
         {/* Property Type */}
-        <div className="sb-mobile-field">
+        {/* <div className="sb-mobile-field">
           <label>Property Type</label>
           <div className="sb-select-wrap">
             <select value={propertyType} onChange={e => dispatch(setPropertyType(e.target.value))}>
@@ -241,7 +241,7 @@ export default function SearchBar({ isNavbar = false }) {
             </select>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
           </div>
-        </div>
+        </div> */}
 
         {/* BHK */}
         {/* {showBhk && (
@@ -260,7 +260,7 @@ export default function SearchBar({ isNavbar = false }) {
         )} */}
 
         {/* Budget */}
-        <div className="sb-mobile-field">
+        {/* <div className="sb-mobile-field">
           <label>Budget</label>
           <div className="sb-budget-row">
             <div className="sb-select-wrap">
@@ -277,10 +277,10 @@ export default function SearchBar({ isNavbar = false }) {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Furnishing */}
-        <div className="sb-mobile-field">
+        {/* <div className="sb-mobile-field">
           <label>Furnishing</label>
           <div className="sb-pill-row">
             {FURNISHING_OPTIONS.map(f => (
@@ -291,10 +291,10 @@ export default function SearchBar({ isNavbar = false }) {
               >{f}</button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Posted By */}
-        <div className="sb-mobile-field">
+        {/* <div className="sb-mobile-field">
           <label>Posted By</label>
           <div className="sb-pill-row">
             {POSTED_BY_OPTIONS.map(f => (
@@ -305,10 +305,10 @@ export default function SearchBar({ isNavbar = false }) {
               >{f}</button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Possession */}
-        <div className="sb-mobile-field">
+        {/* <div className="sb-mobile-field">
           <label>Possession Status</label>
           <div className="sb-pill-row">
             {POSSESSION_OPTIONS.map(f => (
@@ -319,7 +319,7 @@ export default function SearchBar({ isNavbar = false }) {
               >{f}</button>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Footer */}
@@ -329,7 +329,7 @@ export default function SearchBar({ isNavbar = false }) {
         </button>
         <button className="sb-search-btn" onClick={handleSearch}>
           <SearchIco />
-          <span>Search Properties</span>
+          <span>Search</span>
         </button>
       </div>
     </div>,
