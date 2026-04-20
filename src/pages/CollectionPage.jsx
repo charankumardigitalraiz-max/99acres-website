@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
-import { ArrowR, SearchIco, ChevronL, BedIco, IconCheckCircle } from '../data/icons';
+import { ArrowR, SearchIco, ChevronL, BedIco, IconCheckCircle, PinIco } from '../data/icons';
 import './CollectionPage.css';
 
 const COLLECTION_IMAGES = {
@@ -122,8 +122,27 @@ const CollectionPage = ({ type, title, subtitle }) => {
                   {subtitle || 'Discover curated collections of premium properties.'}
                 </p>
               </div>
-
             </div>
+
+            {/* Featured Hero Cards */}
+            {/* {properties.length > 0 && (
+              <div className="cp-hero-cards-section">
+                <div className="cp-hero-cards-grid">
+                  {properties.slice(0, 3).map(p => (
+                    <Link key={p.id} to={`/property/${p.id}`} className="cp-hero-mini-card">
+                      <img src={p.img} alt={p.title} className="cp-mini-img" />
+                      <div className="cp-mini-info">
+                        <div className="cp-mini-price">{p.price}</div>
+                        <h4 className="cp-mini-title">{p.title}</h4>
+                        <div className="cp-mini-meta">
+                          <PinIco size={10} /> {p.loc?.split(',')[0]}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )} */}
           </div>
         </div>
       </section>
@@ -269,7 +288,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
         {filteredProperties.length > 0 ? (
           <>
             {/* Spotlight Showcase - Top Property */}
-            <div className="cp-spotlight-section">
+            {/* <div className="cp-spotlight-section">
               <div className="cp-spotlight-tag">Editorial Spotlight</div>
               <div className="cp-spotlight-card">
                 <div className="cp-spotlight-image" style={{ backgroundImage: `url(${filteredProperties[0].img || '/placeholder.jpg'})` }}>
@@ -301,7 +320,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Expert Insight Banner */}
             {/* <div className="cp-insight-banner">
@@ -328,7 +347,7 @@ const CollectionPage = ({ type, title, subtitle }) => {
                     <div key={property.id} className={`cp-grid-item`}>
                       <PropertyCard
                         property={property}
-                        variant={type === 'land' ? 'land' : 'editorial-v2'}
+                        variant={type === 'land' ? 'land' : 'vertical'}
                       />
                     </div>
                   ))}
