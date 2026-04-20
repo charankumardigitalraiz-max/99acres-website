@@ -24,7 +24,12 @@
   top: 72px; /* Precision align with 72px Fixed Navbar */
   max-height: calc(100vh - 92px);
   overflow-y: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.filter-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 /* ─── MOBILE SLIDE DRAWER ────────────────────────────────── */
@@ -69,17 +74,20 @@
   background: #fff;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .results-count span {
   font-weight: 800;
   color: var(--primary);
 }
-
+/* .filter-drawer-header {
+  margin-bottom: 20px !important;
+} */
 .filter-drawer-header h3 {
   font-size: 1.15rem;
   font-weight: 700;
+  /* margin-bottom: 30px; */
   color: var(--dark);
 }
 
@@ -110,8 +118,8 @@
 
 /* ─── SHARED FILTER CONTENT STYLES ──────────────────────── */
 .filter-group {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 

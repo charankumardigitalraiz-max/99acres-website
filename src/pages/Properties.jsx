@@ -86,7 +86,7 @@ export default function Properties() {
         <div className="filter-overlay" onClick={() => setIsFilterOpen(false)} />
       )}
       <aside className={`filter-drawer ${isFilterOpen ? 'open' : ''}`}>
-        <div className="filter-drawer-header">
+        <div className="filter-drawer-header" style={{ marginBottom: '20px !important' }}>
           <h3>Filters</h3>
           <button className="close-filter-btn" onClick={() => setIsFilterOpen(false)}>✕</button>
         </div>
@@ -144,13 +144,13 @@ export default function Properties() {
               </div>
             </div>
 
-              <div
-                className="prop-grid"
-                style={isMobile
-                  ? { gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }
-                  : { gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }
-                }
-              >
+            <div
+              className="prop-grid"
+              style={isMobile
+                ? { gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }
+                : { gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }
+              }
+            >
               {filteredListings.map(property => (
                 <PropertyCard
                   key={property.id}

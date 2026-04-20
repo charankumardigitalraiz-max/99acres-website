@@ -239,17 +239,17 @@ h4 {
   top: 80px;
 }
 
-.filter-group {
+/* .filter-group {
   margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--border);
-}
+} */
 
-.filter-group:last-child {
+/* .filter-group:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
-}
+} */
 
 .filter-title {
   font-size: 0.95rem;
