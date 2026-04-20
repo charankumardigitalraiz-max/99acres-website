@@ -296,7 +296,7 @@
   background: #fff;
   border-radius: 20px;
   border: 1px solid rgba(15, 23, 42, 0.08); /* Softened border */
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.06),
     0 20px 80px rgba(0, 0, 0, 0.04),
     0 0 1px rgba(0, 0, 0, 0.1); /* Layered premium shadow */
@@ -307,13 +307,13 @@
 }
 
 @keyframes popoverEntrance {
-  from { 
-    opacity: 0; 
-    transform: translateY(10px) scale(0.96); 
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -536,7 +536,6 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-
 @media (max-width: 480px) {
   .cvd-filter-drawer {
     width: 100%;
@@ -577,8 +576,8 @@
 /* ── PROPERTY GRID ── */
 .cvd-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
 }
 
 /* ── EMPTY STATE ── */

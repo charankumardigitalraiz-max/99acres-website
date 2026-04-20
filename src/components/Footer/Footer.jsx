@@ -18,9 +18,15 @@ export default function Footer() {
               <p className="footer-desc">
                 The most trusted platform for premium real estate. Connecting you with verified listings and top-rated builders across India.
               </p>
-              <div className="footer-awards">
-                <span className="award-badge">★ Trusted Since 2008</span>
-                <span className="award-badge">✓ 100% RERA Certified</span>
+              <div className="footer-awards" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '20px' }}>
+                <span className="award-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '100px', fontSize: '12px', fontWeight: 'bold', color: '#475569' }}>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="#f59e0b" style={{ marginRight: '6px' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                  Trusted Since 2008
+                </span>
+                <span className="award-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '100px', fontSize: '12px', fontWeight: 'bold', color: '#475569' }}>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="#10b981" style={{ marginRight: '6px' }}><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
+                  100% RERA Certified
+                </span>
               </div>
             </div>
 

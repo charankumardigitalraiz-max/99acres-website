@@ -190,8 +190,8 @@
 .prop-meta-v7 {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 0;
+  gap: 6px;
+  padding: 6px 0;
   margin-top: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.04);
   overflow: hidden;
@@ -206,8 +206,8 @@
 .meta-tile-v7 {
   display: flex;
   align-items: center;
-  gap: 3px;
-  font-size: 0.72rem;
+  gap: 2px;
+  font-size: 0.7rem;
   color: var(--dark);
   white-space: nowrap;
   flex-shrink: 0;
@@ -222,7 +222,7 @@
 
 .meta-text-v7 {
   display: flex;
-  gap: 3px;
+  gap: 2px;
   align-items: baseline;
   overflow: hidden;
   white-space: nowrap;
@@ -235,10 +235,10 @@
 
 .meta-label-v7 {
   font-weight: 500;
-  color: var(--text-2);
-  font-size: 0.62rem;
+  color: var(--text-3);
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 .btn-action-v7 {

@@ -319,7 +319,7 @@ export default function PropertyCard({ property, variant = "vertical" }) {
         <h3 className="prop-title-v7" title={property.title}>{property.title}</h3>
         <div className="prop-loc-v7"><PinIco /> {property.loc}</div>
 
-        {/* <div className="prop-meta-v7">
+        <div className="prop-meta-v7">
           {stats.map((s, i) => (
             <div key={i} className="meta-tile-v7" title={`${s.val} ${s.label || ''}`}>
               {s.icon}
@@ -329,7 +329,7 @@ export default function PropertyCard({ property, variant = "vertical" }) {
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
 
         {/* <button className="btn-action-v7" onClick={(e) => { e.stopPropagation(); handleClick(); }}>View Property</button> */}
       </div>
