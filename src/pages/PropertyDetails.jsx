@@ -99,7 +99,7 @@ export default function PropertyDetails() {
         { icon: <AreaIco />, label: 'Plot Area', value: property.size },
         { icon: <AreaIco />, label: 'Dimensions', value: property.dimensions || 'Check Description' },
         { icon: <SearchIco />, label: 'Ownership', value: property.ownership || 'Freehold' },
-        { icon: <PinIco />, label: 'Side Facing', value: property.direction || property.facing || 'East' }
+        { icon: <PinIco />, label: 'Direction', value: property.direction || property.facing || 'East Facing' }
       ];
     }
     if (isCommercial) {
@@ -107,7 +107,7 @@ export default function PropertyDetails() {
         { icon: <AreaIco />, label: 'Super Area', value: property.size },
         { icon: <BathIco />, label: 'Washrooms', value: property.baths || 'Private' },
         { icon: <SearchIco />, label: 'Furnishing', value: property.furnishingStatus || 'Bare Shell' },
-        { icon: <PinIco />, label: 'Facing', value: property.direction || 'Main Road' }
+        { icon: <PinIco />, label: 'Orientation', value: property.direction || 'Main Road' }
       ];
     }
     return [
@@ -211,7 +211,7 @@ export default function PropertyDetails() {
                     <span>Availability:</span> <strong>{property.availabilityStatus || (isLand ? 'Ready for Registry' : 'Ready to move')}</strong>
                   </div>
                   <div className="pd-meta-row">
-                    <span>Secondary Facing:</span> <strong>{property.direction || property.facing || 'Open View'}</strong>
+                    <span>Orientation:</span> <strong>{property.direction || property.facing || 'Open View'}</strong>
                   </div>
                   {!isLand && (
                     <div className="pd-meta-row">

@@ -97,7 +97,7 @@ export default function Categories() {
             breakpoints={{
               640: { slidesPerView: 2.3, spaceBetween: 20 },
               900: { slidesPerView: 3.3, spaceBetween: 24 },
-              1200: { slidesPerView: 5, spaceBetween: 24, autoplay: false }
+              1200: { slidesPerView: 5, spaceBetween: 15, autoplay: false }
             }}
             className="cat-elite-swiper"
           >

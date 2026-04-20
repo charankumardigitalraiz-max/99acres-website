@@ -45,8 +45,7 @@ export default function LandProperties({ isSidebarOpen }) {
             breakpoints={{
               640: { slidesPerView: 2.2, spaceBetween: 20 },
               1024: { slidesPerView: 3, spaceBetween: 24 },
-              1280: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
-              1536: { slidesPerView: isSidebarOpen ? 4 : 5, spaceBetween: 24 }
+              1280: { slidesPerView: isSidebarOpen ? 3 : 5, spaceBetween: 15 },
             }}
             className="land-swiper"
           >

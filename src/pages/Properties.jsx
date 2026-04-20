@@ -104,13 +104,13 @@ export default function Properties() {
 
           {/* RESULTS GRID */}
           <div className="results-area">
-            
+
             {/* Search Input Row */}
             <div className="properties-search-row">
               <div className="prop-search-box">
                 <SearchIco />
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder={`Search for properties in ${currentTabName}...`}
                   value={query || ''}
                   onChange={(e) => dispatch(setQuery(e.target.value))}
@@ -144,13 +144,13 @@ export default function Properties() {
               </div>
             </div>
 
-            <div
-              className="prop-grid"
-              style={isMobile
-                ? { gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }
-                : { gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))' }
-              }
-            >
+              <div
+                className="prop-grid"
+                style={isMobile
+                  ? { gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }
+                  : { gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }
+                }
+              >
               {filteredListings.map(property => (
                 <PropertyCard
                   key={property.id}

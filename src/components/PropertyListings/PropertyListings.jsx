@@ -66,9 +66,9 @@ export default function PropertyListings({ isSidebarOpen }) {
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             loop
             breakpoints={{
-              480: { slidesPerView: 2.2, spaceBetween: 16 },
-              768: { slidesPerView: 2.5, spaceBetween: 20 },
-              1024: { slidesPerView: isSidebarOpen ? 3 : 4, spaceBetween: 24 },
+              640: { slidesPerView: 2.2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
+              1280: { slidesPerView: isSidebarOpen ? 3 : 5, spaceBetween: 15 },
             }}
             className="listings-swiper"
           >

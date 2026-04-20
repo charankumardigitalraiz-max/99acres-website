@@ -65,8 +65,8 @@ export default function Cities({ isSidebarOpen }) {
               480: { slidesPerView: 3.2, spaceBetween: 16 },
               768: { slidesPerView: 4.2, spaceBetween: 20 },
               1024: { slidesPerView: 5.2, spaceBetween: 20 },
-              1280: { slidesPerView: isSidebarOpen ? 5 : 6, spaceBetween: 24 },
-              1536: { slidesPerView: isSidebarOpen ? 6 : 7, spaceBetween: 20 },
+              1280: { slidesPerView: isSidebarOpen ? 5 : 6, spaceBetween: 15 },
+              1536: { slidesPerView: isSidebarOpen ? 6 : 7, spaceBetween: 15 },
             }}
             className="cities-swiper"
           >
