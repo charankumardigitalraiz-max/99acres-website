@@ -1,0 +1,247 @@
+.info-page {
+  background: var(--bg);
+  min-height: 80vh;
+}
+
+.info-header {
+  background: var(--dark);
+  color: var(--white);
+  padding: 60px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(245, 158, 11, 0.05));
+  transform: rotate(15deg);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb span {
+  opacity: 0.5;
+}
+
+.info-header h1 {
+  font-family: "Outfit", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.info-content-wrapper {
+  padding: 60px 0 100px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 60px;
+}
+
+.info-main-content {
+  background: var(--white);
+  padding: 50px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.info-main-content h2 {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  color: var(--dark);
+}
+
+.info-main-content h3 {
+  font-size: 1.25rem;
+  margin: 32px 0 16px;
+  color: var(--dark);
+}
+
+.info-main-content p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--text-2);
+}
+
+.info-main-content ul {
+  margin-bottom: 24px;
+  padding-left: 20px;
+}
+
+.info-main-content li {
+  margin-bottom: 12px;
+  position: relative;
+  list-style-type: disc;
+  color: var(--text-2);
+}
+
+.info-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebar-card {
+  background: var(--dark-2);
+  color: var(--white);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.sidebar-card h3 {
+  color: var(--white);
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.sidebar-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.btn-contact-support {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: var(--dark);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.btn-contact-support:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.sidebar-links {
+  background: var(--white);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-links h4 {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dark);
+}
+
+.sidebar-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-links a {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  transition: all 0.3s;
+  display: block;
+}
+
+.sidebar-links a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+/* Forms Styling */
+.info-form {
+  margin-top: 40px;
+  display: grid;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+.btn-submit {
+  padding: 14px 32px;
+  background: var(--dark);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.3s;
+}
+
+.btn-submit:hover {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+@media (max-width: 1024px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-header {
+    padding: 40px 0;
+  }
+  .info-header h1 {
+    font-size: 2rem;
+  }
+  .info-main-content {
+    padding: 30px;
+  }
+}

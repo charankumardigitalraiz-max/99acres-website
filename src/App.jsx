@@ -13,6 +13,19 @@ import UserPanel from './pages/UserPanel';
 import CollectionPage from './pages/CollectionPage';
 import UpcomingProjectsPage from './pages/UpcomingProjectsPage';
 
+// Info Pages
+import AboutUs from './pages/info/AboutUs';
+import ContactUs from './pages/info/ContactUs';
+import Careers from './pages/info/Careers';
+import TermsConditions from './pages/info/TermsConditions';
+import RequestInfo from './pages/info/RequestInfo';
+import Feedback from './pages/info/Feedback';
+import ReportProblem from './pages/info/ReportProblem';
+import PrivacyPolicy from './pages/info/PrivacyPolicy';
+import SummonsNotices from './pages/info/SummonsNotices';
+import Grievances from './pages/info/Grievances';
+import SafetyGuide from './pages/info/SafetyGuide';
+
 export default function App() {
   return (
     <Router>
@@ -27,6 +40,20 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile/:tab?" element={<UserPanel />} />
+            
+            {/* Info Routes */}
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="contact-us" element={<ContactUs />} />
+            <Route path="careers" element={<Careers />} />
+            <Route path="terms-conditions" element={<TermsConditions />} />
+            <Route path="request-info" element={<RequestInfo />} />
+            <Route path="feedback" element={<Feedback />} />
+            <Route path="report-problem" element={<ReportProblem />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="summons-notices" element={<SummonsNotices />} />
+            <Route path="grievances" element={<Grievances />} />
+            <Route path="safety-guide" element={<SafetyGuide />} />
+
             <Route
               path="high-rated-properties"
               element={<CollectionPage type="high-rated" title="Highest Rated Properties" subtitle="Properties loved by customers and highly reviewed for their quality and location." />}

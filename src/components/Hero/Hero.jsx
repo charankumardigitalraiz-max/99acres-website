@@ -17,12 +17,12 @@ export default function Hero() {
     <section className="hero">
       {/* This background will use your custom 'hero_final_custom.png' image */}
       <div className="hero-background" />
-      
+
       {/* Family Overlay on the Left Side */}
-      <img 
-        src="/banners/family_1248x832_smaller_left (1).png" 
-        alt="Family Searching" 
-        className="hero-family-overlay" 
+      <img
+        src="/banners/family_1248x832_smaller_left (1).png"
+        alt="Family Searching"
+        className="hero-family-overlay"
       />
 
       {/* Removed 'container' class — using absolute positioning for right-side placement */}

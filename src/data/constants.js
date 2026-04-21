@@ -231,9 +231,30 @@ export const SEARCH_TABS = ['Buy', 'Rent', 'New Projects', 'Commercial'];
 
 // ─── FOOTER LINKS ─────────────────────────────────────────
 export const FOOTER_LINKS = {
-  Company: ['About Us', 'Careers', 'Blog', 'Press', 'Contact'],
-  Explore: ['Buy in Mumbai', 'Buy in Bangalore', 'Rent in Delhi', 'New Projects'],
-  Support: ['Help Center', 'Privacy Policy', 'Terms of Use', 'Report Fraud'],
+  Company: [
+    { label: 'About us', path: '/about-us' },
+    { label: 'Contact us', path: '/contact-us' },
+    { label: 'Terms & Conditions', path: '/terms-conditions' },
+    { label: 'Request Info', path: '/request-info' },
+    { label: 'Feedback', path: '/feedback' },
+    { label: 'Report a problem', path: '/report-problem' },
+    { label: 'Privacy Policy', path: '/privacy-policy' },
+    { label: 'Summons/Notices', path: '/summons-notices' },
+    { label: 'Grievances', path: '/grievances' },
+    { label: 'Safety Guide', path: '/safety-guide' },
+  ],
+  Explore: [
+    { label: 'Buy in Mumbai', path: '/properties?city=Mumbai' },
+    { label: 'Buy in Bangalore', path: '/properties?city=Bangalore' },
+    { label: 'Rent in Delhi', path: '/properties?city=Delhi' },
+    { label: 'New Projects', path: '/upcoming-projects' },
+  ],
+  Support: [
+    { label: 'Help Center', path: '/help-center' },
+    { label: 'Privacy Policy', path: '/privacy-policy' },
+    { label: 'Terms of Use', path: '/terms-conditions' },
+    { label: 'Report Fraud', path: '/report-fraud' },
+  ],
 };
 
 // ─── USER PANEL MOCK DATA ─────────────────────────────────

@@ -2,7 +2,7 @@
 .footer {
   background: var(--white);
   border-top: 1px solid var(--border);
-  padding: 60px 0 40px;
+  padding: 30px 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -68,12 +68,12 @@
 
 /* Main Footer Area */
 .footer-main {
-  padding: 30px 0 10px;
+  padding: 30px 0 0;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  grid-template-columns: 1.8fr 2.2fr 1.2fr 1.2fr;
   gap: 64px;
 }
 
@@ -106,9 +106,15 @@
 /* Awards & Badges Section */
 .footer-brand .footer-awards {
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
   gap: 12px !important;
   margin-top: 24px !important;
+}
+
+@media (max-width: 480px) {
+  .footer-brand .footer-awards {
+    flex-wrap: wrap !important;
+  }
 }
 
 .footer-brand .award-badge {
@@ -184,6 +190,17 @@
   gap: 12px;
 }
 
+.footer-links-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 12px 40px !important;
+}
+
+.footer-col-company h4 {
+  text-align: center;
+  width: 100%;
+}
+
 .footer-col a {
   font-size: 0.9rem;
   color: #64748b;
@@ -200,7 +217,7 @@
 .footer-bottom {
   border-top: 1px solid #f1f5f9;
   /* padding: 32px 0; */
-  padding-top: 30px;
+  padding: 20px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -267,8 +284,7 @@
     flex-direction: column;
     gap: 20px;
     text-align: center;
-    margin-bottom: auto;
-    margin: auto;
+    margin-bottom: 0;
   }
 
   .footer-legal {
