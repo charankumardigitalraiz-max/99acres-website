@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Hero from "../components/Hero/Hero";
-import Categories from "../components/Categories/Categories";
-import PropertyListings from "../components/PropertyListings/PropertyListings";
-import HighRatedProperties from "../components/HighRatedProperties/HighRatedProperties";
-import LandProperties from "../components/LandProperties/LandProperties";
+import Categories from "../components/HomeScreen/Categories/Categories";
+import PropertyListings from "../components/HomeScreen/PropertyListings/PropertyListings";
+import HighRatedProperties from "../components/HomeScreen/HighRatedProperties/HighRatedProperties";
+import LandProperties from "../components/HomeScreen/LandProperties/LandProperties";
 import StatsStrip from "../components/StatsStrip/StatsStrip";
 import Cities from "../components/Cities/Cities";
-import Localities from "../components/Localities/Localities";
-import PromoBannerSlider from "../components/PromoBannerSlider/PromoBannerSlider";
-import FloatingVideo from "../components/FloatingVideo/FloatingVideo";
+import Localities from "../components/HomeScreen/Localities/Localities";
+import PromoBannerSlider from "../components/HomeScreen/PromoBannerSlider/PromoBannerSlider";
+import FloatingVideo from "../components/HomeScreen/FloatingVideo/FloatingVideo";
 import "./Home.css";
 
 export default function Home() {

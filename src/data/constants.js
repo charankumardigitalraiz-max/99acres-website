@@ -109,7 +109,7 @@ export const CITIES = [
   { name: 'Mumbai', count: '1.2L+', img: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=80' },
   { name: 'Delhi NCR', count: '98K+', img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80' },
   { name: 'Bangalore', count: '86K+', img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=400&q=80' },
-  { name: 'Hyderabad', count: '72K+', img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=400&q=80' },
+  { name: 'Hyderabad', count: '72K+', img: 'https://images.unsplash.com/photo-1657981630164-769503f3a9a8?q=80&w=400' },
   { name: 'Chennai', count: '54K+', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80' },
   { name: 'Pune', count: '61K+', img: 'https://t3.ftcdn.net/jpg/03/20/46/64/360_F_320466451_lyuLhFiKxlcp2vBZk1bV3uPrJVLmaZSB.jpg' },
   { name: 'Kolkata', count: '45K+', img: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=400&q=80' },
@@ -372,3 +372,63 @@ export const UPCOMING_PROJECTS = [
     price: '₹ 3.20 Cr+'
   }
 ];
+
+// ─── CITY HUB DETAILS ─────────────────────────────────────
+export const CITY_HUB_DETAILS = {
+  'Mumbai': {
+    tagline: 'The Financial Powerhouse',
+    description: 'Explore ultra-luxury sea-facing apartments and premium business hubs in India\'s most vibrant metropolis.',
+    heroImg: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1600&q=80',
+    stats: { appreciation: '+14.2%', avgPrice: '₹28,500/sqft', listings: '1.2L+' },
+    localities: ['Powai', 'Worli', 'Andheri West', 'Bandra', 'Juhu']
+  },
+  'Bangalore': {
+    tagline: 'The Silicon Valley of India',
+    description: 'Find premium tech-park adjacent flats and expansive luxury villas in India\'s IT capital.',
+    heroImg: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1600&q=80',
+    stats: { appreciation: '+12.5%', avgPrice: '₹10,200/sqft', listings: '86K+' },
+    localities: ['Whitefield', 'Electronic City', 'Indiranagar', 'Koramangala', 'HSR Layout']
+  },
+  'Hyderabad': {
+    tagline: 'The City of Pearls & Tech',
+    description: 'Discover massive gated communities and elite villas in the high-growth corridors of Gachibowli and Jubilee Hills.',
+    heroImg: 'https://images.unsplash.com/photo-1657981630164-769503f3a9a8?q=80&w=1600',
+    stats: { appreciation: '+18.8%', avgPrice: '₹8,500/sqft', listings: '72K+' },
+    localities: ['Gachibowli', 'Jubilee Hills', 'Banjara Hills', 'Kukatpally', 'Tellapur']
+  },
+  'Delhi NCR': {
+    tagline: 'Capital Luxury & Grandeur',
+    description: 'From sprawling farmhouses to modern high-rises in Gurugram, experience the best of NCR living.',
+    heroImg: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1600&q=80',
+    stats: { appreciation: '+11.2%', avgPrice: '₹14,800/sqft', listings: '98K+' },
+    localities: ['Gurugram', 'Noida', 'Saket', 'Vasant Kunj', 'Greater Noida']
+  },
+  'Pune': {
+    tagline: 'Oxford of the East',
+    description: 'Balance lifestyle and career with premium apartments in Hinjewadi and elite homes in Koregaon Park.',
+    heroImg: 'https://t3.ftcdn.net/jpg/03/20/46/64/360_F_320466451_lyuLhFiKxlcp2vBZk1bV3uPrJVLmaZSB.jpg',
+    stats: { appreciation: '+9.5%', avgPrice: '₹7,800/sqft', listings: '61K+' },
+    localities: ['Hinjewadi', 'Koregaon Park', 'Baner', 'Viman Nagar', 'Hadapsar']
+  },
+  'Chennai': {
+    tagline: 'Gateway to South India',
+    description: 'Experience sea-breeze luxury in ECR and urban convenience in Adyar and OMR.',
+    heroImg: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1600&q=80',
+    stats: { appreciation: '+8.2%', avgPrice: '₹9,400/sqft', listings: '54K+' },
+    localities: ['Adyar', 'ECR', 'OMR', 'Velachery', 'Anna Nagar']
+  },
+  'Kolkata': {
+    tagline: 'The Cultural Capital',
+    description: 'Find heritage homes in New Town and premium apartments with a touch of colonial charm.',
+    heroImg: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=1600&q=80',
+    stats: { appreciation: '+7.5%', avgPrice: '₹5,800/sqft', listings: '45K+' },
+    localities: ['New Town', 'Salt Lake', 'Ballygunge', 'Tollygunge']
+  },
+  'Ahmedabad': {
+    tagline: 'The Textile Hub',
+    description: 'Modern living in India\'s first UNESCO World Heritage City.',
+    heroImg: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1600&q=80',
+    stats: { appreciation: '+10.2%', avgPrice: '₹4,500/sqft', listings: '38K+' },
+    localities: ['Prahlad Nagar', 'Satellite', 'SG Highway', 'Bopal']
+  }
+};

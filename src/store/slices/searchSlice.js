@@ -30,7 +30,6 @@ const searchSlice = createSlice({
     },
     setLocation(state, action) {
       state.location = action.payload;
-      state.query = '';
       // Save to recent
       if (action.payload && !state.recentSearches.includes(action.payload)) {
         state.recentSearches = [action.payload, ...state.recentSearches].slice(0, 5);
@@ -39,7 +38,6 @@ const searchSlice = createSlice({
     setQuery(state, action) {
       const query = action.payload;
       state.query = query;
-      state.location = '';
 
       if (!query || query.length < 2) {
         state.suggestions = [];
@@ -73,7 +71,6 @@ const searchSlice = createSlice({
     },
     clearSuggestions(state) {
       state.suggestions = [];
-      state.query = '';
     },
     setLocStatus(state, action) {
       state.locStatus = action.payload;

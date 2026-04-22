@@ -1,12 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleWishlist } from '../store/slices/propertiesSlice';
 import { shareProperty } from '../utils/share';
-import { PinIco, BedIco, BathIco, AreaIco, SearchIco } from '../data/icons';
+import { PinIco, BedIco, BathIco, AreaIco, SearchIco, ChevronL, IconCheckCircle, ArrowR, ChevronR } from '../data/icons';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import PropertyCard from '../components/PropertyCard/PropertyCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import './PropertyDetails.css';
 
 // Fix for default marker icons (Leaflet + Webpack/Vite issue)
@@ -73,6 +78,17 @@ export default function PropertyDetails() {
     window.scrollTo(0, 0);
   }, [id, buyProperties, rentProperties, highRated, landProperties, hydLocalities]);
 
+  const allPropertiesList = useMemo(() => {
+    return [...buyProperties, ...rentProperties, ...highRated, ...landProperties, ...hydLocalities];
+  }, [buyProperties, rentProperties, highRated, landProperties, hydLocalities]);
+
+  const relatedProperties = useMemo(() => {
+    if (!property) return [];
+    return allPropertiesList
+      .filter(p => p.id !== property.id && (p.city === property.city || p.propertyType === property.propertyType))
+      .slice(0, 5); // Allow up to 5 for a nice row
+  }, [allPropertiesList, property]);
+
   if (!property) {
     return (
       <div className="pd-loading">
@@ -121,128 +137,155 @@ export default function PropertyDetails() {
   const highlights = getHighlights();
 
   return (
-    <div className="pd-page">
+    <div className="min-h-screen bg-[#f8fafc] font-['Outfit',sans-serif] text-[#1e293b] pb-[60px]">
       {/* ─── NAVIGATION & ACTIONS BAR ─── */}
-      <nav className="pd-top-bar">
-        <div className="pd-container pd-top-bar-inner">
-          <div className="pd-breadcrumb-wrap">
-            <button className="pd-back-icon-btn" onClick={() => navigate(-1)} title="Go Back">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+      <nav className="sticky top-0 z-[100] bg-white/90 backdrop-blur-md border-b border-[#f1f5f9] py-3.5 mb-8 shadow-sm">
+        <div className="max-w-[1280px] mx-auto px-6 flex justify-between items-center text-sm">
+          <div className="flex items-center gap-5">
+            <button
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-[#f8fafc] border border-[#f1f5f9] text-[#64748b] hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200 transition-all cursor-pointer group"
+              onClick={() => navigate(-1)}
+            >
+              <ChevronL className="w-4 h-4 translate-x-[-1px]" />
             </button>
-            <div className="pd-breadcrumbs">
-              <span onClick={() => navigate('/')}>Home</span>
-              <span className="pd-sep">/</span>
-              <span>{isLand ? 'Land' : (isCommercial ? 'Commercial' : 'Residential')}</span>
-              <span className="pd-sep">/</span>
-              <span className="pd-current">{property.title}</span>
+            <div className="flex items-center gap-2 font-bold tracking-tight">
+              <span className="text-[#94a3b8] hover:text-amber-600 transition-colors uppercase text-[0.65rem] tracking-wider cursor-pointer" onClick={() => navigate('/')}>Home</span>
+              <span className="text-[#cbd5e1] text-[0.6rem]">/</span>
+              <span className="text-[#94a3b8] hover:text-amber-600 transition-colors uppercase text-[0.65rem] tracking-wider cursor-pointer">{isLand ? 'Land' : (isCommercial ? 'Commercial' : 'Residential')}</span>
+              <span className="text-[#cbd5e1] text-[0.6rem]">/</span>
+              <span className="text-[#0f172a] uppercase text-[0.65rem] tracking-wider truncate max-w-[200px]">{property.title}</span>
             </div>
           </div>
 
-          <div className="pd-top-actions">
-            <button className="pd-top-btn" onClick={() => shareProperty(property, setCopied)}>
-              {copied ? (
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-              ) : (
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
-              )}
-              {copied ? 'Copied' : 'Share'}
+          <div className="flex items-center gap-3">
+            <button
+              className={`flex items-center gap-2 px-4 h-[36px] rounded-full border text-[0.75rem] font-bold transition-all cursor-pointer ${isWished ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
+              onClick={() => dispatch(toggleWishlist(property.id))}
+            >
+              <svg viewBox="0 0 24 24" width="14" height="14" fill={isWished ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              {isWished ? 'Saved to Wishlist' : 'Save Property'}
             </button>
-            {/* <button className="pd-top-btn" onClick={() => window.print()}>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></svg>
-              Print
-            </button> */}
+
+            <button
+              className="flex items-center gap-2 px-4 h-[36px] rounded-full bg-[#0f172a] text-white text-[0.75rem] font-bold transition-all hover:bg-amber-600 hover:scale-105 active:scale-95 cursor-pointer shadow-lg shadow-black/10"
+              onClick={() => shareProperty(property, setCopied)}
+            >
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
+              {copied ? 'Link Copied' : 'Share Now'}
+            </button>
           </div>
         </div>
       </nav>
-      <div className="pd-container">
+      <div className="max-w-[1280px] mx-auto px-6">
         {/* ─── HERO SECTION (BALANCED HEIGHT) ─── */}
-        <section className="pd-hero">
-          <div className="pd-hero-grid">
-            {/* Left: Main Image & Gallery Preview */}
-            <div className="pd-gallery-main">
-              <div className="pd-main-img-container">
-                <img src={activeImage || property?.img} alt={property?.title} className="pd-main-img" />
-                <div className="pd-badges">
-                  <span className={`pd-badge ${property.badgeClass || 'new'}`}>{property.badge}</span>
-                  <span className="pd-badge verified">Verified</span>
+        <section className="mb-10">
+          <div className="grid grid-cols-[1.6fr_1fr] gap-6 items-stretch max-md:grid-cols-1">
+            {/* Left: Gallery */}
+            <div className="flex flex-col gap-4">
+              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-[0_10px_30px_-5px_rgba(0,0,0,0.05)] bg-slate-200">
+                <img
+                  src={activeImage || property?.img}
+                  alt={property?.title}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute top-5 left-5 flex gap-2.5">
+                  <span className={`px-4 py-1.5 rounded-xl text-[0.75rem] font-bold uppercase tracking-wider backdrop-blur-md border border-white/10 shadow-lg text-white ${property.badge === 'New' ? 'bg-amber-500/90' : 'bg-[#0f172a]/90'}`}>
+                    {property.badge || 'Featured'}
+                  </span>
+                  <span className="px-4 py-1.5 rounded-xl text-[0.75rem] font-bold uppercase tracking-wider backdrop-blur-md border border-white/10 shadow-lg text-white bg-emerald-600/90">
+                    Verified
+                  </span>
                 </div>
               </div>
-              <div className="pd-thumb-grid">
+              <div className="grid grid-cols-4 gap-4">
                 {galleryImages.slice(0, 4).map((img, i) => (
-                  <div key={i} className={`pd-thumb ${activeImage === img ? 'active' : ''}`} onMouseEnter={() => setActiveImage(img)}>
-                    <img src={img} alt="thumb" />
+                  <div
+                    key={i}
+                    className={`relative h-[100px] rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${activeImage === img ? 'border-amber-600 -translate-y-1 shadow-lg' : 'border-transparent hover:scale-105'}`}
+                    onMouseEnter={() => setActiveImage(img)}
+                  >
+                    <img src={img} alt="thumb" className="w-full h-full object-cover" />
                     {i === 3 && galleryImages.length > 4 && (
-                      <div className="pd-thumb-more">+{galleryImages.length - 4} Photos</div>
+                      <div className="absolute inset-0 bg-[#0f172a]/70 text-white flex items-center justify-center text-[0.9rem] font-bold backdrop-blur-[2px]">
+                        +{galleryImages.length - 4} Photos
+                      </div>
                     )}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: Essential Info Card */}
-            <div className="pd-hero-info">
-              <div className="pd-info-card">
-                <div className="pd-price-wrap">
-                  <h1 className="pd-price">{property.price}</h1>
+            {/* Right: Info Card */}
+            <div className="flex flex-col">
+              <div className="bg-white/95 p-8 rounded-[24px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.04),0_2px_4px_rgba(0,0,0,0.02)] border border-white/80 h-full flex flex-col relative overflow-hidden backdrop-blur-lg">
+                <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.05),transparent_70%)] pointer-events-none" />
+
+                <div className="flex items-baseline gap-2.5 mb-3">
+                  <h1 className="text-[2.25rem] font-semibold text-[#0f172a] m-0 tracking-tighter">{property.price}</h1>
                   {property.pricing?.pricePerSqft && (
-                    <span className="pd-price-sqft">₹{property.pricing.pricePerSqft.toLocaleString()}/sq.ft</span>
+                    <span className="text-[#64748b] font-medium text-base opacity-80">₹{property.pricing.pricePerSqft.toLocaleString()}/sq.ft</span>
                   )}
                 </div>
-                {/* <div className="pd-type-tag">{property.propertyType}</div> */}
-                <h2 className="pd-title">{property.title}</h2>
-                <div className="pd-location">
+
+                <h2 className="text-[1.5rem] font-normal leading-[1.3] mb-1.5 text-[#0f172a] tracking-tight">{property.title}</h2>
+                <div className="flex items-center gap-2 text-[#64748b] text-[0.95rem] mb-2.5 font-normal">
                   <PinIco /> {property.location?.fullAddress || property.loc}
                 </div>
 
-                <div className="pd-specs">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[0.65rem] font-bold uppercase tracking-wider border border-emerald-100">
+                    <IconCheckCircle size={12} /> Market Price Trend: +8.5%
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-600 text-[0.65rem] font-bold uppercase tracking-wider border border-amber-100">
+                    <SearchIco className="w-3 h-3" /> High Demand Area
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-5 py-6 border-y border-black/5 mb-2.5">
                   {highlights.map((h, i) => (
-                    <div className="pd-spec-item" key={i}>
-                      <div className="pd-spec-icon">{h.icon}</div>
-                      <div className="pd-spec-text">
-                        <strong>{h.value}</strong>
-                        <span>{h.label}</span>
+                    <div className="flex items-center gap-1.5" key={i}>
+                      <div className="text-amber-600 w-6 h-6 opacity-70 shrink-0">{h.icon}</div>
+                      <div className="flex flex-col">
+                        <strong className="text-[1.1rem] text-[#0f172a] font-medium mb-0.5 leading-none">{h.value}</strong>
+                        <span className="text-[0.75rem] uppercase tracking-wider text-[#64748b] font-medium opacity-70">{h.label}</span>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="pd-quick-meta">
-                  <div className="pd-meta-row">
-                    <span>Availability:</span> <strong>{property.availabilityStatus || (isLand ? 'Ready for Registry' : 'Ready to move')}</strong>
+                <div className="flex flex-col mt-2.5 space-y-2">
+                  <div className="flex justify-between items-center text-[0.9rem]">
+                    <span className="text-[#64748b]">Availability:</span>
+                    <strong className="text-[#0f172a] font-medium">{property.availabilityStatus || (isLand ? 'Ready for Registry' : 'Ready to move')}</strong>
                   </div>
-                  <div className="pd-meta-row">
-                    <span>Orientation:</span> <strong>{property.direction || property.facing || 'Open View'}</strong>
+                  <div className="flex justify-between items-center text-[0.9rem]">
+                    <span className="text-[#64748b]">Orientation:</span>
+                    <strong className="text-[#0f172a] font-medium">{property.direction || property.facing || 'Open View'}</strong>
                   </div>
                   {!isLand && (
-                    <div className="pd-meta-row">
-                      <span>Property Age:</span> <strong>{property.age || '0-1 Years'}</strong>
-                    </div>
-                  )}
-                  {isLand && property.ownership && (
-                    <div className="pd-meta-row">
-                      <span>Current Status:</span> <strong>{property.status || 'Verified Title'}</strong>
+                    <div className="flex justify-between items-center text-[0.9rem]">
+                      <span className="text-[#64748b]">Property Age:</span>
+                      <strong className="text-[#0f172a] font-medium">{property.age || '0-1 Years'}</strong>
                     </div>
                   )}
                 </div>
 
-                <div className="pd-card-actions">
-                  <button className="pd-visit-btn" onClick={() => window.open(`https://wa.me/${property.lawyerDetails?.mobile?.replace(/\D/g, '') || '919876543210'}?text=Hi, I'm interested in ${property.title}. Please provide more details.`, '_blank')}>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                    Contact Agent
+                <div className="flex gap-3 mt-auto pt-6">
+                  <button
+                    className="flex-[2] bg-[#0f172a] text-white border-none py-3.5 px-6 rounded-xl font-bold text-[0.9rem] flex items-center justify-center gap-2.5 cursor-pointer transition-all duration-300 hover:bg-amber-600 hover:translate-y-[-2px] hover:shadow-lg active:scale-95"
+                    onClick={() => window.open(`https://wa.me/${property.lawyerDetails?.mobile?.replace(/\D/g, '') || '919876543210'}?text=Hi, I'm interested in ${property.title}. Please provide more details.`, '_blank')}
+                  >
+                    Contact Expert Advisor
                   </button>
                   <button
-                    className={`pd-wishlist-btn ${isWished ? 'active' : ''}`}
+                    className={`flex-1 py-3.5 px-3 rounded-xl border border-[#e2e8f0] bg-white flex items-center justify-center gap-1.5 font-bold text-[0.85rem] cursor-pointer transition-all duration-200 hover:bg-[#f8fafc] hover:border-amber-500 hover:text-amber-600 ${isWished ? 'bg-amber-50 border-amber-500 text-amber-600' : 'text-[#475569]'}`}
                     onClick={() => dispatch(toggleWishlist(property.id))}
                   >
-                    {isWished ? (
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="#ef4444" stroke="#ef4444" strokeWidth="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    )}
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill={isWished ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
                     {isWished ? 'Saved' : 'Wishlist'}
                   </button>
                 </div>
@@ -252,24 +295,24 @@ export default function PropertyDetails() {
         </section>
 
         {/* ─── MAIN CONTENT AREA (TWO COLUMNS) ─── */}
-        <div className="pd-main-layout">
+        <div className="mt-10">
           {/* LEFT COLUMN: EXHAUSTIVE DETAILS */}
-          <div className="pd-content-col">
-            <section className="pd-section">
-              <h3 className="pd-section-title">Overview</h3>
-              <p className="pd-description">
+          <div className="columns-2 gap-4 max-lg:columns-1">
+            <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+              <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Overview</h3>
+              <p className="leading-relaxed text-[#64748b] text-[1.1rem]">
                 {isLand ? (
                   <>
-                    Explore this premium **{property.propertyType}** located in the strategically connected area of **{property.location?.locality || property.loc}**.
+                    Explore this premium <strong className="text-[#0f172a]">{property.propertyType}</strong> located in the strategically connected area of <strong className="text-[#0f172a]">{property.location?.locality || property.loc}</strong>.
                     Perfect for investment or building your dream project, this land offers excellent potential.
-                    Positioned near **{property.location?.landmark || 'major hubs'}**, it ensures unmatched connectivity and growth opportunities.
+                    Positioned near <strong className="text-[#0f172a]">{property.location?.landmark || 'major hubs'}</strong>, it ensures unmatched connectivity and growth opportunities.
                     {property.direction && ` The plot is ${property.direction} facing.`}
                   </>
                 ) : (
                   <>
-                    Experience luxury living in this premium **{property.propertyType}** located in the heart of **{property.location?.locality || property.loc}**.
+                    Experience luxury living in this premium <strong className="text-[#0f172a]">{property.propertyType}</strong> located in the heart of <strong className="text-[#0f172a]">{property.location?.locality || property.loc}</strong>.
                     {property.furnishingStatus === 'Fully Furnished' && ' This home comes with bespoke interiors and high-end furniture, ready for immediate occupation.'}
-                    Positioned strategically near **{property.location?.landmark || 'major hubs'}**, it offers unmatched connectivity and a serene environment.
+                    Positioned strategically near <strong className="text-[#0f172a]">{property.location?.landmark || 'major hubs'}</strong>, it offers unmatched connectivity and a serene environment.
                     {property.direction && ` The property is ${property.direction} facing, ensuring optimal natural light and ventilation.`}
                   </>
                 )}
@@ -277,154 +320,55 @@ export default function PropertyDetails() {
             </section>
 
             {videoId && (
-              <section className="pd-section">
-                <h3 className="pd-section-title">Video Tour</h3>
-                <div className="pd-video-wrap">
+              <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+                <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Video Tour</h3>
+                <div className="aspect-video rounded-xl overflow-hidden bg-black shadow-lg">
                   <iframe
                     src={`https://www.youtube.com/embed/${videoId}`}
                     title="Tour"
-                    frameBorder="0"
+                    className="w-full h-full border-none"
                     allowFullScreen
                   ></iframe>
                 </div>
               </section>
             )}
 
-            {/* <section className="pd-section">
-              <h3 className="pd-section-title">Legal Documents & Verification</h3>
-              <div className="pd-legal-grid">
-                <div className="pd-legal-card">
-                  <div className="pd-legal-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                  </div>
-                  <div className="pd-legal-info">
-                    <h4>{isLand ? '7/12 Extract' : 'RERA Approved'}</h4>
-                    <div className="pd-legal-status">
-                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
-                      Verified
-                    </div>
-                  </div>
-                </div>
-                <div className="pd-legal-card">
-                  <div className="pd-legal-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                  </div>
-                  <div className="pd-legal-info">
-                    <h4>Title Deed</h4>
-                    <div className="pd-legal-status">
-                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
-                      Verified
-                    </div>
-                  </div>
-                </div>
-                <div className="pd-legal-card">
-                  <div className="pd-legal-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
-                  </div>
-                  <div className="pd-legal-info">
-                    <h4>Tax Receipts</h4>
-                    <div className="pd-legal-status">
-                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
-                      Verified
-                    </div>
-                  </div>
-                </div>
-                {isLand && (
-                  <div className="pd-legal-card">
-                    <div className="pd-legal-icon">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
-                    </div>
-                    <div className="pd-legal-info">
-                      <h4>NA Order</h4>
-                      <div className="pd-legal-status">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
-                        Verified
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </section> */}
-
-            {/* ─── DYNAMIC VERIFICATION DETAILS ─── */}
-            {/* {property.ownerVerification && (
-              <section className="pd-section">
-                <h3 className="pd-section-title">Owner Verification</h3>
-                <div className="pd-verification-card">
-                  {property.ownerVerification.photo && (
-                    <div className="pd-verify-img">
-                      <img src={property.ownerVerification.photo} alt="ID Proof" />
-                    </div>
-                  )}
-                  <div className="pd-verify-info">
-                    <h4>{property.ownerVerification.type}</h4>
-                    <span className="pd-status-badge verified">✓ {property.ownerVerification.status}</span>
-                  </div>
-                </div>
-              </section>
-            )} */}
-
-
-
-
-            {/* {property.bankerDetails && property.bankerDetails.length > 0 && (
-              <section className="pd-section">
-                <h3 className="pd-section-title">Banking Partners</h3>
-                <div className="pd-bank-list">
-                  {property.bankerDetails.map((bank, i) => (
-                    <div className="pd-contact-card" key={i}>
-                      <h4>{bank.name}</h4>
-                      <p>
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                        {bank.number}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )} */}
-
-
-            <section className="pd-section">
-              <h3 className="pd-section-title">Amenities & Features</h3>
-              <div className="pd-amenities-grid">
+            <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+              <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Amenities & Features</h3>
+              <div className="grid grid-cols-2 gap-4">
                 {(property.amenities || []).map(a => (
-                  <div key={a} className="pd-amenity">
-                    <span className="pd-amenity-ico"><AmenityIcon name={a} /></span>
-                    {a.charAt(0).toUpperCase() + a.slice(1)}
+                  <div key={a} className="flex items-center gap-3 font-medium text-[1rem] group">
+                    <span className="flex items-center justify-center w-11 h-11 rounded-full bg-[#f1f5f9] text-amber-600 transition-all duration-300 group-hover:bg-amber-600 group-hover:text-white group-hover:scale-105">
+                      <AmenityIcon name={a} />
+                    </span>
+                    <span className="capitalize">{a}</span>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="pd-section pd-location-section">
-              <h3 className="pd-section-title">Location & Connectivity</h3>
-              <div className="pd-location-content">
-                <div className="pd-map-wrap">
+            <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+              <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Location & Connectivity</h3>
+              <div className="flex flex-col gap-4">
+                <div className="w-full h-[250px] rounded-xl overflow-hidden border border-[#e2e8f0] relative z-1 shadow-sm">
                   {property.location?.coordinates ? (
                     <MapContainer
                       center={[property.location.coordinates.lat, property.location.coordinates.lng]}
                       zoom={14}
                       scrollWheelZoom={false}
-                      style={{ height: '100%', width: '100%' }}
+                      className="h-full w-full"
                     >
                       <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                       />
-                      {/* Main Property Marker */}
                       <Marker position={[property.location.coordinates.lat, property.location.coordinates.lng]}>
                         <Popup>
                           <strong>{property.title}</strong>
                         </Popup>
                       </Marker>
-
-                      {/* Hotspots Markers */}
                       {property.locationAdvantages?.filter(adv => adv.lat).map((adv, idx) => (
-                        <Marker
-                          key={idx}
-                          position={[adv.lat, adv.lng]}
-                        >
+                        <Marker key={idx} position={[adv.lat, adv.lng]}>
                           <Popup>
                             <strong>{adv.name}</strong>
                           </Popup>
@@ -435,26 +379,23 @@ export default function PropertyDetails() {
                     <iframe
                       title="Property Location"
                       src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location?.fullAddress || property.loc)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                      width="100%"
-                      height="100%"
-                      frameBorder="0"
-                      style={{ border: 0 }}
+                      className="w-full h-full border-0"
                       allowFullScreen
                     ></iframe>
                   )}
                 </div>
                 {property.locationAdvantages && property.locationAdvantages.length > 0 && (
-                  <div className="pd-location-advantages">
-                    <h4>Nearby Hotspots</h4>
-                    <div className="pd-adv-list">
+                  <div className="bg-[#f8fafc] p-6 rounded-xl border border-[#e2e8f0]">
+                    <h4 className="text-[0.8rem] font-black text-[#94a3b8] uppercase tracking-[0.15em] mb-4">Nearby Connectivity</h4>
+                    <div className="flex flex-wrap gap-2">
                       {property.locationAdvantages.map((adv, idx) => {
                         const name = typeof adv === 'string' ? adv : adv.name;
                         return (
-                          <div key={idx} className="pd-adv-list-item">
-                            <span className="pd-adv-icon">
+                          <div key={idx} className="flex items-center gap-2 px-3 py-2 bg-white border border-[#e2e8f0] rounded-lg shadow-sm transition-all hover:bg-amber-50 hover:border-amber-200">
+                            <span className="text-amber-600">
                               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" /><circle cx="12" cy="10" r="3" /></svg>
                             </span>
-                            <span className="pd-adv-text">{name.charAt(0).toUpperCase() + name.slice(1)}</span>
+                            <span className="text-[0.8rem] font-bold text-[#475569]">{name}</span>
                           </div>
                         );
                       })}
@@ -465,15 +406,15 @@ export default function PropertyDetails() {
             </section>
 
             {property.ownershipProofs && Object.keys(property.ownershipProofs).length > 0 && (
-              <section className="pd-section">
-                <h3 className="pd-section-title">Ownership Proofs</h3>
-                <div className="pd-proof-gallery">
+              <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+                <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Ownership Proofs</h3>
+                <div className="flex flex-wrap gap-4">
                   {Object.entries(property.ownershipProofs).map(([key, url]) => (
-                    <div className="pd-proof-img-card" key={key}>
-                      <div className="pd-proof-img-wrap">
-                        <img src={url} alt={key} />
+                    <div className="w-[90px] flex flex-col items-center gap-2 cursor-pointer group" key={key}>
+                      <div className="w-[90px] h-[90px] rounded-xl overflow-hidden border border-[#e2e8f0] relative">
+                        <img src={url} alt={key} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                       </div>
-                      <div className="pd-proof-img-label">
+                      <div className="text-[0.75rem] font-semibold text-[#64748b] text-center leading-tight capitalize">
                         {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                       </div>
                     </div>
@@ -482,67 +423,85 @@ export default function PropertyDetails() {
               </section>
             )}
 
-
             {property.lawyerDetails && (
-              <section className="pd-section">
-                <h3 className="pd-section-title">Legal Advisor</h3>
-                <div className="pd-contact-card">
-                  <h4>{property.lawyerDetails.name}</h4>
-                  <p>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+              <section className="break-inside-avoid mb-4 bg-white p-6 rounded-2xl border border-[#e2e8f0]">
+                <h3 className="text-[1.15rem] font-semibold mb-4 relative pl-3 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-5 before:bg-amber-600 before:rounded-full">Legal Advisor</h3>
+                <div className="p-4 bg-[#fdfdfd] border border-[#e2e8f0] rounded-xl transition-all hover:border-amber-600 hover:shadow-sm">
+                  <h4 className="text-[1.05rem] font-semibold text-[#0f172a] mb-3 flex items-center gap-2">{property.lawyerDetails.name}</h4>
+                  <p className="flex items-center gap-2.5 text-[0.95rem] text-[#64748b] mb-2.5">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#d97706" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
                     {property.lawyerDetails.mobile}
                   </p>
-                  <p>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                  <p className="flex items-center gap-2.5 text-[0.95rem] text-[#64748b]">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#d97706" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
                     {property.lawyerDetails.email}
                   </p>
                 </div>
               </section>
             )}
+            {/* ─── RELATED PROPERTIES SECTION ─── */}
+
           </div>
 
-          {/* RIGHT COLUMN: STICKY LEAD FORM */}
-          {/* <aside className="pd-sidebar-col">
-            <div className="pd-sticky-card" ref={enquiryRef}>
-              <div className="pd-lead-header">
-                <h3>Contact Seller</h3>
-                <p>Enquire now to get a callback</p>
-              </div>
-              <form className="pd-lead-form">
-                <input type="text" placeholder="Your Name" />
-                <input type="email" placeholder="Email Address" />
-                <div className="pd-phone-input">
-                  <span className="pd-prefix">+91</span>
-                  <input type="tel" placeholder="Mobile Number" />
-                </div>
-                <button type="button" className="pd-submit-btn">Send Enquiry</button>
-              </form>
-              <div className="pd-uploader-info">
-                <div className="pd-uploader-avatar">
-                  {property.uploader?.avatar || (property.uploader?.name?.[0] || 'U')}
-                </div>
-                <div className="pd-uploader-details">
-                  <strong>{property.uploader?.name || 'Authorized Agent'}</strong>
-                  <span>{property.uploader?.role || 'Relationship Manager'}</span>
-                </div>
-              </div>
-              <div className="pd-trust-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" /></svg>
-                Verified by Sherla Properties
+        </div>
+        {relatedProperties.length > 0 && (
+          <section className="mt-10 pt-5 border-t border-[#f1f5f9]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3.5">
+              <div className="flex flex-col gap-2">
+                <span className="text-amber-600 text-[0.7rem] font-bold uppercase tracking-[0.2em]">Curated for You</span>
+                <h3 className="text-[1.8rem] font-bold text-[#0f172a] m-0 tracking-tight">Properties You May Also Like</h3>
+                <p className="text-[#64748b] text-[0.95rem] font-medium">Handpicked listings from <span className="text-[#0f172a]">{property.city}</span> based on your interests.</p>
               </div>
             </div>
-          </aside> */}
-        </div>
-      </div>
 
-      {/* FLOATING WHATSAPP BUTTON */}
-      {/* <button 
-        className="pd-floating-whatsapp" 
-        onClick={() => window.open(`https://wa.me/${property.lawyerDetails?.mobile?.replace(/\D/g, '') || '919876543210'}?text=Hi, I'm interested in ${property.title}. Please provide more details.`, '_blank')}
-        title="Chat on WhatsApp"
-      >
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.436 9.889-9.886 9.889m8.415-18.3a11.815 11.815 0 00-8.415-3.483c-6.533 0-11.85 5.316-11.853 11.85 0 2.088.543 4.128 1.574 5.954l-1.674 6.111 6.252-1.639a11.785 11.785 0 00 5.698 1.474h.005c6.533 0 11.85-5.316 11.853-11.85 0-3.166-1.233-6.142-3.465-8.376z" /></svg>
-      </button> */}
-    </div>
+            <div className="relative mx-[-10px]">
+              {/* Floating Navigation Buttons */}
+              <button className="rel-prev-btn absolute left-[-22px] top-1/2 -translate-y-1/2 w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#0f172a] transition-all duration-300 hover:bg-[#0f172a] hover:text-white hover:border-[#0f172a] hover:scale-110 disabled:opacity-0 disabled:pointer-events-none z-30 shadow-[0_4px_15px_rgba(0,0,0,0.1)] cursor-pointer">
+                <ChevronL className="w-5 h-5" />
+              </button>
+              <button className="rel-next-btn absolute right-[-22px] top-1/2 -translate-y-1/2 w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#0f172a] transition-all duration-300 hover:bg-[#0f172a] hover:text-white hover:border-[#0f172a] hover:scale-110 disabled:opacity-0 disabled:pointer-events-none z-30 shadow-[0_4px_15px_rgba(0,0,0,0.1)] cursor-pointer">
+                <ChevronR className="w-5 h-5" />
+              </button>
+
+
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                spaceBetween={24}
+                slidesPerView={1.2}
+                autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                navigation={{
+                  prevEl: '.rel-prev-btn',
+                  nextEl: '.rel-next-btn',
+                }}
+                breakpoints={{
+                  640: { slidesPerView: 2.2 },
+                  1024: { slidesPerView: 3 },
+                  1280: { slidesPerView: 5 },
+                }}
+                className="!p-1.5"
+              >
+                {relatedProperties.map(p => (
+                  <SwiperSlide key={p.id}>
+                    <PropertyCard property={p} variant="vertical" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
+            <div className="mt-12 text-center relative z-10">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-[#e2e8f0] text-[0.85rem] font-bold text-[#475569] hover:bg-white hover:border-amber-500 hover:text-amber-600 hover:shadow-md transition-all group cursor-pointer relative z-20"
+                onClick={() => navigate(`/city/${property.city}`)}
+              >
+                <span className="pointer-events-none select-none">View All in {property.city}</span>
+                <ArrowR className="w-4 h-4 transition-transform group-hover:translate-x-1 pointer-events-none" />
+              </button>
+            </div>
+          </section>
+        )}
+        {/* FLOATING WHATSAPP BUTTON (Optional / Removed legacy for now) */}
+      </div>
+    </div >
   );
 }

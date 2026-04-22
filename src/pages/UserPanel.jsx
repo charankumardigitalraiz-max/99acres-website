@@ -13,25 +13,19 @@ import NotificationsPanel from '../components/UserPanel/NotificationsPanel';
 import SettingsPanel from '../components/UserPanel/SettingsPanel';
 import SubscriptionPanel from '../components/UserPanel/SubscriptionPanel';
 
-import './UserPanel.css';
-
 /* ── Icons (Kept here for navigation) ── */
-const IconHome = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12L12 3l9 9" /><path d="M9 21V12h6v9" /></svg>;
-const IconHeart = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>;
-const IconUser = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>;
-const IconBell = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>;
-const IconSettings = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>;
-const IconLogout = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>;
-const IconMessage = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>;
-const IconPremium = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>;
-const IconHelp = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>;
+const IconHome = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12L12 3l9 9" /><path d="M9 21V12h6v9" /></svg>;
+const IconHeart = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>;
+const IconUser = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>;
+const IconBell = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>;
+const IconSettings = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>;
+const IconLogout = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>;
+const IconMessage = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>;
+const IconHelp = () => <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>;
 
 const TABS = [
-  // { key: 'overview', label: 'Overview', icon: <IconHome /> },
   { key: 'profile', label: 'My Profile', icon: <IconUser /> },
-  // { key: 'subscription', label: 'Subscription', icon: <IconPremium /> },
   { key: 'favourites', label: 'Favourites', icon: <IconHeart /> },
-  // { key: 'messages', label: 'Messages', icon: <IconMessage /> },
   { key: 'notifications', label: 'Notifications', icon: <IconBell /> },
   { key: 'support', label: 'Support Chat', icon: <IconHelp /> },
   { key: 'settings', label: 'Settings', icon: <IconSettings /> },
@@ -49,11 +43,11 @@ export default function UserPanel() {
 
   if (!isLoggedIn) {
     return (
-      <div style={{ textAlign: 'center', padding: '80px 20px' }}>
-        <div style={{ fontSize: '3rem', marginBottom: 16 }}>🔒</div>
-        <h2 style={{ color: 'var(--dark)', marginBottom: 8 }}>Please login to access your panel</h2>
-        <p style={{ color: 'var(--text-3)', marginBottom: 24 }}>Sign in to view your profile, favourites and settings.</p>
-        <button className="up-btn up-btn-primary" onClick={() => navigate('/login')}>
+      <div className="text-center py-20 px-5">
+        <div className="text-5xl mb-4">🔒</div>
+        <h2 className="text-slate-900 mb-2 text-2xl font-bold">Please login to access your panel</h2>
+        <p className="text-slate-400 mb-6 max-w-md mx-auto">Sign in to view your profile, favourites and settings.</p>
+        <button className="px-5 py-2.5 rounded-lg font-semibold bg-amber-500 text-white transition-all hover:bg-amber-600" onClick={() => navigate('/login')}>
           Login / Register
         </button>
       </div>
@@ -70,12 +64,9 @@ export default function UserPanel() {
 
   const renderPanel = () => {
     switch (tabName) {
-      // case 'overview': return <Overview />;
       case 'profile': return <ProfilePanel />;
-      // case 'subscription': return <SubscriptionPanel />;
       case 'favourites': return <FavouritesPanel />;
       case 'notifications': return <NotificationsPanel />;
-      // case 'messages': return <MessagesPanel />;
       case 'support': return <SupportPanel />;
       case 'settings': return <SettingsPanel />;
       default: return <ProfilePanel />;
@@ -83,42 +74,48 @@ export default function UserPanel() {
   };
 
   return (
-    <div className="up-page">
-      <div className="up-layout">
+    <div className="bg-[#f8fafc] min-h-[calc(100vh-80px)] py-10 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8 max-w-[1260px] mx-auto px-5 items-start">
         {/* ── SIDEBAR ── */}
-        <aside className="up-sidebar">
-          <div className="up-avatar-block">
-            <div className="up-avatar-ring">{profile.initials}</div>
-            <div className='up-user-details'>
-              <div className="up-user-name">{`${profile.firstName} ${profile.lastName}`}</div>
-              <div className="up-user-email">{profile.email}</div>
+        <aside className="bg-white border border-slate-100 rounded-[16px] overflow-hidden sticky top-[90px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] lg:block hidden">
+          <div className="bg-[#fcfcfd] p-[32px_20px_24px] text-center relative border-b border-slate-100">
+            <div className="w-[72px] h-[72px] rounded-full bg-amber-50 border border-amber-500/20 flex items-center justify-center text-[1.8rem] font-semibold text-amber-700 mx-auto mb-4">
+              {profile.initials}
+            </div>
+            <div>
+              <div className="text-[1.05rem] font-semibold text-slate-900 mb-1 leading-tight">{`${profile.firstName} ${profile.lastName}`}</div>
+              <div className="text-[0.8rem] text-slate-500 break-all">{profile.email}</div>
             </div>
           </div>
-          <nav className="up-nav-list">
+          <nav className="p-3 flex flex-col gap-[2px]">
             {TABS.map(t => (
               <button
                 key={t.key}
-                className={`up-nav-item ${tabName === t.key ? 'active' : ''}`}
+                className={`flex items-center gap-3 p-[10px_16px] rounded-[10px] text-[0.9rem] font-medium transition-all duration-200 border-none w-full text-left cursor-pointer
+                  ${tabName === t.key 
+                    ? 'bg-amber-50/50 text-amber-600 font-bold [&>svg]:text-amber-500 [&>svg]:opacity-100' 
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 [&>svg]:opacity-70'
+                  }`}
                 onClick={() => navigate(`/profile/${t.key}`)}
               >
                 {t.icon}
                 <span>{t.label}</span>
                 {t.key === 'favourites' && wishlist.length > 0 && (
-                  <span className="up-tag amber" style={{ marginLeft: 'auto', fontSize: '0.65rem', padding: '2px 7px' }}>
+                  <span className="ml-auto text-[0.65rem] p-[2px_7px] rounded-full bg-amber-500 text-white font-bold">
                     {wishlist.length}
                   </span>
                 )}
               </button>
             ))}
-            <div className="up-nav-divider" />
-            <button className="up-nav-item danger" onClick={handleLogout}>
+            <div className="h-[1px] bg-slate-100 my-3 mx-2" />
+            <button className="flex items-center gap-3 p-[10px_16px] rounded-[10px] text-[0.9rem] font-medium transition-all duration-200 border-none w-full text-left cursor-pointer text-red-500 hover:bg-red-50" onClick={handleLogout}>
               <IconLogout /> Logout
             </button>
           </nav>
         </aside>
 
         {/* ── MAIN ── */}
-        <main className="up-main">
+        <main className="min-w-0">
           {renderPanel()}
         </main>
       </div>

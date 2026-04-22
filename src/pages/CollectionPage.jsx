@@ -95,295 +95,316 @@ const CollectionPage = ({ type, title, subtitle }) => {
   const heroBg = COLLECTION_IMAGES[type] || COLLECTION_IMAGES['featured'];
 
   return (
-    <div className="cp-page">
+    <div className="min-h-screen bg-[#f1f5f9] font-['Outfit',sans-serif]">
 
       {/* ── HERO BANNER ── */}
-      <section className="cp-hero" style={{ backgroundImage: `url(${heroBg})` }}>
-        <div className="cp-hero-overlay" />
+      <section
+        className="relative h-[270px] bg-cover bg-center flex flex-col justify-end pb-24 transition-all duration-700"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent z-1" /> */}
 
         {/* Breadcrumb */}
-        <nav className="cp-breadcrumb">
-          <div className="container">
-            <div className="cp-bc-inner">
-              <Link to="/" className="cp-bc-link"><ChevronL /> Home</Link>
-              {/* <span className="cp-bc-sep">/</span>
-              <span className="cp-bc-current">{title}</span> */}
-            </div>
+        <nav className="absolute top-0 left-0 w-full z-10 py-6">
+          <div className="max-w-[1350px] mx-auto px-[22px]">
+            <Link to="/" className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors text-[0.9rem] font-medium no-underline">
+              <ChevronL className="w-4 h-4" /> Home
+            </Link>
           </div>
         </nav>
 
-        {/* Hero content */}
-        <div className="cp-hero-body">
-          <div className="container">
-            <div className="cp-hero-row">
-              <div className="cp-hero-text">
-                <h1 className="cp-hero-title">{title}</h1>
-                <p className="cp-hero-subtitle">
-                  {subtitle || 'Discover curated collections of premium properties.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Featured Hero Cards */}
-            {/* {properties.length > 0 && (
-              <div className="cp-hero-cards-section">
-                <div className="cp-hero-cards-grid">
-                  {properties.slice(0, 3).map(p => (
-                    <Link key={p.id} to={`/property/${p.id}`} className="cp-hero-mini-card">
-                      <img src={p.img} alt={p.title} className="cp-mini-img" />
-                      <div className="cp-mini-info">
-                        <div className="cp-mini-price">{p.price}</div>
-                        <h4 className="cp-mini-title">{p.title}</h4>
-                        <div className="cp-mini-meta">
-                          <PinIco size={10} /> {p.loc?.split(',')[0]}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )} */}
+        <div className="relative z-10 max-w-[1350px] mx-auto px-[22px] w-full">
+          <div className="max-w-[700px]">
+            <h1 className="text-[2rem] font-bold text-white leading-tight tracking-tight mb-3 max-md:text-[1.8rem]">
+              {title}
+            </h1>
+            <p className="text-[1.1rem] text-white/80 leading-relaxed font-normal max-w-[600px]">
+              {subtitle || 'Discover curated collections of premium properties.'}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── STICKY FILTER ISLAND ── */}
-      <section className="cp-filter-row">
-        <div className="container">
-          <div className="cp-filter-island" ref={islandRef}>
-            <div className="cp-island-main">
+      <section className="relative z-[100] mt-[-35px]">
+        <div className="max-w-[1350px] mx-auto px-[22px]">
+          <div className="bg-white/95 backdrop-blur-xl rounded-[28px] p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.12),0_10px_20px_-5px_rgba(0,0,0,0.04)] border border-white/50 flex items-center justify-between gap-4 max-lg:flex-col max-lg:items-stretch max-lg:p-4" ref={islandRef}>
+            <div className="flex items-center flex-1 gap-1 max-lg:flex-wrap max-sm:flex-col max-sm:items-stretch max-sm:gap-3">
               {/* Inline Filters */}
-              <div className="cp-filters-inline">
+              <div className="flex items-center gap-1.5 p-1 bg-[#f8fafc] rounded-[22px] border border-[#f1f5f9] max-sm:hidden">
                 {/* Budget Dropdown */}
-                <div className="cp-filter-item">
+                <div className="relative">
                   <button
-                    className={`cp-inline-btn ${activePopover === 'budget' ? 'active' : ''} ${filters.minPrice > 0 || filters.maxPrice < 500000000 ? 'filtered' : ''}`}
+                    className={`h-[46px] px-6 rounded-full text-[0.85rem] font-bold cursor-pointer transition-all border-none flex items-center gap-2 ${activePopover === 'budget' ? 'bg-[#0f172a] text-white shadow-lg' : (filters.minPrice > 0 || filters.maxPrice < 500000000 ? 'bg-amber-50 text-amber-600' : 'bg-transparent text-[#64748b] hover:bg-white hover:text-[#0f172a]')}`}
                     onClick={() => setActivePopover(activePopover === 'budget' ? null : 'budget')}
                   >
-                    Budget <span className="cp-chevron">▾</span>
+                    Budget <span className={`text-[0.7rem] transition-transform ${activePopover === 'budget' ? 'rotate-180' : ''}`}>▾</span>
                   </button>
                   {activePopover === 'budget' && (
-                    <div className="cp-popover cp-popover-budget">
-                      <h4 className="cp-popover-title">Collection Price Range</h4>
-                      <div className="cp-price-inputs">
-                        <div className="cp-price-field">
-                          <span>Min Price</span>
-                          <input
-                            type="number"
-                            value={filters.minPrice}
-                            onChange={(e) => setFilters(prev => ({ ...prev, minPrice: Number(e.target.value) }))}
-                            placeholder="Min"
-                          />
+                    <>
+                      <div className="fixed inset-0 bg-[#0f172a]/40 backdrop-blur-[2px] z-[190] hidden max-sm:block animate-[fade-in_0.3s_ease-out]" onClick={(e) => { e.stopPropagation(); setActivePopover(null); }} />
+                      <div className="absolute top-[calc(100%+12px)] left-0 w-[320px] bg-white rounded-[24px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] border border-[#f1f5f9] p-6 z-[200] animate-[popover-in_0.3s_ease-out] max-sm:fixed max-sm:top-auto max-sm:bottom-0 max-sm:left-0 max-sm:w-full max-sm:rounded-b-none max-sm:rounded-t-[32px] max-sm:pb-8">
+                        <h4 className="text-[1rem] font-bold text-[#0f172a] mb-5">Collection Price Range</h4>
+                        <div className="flex gap-3 mb-6">
+                          <div className="flex-1">
+                            <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider block mb-1.5 pl-1">Min Price</span>
+                            <input
+                              type="number"
+                              value={filters.minPrice}
+                              onChange={(e) => setFilters(prev => ({ ...prev, minPrice: Number(e.target.value) }))}
+                              placeholder="Min"
+                              className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.9rem] font-semibold focus:outline-none focus:border-amber-500"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider block mb-1.5 pl-1">Max Price</span>
+                            <input
+                              type="number"
+                              value={filters.maxPrice}
+                              onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
+                              placeholder="Max"
+                              className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.9rem] font-semibold focus:outline-none focus:border-amber-500"
+                            />
+                          </div>
                         </div>
-                        <div className="cp-price-field">
-                          <span>Max Price</span>
-                          <input
-                            type="number"
-                            value={filters.maxPrice}
-                            onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
-                            placeholder="Max"
-                          />
+                        <div className="flex justify-between items-center bg-[#f8fafc] p-3 rounded-xl border border-[#f1f5f9]">
+                          <span className="text-[0.8rem] font-bold text-[#475569]">{formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}</span>
+                          <button className="h-9 px-4 rounded-lg bg-[#0f172a] text-white text-[0.8rem] font-bold cursor-pointer hover:bg-amber-600 transition-colors" onClick={() => setActivePopover(null)}>Done</button>
                         </div>
                       </div>
-                      <div className="cp-popover-footer">
-                        <span className="cp-popover-info">{formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}</span>
-                        <button className="cp-popover-done" onClick={() => setActivePopover(null)}>Done</button>
-                      </div>
-                    </div>
+                    </>
                   )}
                 </div>
 
                 {/* BHK Dropdown */}
-                <div className="cp-filter-item">
+                <div className="relative">
                   <button
-                    className={`cp-inline-btn ${activePopover === 'bhk' ? 'active' : ''} ${filters.beds.length > 0 ? 'filtered' : ''}`}
+                    className={`h-[46px] px-6 rounded-full text-[0.85rem] font-bold cursor-pointer transition-all border-none flex items-center gap-2 ${activePopover === 'bhk' ? 'bg-[#0f172a] text-white shadow-lg' : (filters.beds.length > 0 ? 'bg-amber-50 text-amber-600' : 'bg-transparent text-[#64748b] hover:bg-white hover:text-[#0f172a]')}`}
                     onClick={() => setActivePopover(activePopover === 'bhk' ? null : 'bhk')}
                   >
-                    BHK {filters.beds.length > 0 && `(${filters.beds.length})`} <span className="cp-chevron">▾</span>
+                    BHK {filters.beds.length > 0 && `(${filters.beds.length})`} <span className={`text-[0.7rem] transition-transform ${activePopover === 'bhk' ? 'rotate-180' : ''}`}>▾</span>
                   </button>
                   {activePopover === 'bhk' && (
-                    <div className="cp-popover cp-popover-bhk">
-                      <h4 className="cp-popover-title">Bedrooms (BHK)</h4>
-                      <div className="cp-filter-chips">
-                        {[1, 2, 3, 4, 5].map(bhk => (
-                          <button
-                            key={bhk}
-                            className={`cp-chip ${filters.beds.includes(bhk) ? 'active' : ''}`}
-                            onClick={() => handleBHKToggle(bhk)}
-                          >
-                            <BedIco size={14} />
-                            <span>{bhk} BHK</span>
-                          </button>
-                        ))}
+                    <>
+                      <div className="fixed inset-0 bg-[#0f172a]/40 backdrop-blur-[2px] z-[190] hidden max-sm:block animate-[fade-in_0.3s_ease-out]" onClick={(e) => { e.stopPropagation(); setActivePopover(null); }} />
+                      <div className="absolute top-[calc(100%+12px)] left-0 w-[280px] bg-white rounded-[24px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] border border-[#f1f5f9] p-6 z-[200] animate-[popover-in_0.3s_ease-out] max-sm:fixed max-sm:top-auto max-sm:bottom-0 max-sm:left-0 max-sm:w-full max-sm:rounded-b-none max-sm:rounded-t-[32px] max-sm:pb-8">
+                        <h4 className="text-[1rem] font-bold text-[#0f172a] mb-5">Bedrooms (BHK)</h4>
+                        <div className="grid grid-cols-2 gap-2 mb-6">
+                          {[1, 2, 3, 4, 5].map(bhk => (
+                            <button
+                              key={bhk}
+                              className={`flex items-center justify-center gap-2 h-11 rounded-xl border border-[#e2e8f0] text-[0.85rem] font-bold cursor-pointer transition-all ${filters.beds.includes(bhk) ? 'bg-amber-50 border-amber-500 text-amber-600 shadow-sm' : 'bg-white text-[#64748b] hover:bg-[#f8fafc]'}`}
+                              onClick={() => handleBHKToggle(bhk)}
+                            >
+                              <BedIco size={14} />
+                              <span>{bhk} BHK</span>
+                            </button>
+                          ))}
+                        </div>
+                        <button className="w-full h-11 rounded-xl bg-[#0f172a] text-white font-bold cursor-pointer hover:bg-amber-600 transition-colors" onClick={() => setActivePopover(null)}>Set BHK</button>
                       </div>
-                      <div className="cp-popover-footer">
-                        <button className="cp-popover-done" style={{ width: '100%' }} onClick={() => setActivePopover(null)}>Set BHK</button>
-                      </div>
-                    </div>
+                    </>
                   )}
                 </div>
 
                 {/* Status Dropdown */}
-                <div className="cp-filter-item">
+                <div className="relative">
                   <button
-                    className={`cp-inline-btn ${activePopover === 'status' ? 'active' : ''} ${filters.status.length > 0 ? 'filtered' : ''}`}
+                    className={`h-[46px] px-6 rounded-full text-[0.85rem] font-bold cursor-pointer transition-all border-none flex items-center gap-2 ${activePopover === 'status' ? 'bg-[#0f172a] text-white shadow-lg' : (filters.status.length > 0 ? 'bg-amber-50 text-amber-600' : 'bg-transparent text-[#64748b] hover:bg-white hover:text-[#0f172a]')}`}
                     onClick={() => setActivePopover(activePopover === 'status' ? null : 'status')}
                   >
-                    Status <span className="cp-chevron">▾</span>
+                    Status <span className={`text-[0.7rem] transition-transform ${activePopover === 'status' ? 'rotate-180' : ''}`}>▾</span>
                   </button>
                   {activePopover === 'status' && (
-                    <div className="cp-popover cp-popover-status">
-                      <h4 className="cp-popover-title">Availability</h4>
-                      <div className="cp-filter-chips">
-                        {['ready to move', 'under construction'].map(stat => (
-                          <button
-                            key={stat}
-                            className={`cp-chip ${filters.status.includes(stat) ? 'active' : ''}`}
-                            onClick={() => setFilters(prev => ({
-                              ...prev,
-                              status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat]
-                            }))}
-                          >
-                            <IconCheckCircle size={14} />
-                            <span>{stat}</span>
-                          </button>
-                        ))}
+                    <>
+                      <div className="fixed inset-0 bg-[#0f172a]/40 backdrop-blur-[2px] z-[190] hidden max-sm:block animate-[fade-in_0.3s_ease-out]" onClick={(e) => { e.stopPropagation(); setActivePopover(null); }} />
+                      <div className="absolute top-[calc(100%+12px)] left-0 w-[280px] bg-white rounded-[24px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] border border-[#f1f5f9] p-6 z-[200] animate-[popover-in_0.3s_ease-out] max-sm:fixed max-sm:top-auto max-sm:bottom-0 max-sm:left-0 max-sm:w-full max-sm:rounded-b-none max-sm:rounded-t-[32px] max-sm:pb-8">
+                        <h4 className="text-[1rem] font-bold text-[#0f172a] mb-5">Availability</h4>
+                        <div className="flex flex-col gap-2 mb-6">
+                          {['ready to move', 'under construction'].map(stat => (
+                            <button
+                              key={stat}
+                              className={`flex items-center gap-3 px-4 h-11 rounded-xl border border-[#e2e8f0] text-[0.85rem] font-bold cursor-pointer transition-all ${filters.status.includes(stat) ? 'bg-amber-50 border-amber-500 text-amber-600 shadow-sm' : 'bg-white text-[#64748b] hover:bg-[#f8fafc]'}`}
+                              onClick={() => setFilters(prev => ({
+                                ...prev,
+                                status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat]
+                              }))}
+                            >
+                              <IconCheckCircle size={14} />
+                              <span className="capitalize">{stat}</span>
+                            </button>
+                          ))}
+                        </div>
+                        <button className="w-full h-11 rounded-xl bg-[#0f172a] text-white font-bold cursor-pointer hover:bg-amber-600 transition-colors" onClick={() => setActivePopover(null)}>Apply Status</button>
                       </div>
-                      <div className="cp-popover-footer">
-                        <button className="cp-popover-done" style={{ width: '100%' }} onClick={() => setActivePopover(null)}>Apply Status</button>
-                      </div>
-                    </div>
+                    </>
                   )}
                 </div>
               </div>
 
               {/* Search Space (Expansive) */}
-              <div className="cp-search-wrap">
-                <div className="cp-search-bar" onClick={() => searchRef.current?.focus()}>
-                  <SearchIco />
+              <div className="flex-1 ml-2 max-lg:ml-0 max-sm:w-full max-sm:ml-0 flex items-center gap-2 max-sm:gap-3">
+                <div
+                  className="flex-1 flex items-center gap-3 h-[52px] bg-transparent transition-all border-none focus-within:bg-white focus-within:shadow-[0_4px_15px_rgba(0,0,0,0.05)] rounded-[20px]"
+                  onClick={() => searchRef.current?.focus()}
+                >
+                  <SearchIco className="w-5 h-5 text-[#94a3b8] ml-4 shrink-0" />
                   <input
                     ref={searchRef}
                     type="text"
                     placeholder="Search this collection..."
+                    className="w-full bg-transparent border-none outline-none text-[1rem] font-medium text-[#0f172a] placeholder:text-[#94a3b8] pr-4 h-full"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                   />
                 </div>
+
+                <button
+                  className="hidden max-sm:flex shrink-0 w-[52px] h-[52px] bg-[#f8fafc] border border-[#f1f5f9] active:bg-[#e2e8f0] transition-colors text-[#0f172a] rounded-[20px] items-center justify-center relative shadow-sm"
+                  onClick={() => setActivePopover('mobileFilters')}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                  {(filters.beds.length > 0 || filters.status.length > 0 || filters.minPrice > 0 || filters.maxPrice < 500000000) && (
+                    <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-amber-500 border-2 border-[#f8fafc]"></span>
+                  )}
+                </button>
               </div>
             </div>
 
             {/* Reset filters only shows when active */}
             {(filteredProperties.length < properties.length || searchQuery) && (
-              <button className="cp-island-reset" onClick={clearFilters}>
+              <button
+                className="h-[46px] px-6 text-[#64748b] text-[0.85rem] font-bold border-none bg-transparent cursor-pointer hover:text-amber-600 transition-colors whitespace-nowrap"
+                onClick={clearFilters}
+              >
                 Clear All
               </button>
             )}
+
+
           </div>
         </div>
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="container cp-content">
+      <div className="max-w-[1350px] mx-auto px-[22px] py-16">
 
         {filteredProperties.length > 0 ? (
           <>
-            {/* Spotlight Showcase - Top Property */}
-            {/* <div className="cp-spotlight-section">
-              <div className="cp-spotlight-tag">Editorial Spotlight</div>
-              <div className="cp-spotlight-card">
-                <div className="cp-spotlight-image" style={{ backgroundImage: `url(${filteredProperties[0].img || '/placeholder.jpg'})` }}>
-                  <div className="cp-spotlight-overlay" />
-                </div>
-                <div className="cp-spotlight-content">
-                  <div className="cp-spotlight-header">
-                    <span className="cp-spotlight-badge">Curated Selection</span>
-                    <h2 className="cp-spotlight-title">{filteredProperties[0].title}</h2>
-                    <p className="cp-spotlight-loc">{filteredProperties[0].loc}</p>
-                  </div>
-                  <div className="cp-spotlight-details">
-                    <div className="cp-spotlight-info">
-                      <span className="cp-info-label">Specifications</span>
-                      <span className="cp-info-value">
-                        {type === 'land'
-                          ? `${filteredProperties[0].size || filteredProperties[0].sqft || 'Premium'} Area`
-                          : `${filteredProperties[0].beds} BHK • ${filteredProperties[0].sqft} Sq.Ft`
-                        }
-                      </span>
-                    </div>
-                    <div className="cp-spotlight-price">
-                      <span className="cp-info-label">{type === 'land' ? 'Listing Value' : 'Investment Profile'}</span>
-                      <span className="cp-price-val">{filteredProperties[0].pricing?.expectedPrice ? formatPrice(filteredProperties[0].pricing?.expectedPrice) : (filteredProperties[0].price || 'Contact for Price')}</span>
-                    </div>
-                  </div>
-                  <Link to={`/property/${filteredProperties[0].id}`} className="cp-spotlight-btn">
-                    View Masterpiece <ArrowR />
-                  </Link>
-                </div>
+            {/* Asymmetric Grid for Results */}
+            <div className="mb-12 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-1.5 h-8 bg-amber-500 rounded-full" />
+                <h2 className="text-[1.35rem] font-semibold text-[#0f172a] tracking-tight">Collection Highlights</h2>
               </div>
-            </div> */}
+              {/* <span className="bg-white border border-[#e2e8f0] px-5 py-2 rounded-full text-[0.9rem] font-bold text-[#64748b] shadow-sm">
+                <span className="text-[#0f172a]">{filteredProperties.length}</span> properties found
+              </span> */}
+            </div>
 
-            {/* Expert Insight Banner */}
-            {/* <div className="cp-insight-banner">
-              <div className="cp-insight-accent" />
-              <div className="cp-insight-text">
-                <h3>Expert Collection Insights</h3>
-                <p>{EXPERT_NOTES[type] || EXPERT_NOTES['featured']}</p>
-              </div>
-              <div className="cp-insight-meta">
-                <span className="cp-insight-verify">Verified Selection</span>
-              </div>
-            </div> */}
-
-            {/* Asymmetric Grid for Remaining Results */}
-            {filteredProperties.length > 1 && (
-              <>
-                <div className="cp-section-head">
-                  <div className="cp-section-accent" />
-                  <h2 className="cp-section-title">Collection Highlights</h2>
-                  <span className="cp-section-count">{filteredProperties.length - 1} properties found</span>
+            <div className="grid grid-cols-4 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1">
+              {filteredProperties.map((property, index) => (
+                <div key={property.id}>
+                  <PropertyCard
+                    property={property}
+                    variant={type === 'land' ? 'land' : 'vertical'}
+                  />
                 </div>
-                <div className="cp-grid cp-asymmetric-grid">
-                  {filteredProperties.map((property, index) => (
-                    <div key={property.id} className={`cp-grid-item`}>
-                      <PropertyCard
-                        property={property}
-                        variant={type === 'land' ? 'land' : 'vertical'}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+              ))}
+            </div>
           </>
         ) : (
-          <div className="cp-empty">
-            <div className="cp-empty-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-                <path d="M11 8v6" /><path d="M8 11h6" />
-              </svg>
-            </div>
-            <h3>No Properties Found</h3>
-            <p>Try adjusting your search or explore other collections.</p>
-            <button className="cp-empty-btn" onClick={() => setSearchQuery('')}>Clear Search</button>
+          <div className="text-center py-32 bg-white rounded-[40px] border border-dashed border-[#e2e8f0] shadow-sm">
+            <div className="text-[5rem] mb-6 grayscale opacity-20">🔍</div>
+            <h3 className="text-[2rem] font-bold text-[#0f172a] mb-2 tracking-tight">No Properties Found</h3>
+            <p className="text-[#64748b] text-[1.1rem] mb-10 max-w-[400px] mx-auto leading-relaxed">Try adjusting your search or explore other collections.</p>
+            <button
+              className="h-[56px] px-10 rounded-full bg-[#0f172a] text-white text-[1rem] font-bold cursor-pointer transition-all hover:bg-amber-600 hover:shadow-xl active:scale-95 shadow-lg"
+              onClick={() => setSearchQuery('')}
+            >
+              Clear Search
+            </button>
           </div>
         )}
       </div>
 
       {/* ── BOTTOM CTA ── */}
-      <section className="cp-cta">
-        <div className="container">
-          <div className="cp-cta-card">
-            <div className="cp-cta-info">
-              <h2>Still searching for the perfect home?</h2>
-              <p>Explore our entire catalog of premium and verified properties.</p>
+      <section className="pb-24">
+        <div className="max-w-[1350px] mx-auto px-[22px]">
+          <div className="bg-[#0f172a] rounded-[48px] p-10 flex justify-between items-center gap-12 relative overflow-hidden shadow-2xl max-lg:flex-col max-lg:text-center max-lg:p-12">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.15),transparent_70%)] pointer-events-none" />
+
+            <div className="flex-1 relative z-10">
+              <h2 className="text-[1.7rem] font-semibold text-white mb-3 leading-tight tracking-tight">Still searching for the perfect home?</h2>
+              <p className="text-[1.25rem] text-white/70 max-w-[550px] leading-relaxed max-lg:mx-auto font-normal">Explore our entire catalog of premium and verified properties across all major cities.</p>
             </div>
-            <Link to="/properties" className="cp-cta-btn">
-              Explore All <ArrowR />
+            <Link to="/properties" className="h-[52px] px-8 rounded-[24px] bg-amber-600 text-white text-[1rem] font-bold flex items-center gap-3 no-underline transition-all hover:bg-white hover:text-amber-600 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:-translate-y-1 relative z-10 active:scale-95 shadow-xl">
+              Explore All <ArrowR className="w-6 h-6" />
             </Link>
           </div>
         </div>
       </section>
+
+      {/* --- MOBILE FILTERS DRAWER --- */}
+      {activePopover === 'mobileFilters' && (
+        <>
+          <div className="fixed inset-0 bg-[#0f172a]/40 backdrop-blur-[2px] z-[9990] hidden max-sm:block animate-[fade-in_0.2s_ease-out]" onClick={(e) => { e.stopPropagation(); setActivePopover(null); }} />
+          <div className="fixed inset-y-0 right-0 w-[85vw] max-w-[400px] bg-white p-6 pb-0 z-[9999] hidden max-sm:flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.2)] animate-[popover-in_0.3s_ease-out]" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6 shrink-0">
+              <h3 className="text-[1.3rem] font-bold text-[#0f172a]">Filters</h3>
+              <button onClick={() => setActivePopover(null)} className="w-8 h-8 flex items-center justify-center bg-[#f1f5f9] rounded-full text-[#64748b] text-xl leading-none">&times;</button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto flex flex-col gap-8 pb-6 pr-1 max-sm:[&::-webkit-scrollbar]:w-1 max-sm:[&::-webkit-scrollbar-thumb]:bg-[#e2e8f0] max-sm:[&::-webkit-scrollbar-thumb]:rounded-full">
+              {/* Budget */}
+              <div>
+                <h4 className="text-[1rem] font-bold text-[#0f172a] mb-4">Price Range</h4>
+                <div className="flex flex-col gap-3 mb-3">
+                  <div className="flex-1">
+                    <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider block mb-1.5 pl-1">Min Price</span>
+                    <input type="number" value={filters.minPrice} onChange={(e) => setFilters(prev => ({ ...prev, minPrice: Number(e.target.value) }))} placeholder="Min" className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.9rem] font-semibold focus:outline-none focus:border-amber-500" />
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider block mb-1.5 pl-1">Max Price</span>
+                    <input type="number" value={filters.maxPrice} onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))} placeholder="Max" className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.9rem] font-semibold focus:outline-none focus:border-amber-500" />
+                  </div>
+                </div>
+                <div className="flex justify-between items-center bg-[#f8fafc] p-3 rounded-xl border border-[#f1f5f9]">
+                  <span className="text-[0.8rem] font-bold text-[#475569]">{formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}</span>
+                </div>
+              </div>
+
+              {/* BHK */}
+              <div>
+                <h4 className="text-[1rem] font-bold text-[#0f172a] mb-4">Bedrooms</h4>
+                <div className="grid grid-cols-2 gap-2">
+                  {[1, 2, 3, 4, 5].map(bhk => (
+                    <button key={bhk} className={`flex items-center justify-center gap-2 h-11 rounded-xl border ${filters.beds.includes(bhk) ? 'bg-amber-50 border-amber-500 text-amber-600 shadow-sm' : 'bg-white border-[#e2e8f0] text-[#64748b]'} text-[0.85rem] font-bold cursor-pointer transition-all`} onClick={() => handleBHKToggle(bhk)}>
+                      <BedIco size={14} /><span>{bhk} BHK</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Status */}
+              <div>
+                <h4 className="text-[1rem] font-bold text-[#0f172a] mb-4">Availability</h4>
+                <div className="flex flex-col gap-2">
+                  {['ready to move', 'under construction'].map(stat => (
+                    <button key={stat} className={`flex items-center gap-3 px-4 h-11 rounded-xl border ${filters.status.includes(stat) ? 'bg-amber-50 border-amber-500 text-amber-600 shadow-sm' : 'bg-white border-[#e2e8f0] text-[#64748b]'} text-[0.85rem] font-bold cursor-pointer transition-all`} onClick={() => setFilters(prev => ({ ...prev, status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat] }))}>
+                      <IconCheckCircle size={14} /> <span className="capitalize">{stat}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-auto py-6 flex gap-3 shrink-0 bg-white">
+              <button className="flex-1 h-12 rounded-xl bg-[#f8fafc] text-[#64748b] font-bold border border-[#e2e8f0] hover:bg-white transition-colors" onClick={clearFilters}>Clear All</button>
+              <button className="flex-1 h-12 rounded-xl bg-[#0f172a] text-white font-bold hover:bg-amber-600 transition-colors" onClick={() => setActivePopover(null)}>Show Results</button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

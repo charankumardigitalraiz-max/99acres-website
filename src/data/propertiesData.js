@@ -479,7 +479,7 @@ export const propertiesData = [
   },
   {
     id: 7,
-    title: '5 Acres Agricultural Land in Shadnagar',
+    title: '5 Acres Agricultural Land',
     propertyType: 'Lands',
     purpose: 'selling',
     propertyLength: '5 Acres',

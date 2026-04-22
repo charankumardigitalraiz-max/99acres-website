@@ -12,6 +12,7 @@ import CategoryViewDetails from './pages/CategoryViewDetails';
 import UserPanel from './pages/UserPanel';
 import CollectionPage from './pages/CollectionPage';
 import UpcomingProjectsPage from './pages/UpcomingProjectsPage';
+import CityPropertiesPage from './pages/CityPropertiesPage';
 
 // Info Pages
 import AboutUs from './pages/info/AboutUs';
@@ -74,6 +75,7 @@ export default function App() {
               path="upcoming-projects"
               element={<UpcomingProjectsPage />}
             />
+            <Route path="city/:cityName" element={<CityPropertiesPage />} />
           </Route>
         </Routes>
       </Provider>
