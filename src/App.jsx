@@ -41,7 +41,7 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile/:tab?" element={<UserPanel />} />
-            
+
             {/* Info Routes */}
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<ContactUs />} />
