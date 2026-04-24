@@ -139,7 +139,7 @@ export default function PropertyDetails() {
   return (
     <div className="min-h-screen bg-[#f8fafc] font-['Outfit',sans-serif] text-[#1e293b] pb-[60px]">
       {/* ─── NAVIGATION & ACTIONS BAR ─── */}
-      <nav className="sticky top-0 z-[100] bg-white/90 backdrop-blur-md border-b border-[#f1f5f9] py-3.5 mb-8 shadow-sm">
+      <nav className=" top-0 z-[100] bg-white/90 backdrop-blur-md border-b border-[#f1f5f9] py-3.5 mb-8 shadow-sm">
         <div className="max-w-[1280px] mx-auto px-6 flex justify-between items-center text-sm">
           <div className="flex items-center gap-5">
             <button
@@ -151,8 +151,8 @@ export default function PropertyDetails() {
             <div className="flex items-center gap-2 font-bold tracking-tight">
               <span className="text-[#94a3b8] hover:text-amber-600 transition-colors uppercase text-[0.65rem] tracking-wider cursor-pointer" onClick={() => navigate('/')}>Home</span>
               <span className="text-[#cbd5e1] text-[0.6rem]">/</span>
-              <span className="text-[#94a3b8] hover:text-amber-600 transition-colors uppercase text-[0.65rem] tracking-wider cursor-pointer">{isLand ? 'Land' : (isCommercial ? 'Commercial' : 'Residential')}</span>
-              <span className="text-[#cbd5e1] text-[0.6rem]">/</span>
+              {/* <span className="text-[#94a3b8] hover:text-amber-600 transition-colors uppercase text-[0.65rem] tracking-wider cursor-pointer">{isLand ? 'Land' : (isCommercial ? 'Commercial' : 'Residential')}</span>
+              <span className="text-[#cbd5e1] text-[0.6rem]">/</span> */}
               <span className="text-[#0f172a] uppercase text-[0.65rem] tracking-wider truncate max-w-[200px]">{property.title}</span>
             </div>
           </div>

@@ -19,6 +19,7 @@ const CityPropertiesPage = () => {
     beds: [],
     status: [],
   });
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const filterRef = useRef(null);
 
   // Close popovers on click outside
@@ -129,7 +130,7 @@ const CityPropertiesPage = () => {
             {/* City Switcher Dropdown - Now relative to the header button */}
             {isCitySwitcherOpen && (
               <div className="absolute top-[calc(100%+8px)] right-0 w-[240px] bg-white rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-[#f1f5f9] p-2 z-[110] animate-in fade-in slide-in-from-top-2">
-                <div className="px-3 py-2 text-[0.65rem] font-bold text-[#94a3b8] uppercase tracking-widest">Switch City</div>
+                <div className="px-3 py-2 text-[0.65rem] font-bold text-[#94a3b8] uppercase tracking-widest sm:hidden">Switch City</div>
                 <div className="max-h-[300px] overflow-y-auto no-scrollbar">
                   {cities.map(city => (
                     <button
@@ -151,13 +152,93 @@ const CityPropertiesPage = () => {
         </div>
       </nav>
 
+      {/* ── MOBILE FILTER DRAWER ── */}
+      {isDrawerOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1000] animate-in fade-in duration-300"
+          onClick={() => setIsDrawerOpen(false)}
+        />
+      )}
+      <aside className={`fixed top-0 right-0 h-full w-[320px] bg-white z-[1001] shadow-[-10px_0_40px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] p-8 overflow-y-auto ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex items-center justify-between mb-8">
+          <h3 className="text-[1.25rem] font-bold text-[#0f172a]">Refine Search</h3>
+          <button
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-slate-500 hover:bg-rose-50 hover:text-rose-500 transition-all"
+            onClick={() => setIsDrawerOpen(false)}
+          >
+            <CloseIco className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="space-y-8">
+          {/* Price Range */}
+          <div>
+            <h4 className="text-[0.8rem] font-bold text-[#94a3b8] uppercase tracking-widest mb-4">Price Range</h4>
+            <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">Min Price</label>
+                  <input type="number" value={filters.minPrice} onChange={e => setFilters(p => ({ ...p, minPrice: Number(e.target.value) }))} className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.85rem] font-bold outline-none focus:border-amber-500" placeholder="Min" />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">Max Price</label>
+                  <input type="number" value={filters.maxPrice} onChange={e => setFilters(p => ({ ...p, maxPrice: Number(e.target.value) }))} className="w-full h-11 px-4 rounded-xl border border-[#e2e8f0] text-[0.85rem] font-bold outline-none focus:border-amber-500" placeholder="Max" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BHK Select */}
+          <div>
+            <h4 className="text-[0.8rem] font-bold text-[#94a3b8] uppercase tracking-widest mb-4">Bedrooms (BHK)</h4>
+            <div className="grid grid-cols-3 gap-2">
+              {[1, 2, 3, 4, 5].map(v => (
+                <button key={v} className={`h-11 rounded-xl border text-[0.85rem] font-bold transition-all ${filters.beds.includes(v) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => handleBHKToggle(v)}>{v} BHK</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Status */}
+          <div>
+            <h4 className="text-[0.8rem] font-bold text-[#94a3b8] uppercase tracking-widest mb-4">Property Status</h4>
+            <div className="flex flex-col gap-2">
+              {['ready to move', 'under construction'].map(stat => (
+                <button key={stat} className={`flex items-center gap-3 px-4 h-11 rounded-xl border text-[0.85rem] font-bold capitalize transition-all ${filters.status.includes(stat) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => setFilters(prev => ({ ...prev, status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat] }))}><IconCheckCircle size={16} /> {stat}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Locality Switcher for Mobile */}
+          {cityInfo.localities.length > 0 && (
+            <div>
+              <h4 className="text-[0.8rem] font-bold text-[#94a3b8] uppercase tracking-widest mb-4">Localities</h4>
+              <div className="flex flex-wrap gap-2">
+                {cityInfo.localities.map((loc) => (
+                  <button
+                    key={loc}
+                    className={`h-[36px] px-4 rounded-xl border text-[0.75rem] font-bold transition-all whitespace-nowrap ${searchQuery === loc ? 'bg-amber-500 border-amber-500 text-[#0f172a]' : 'bg-[#f8fafc] border-[#f1f5f9] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
+                    onClick={() => setSearchQuery(loc === searchQuery ? '' : loc)}
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="pt-4 flex flex-col gap-3">
+            <button className="w-full h-12 rounded-xl bg-[#0f172a] text-white text-[0.9rem] font-bold shadow-lg shadow-[#0f172a]/20" onClick={() => setIsDrawerOpen(false)}>Apply Filters</button>
+            <button className="w-full h-12 rounded-xl bg-slate-50 text-slate-500 text-[0.9rem] font-bold" onClick={() => { setFilters({ minPrice: 0, maxPrice: 500000000, beds: [], status: [] }); setSearchQuery(''); }}>Reset All</button>
+          </div>
+        </div>
+      </aside>
 
       {/* ── LOCALITY EXPLORER ── */}
 
 
       {/* ── MAIN LISTING SECTION ── */}
       <section className="py-5 bg-white  shadow-[0_-15px_30px_rgba(0,0,0,0.015)]">
-        <div className="max-w-[1350px] mx-auto px-[22px]">
+        <div className="max-w-[1350px] mx-auto px-[22px] mb-10">
 
           {/* Header & Main Search */}
           <div className="flex flex-col gap-6 mb-8">
@@ -171,118 +252,125 @@ const CityPropertiesPage = () => {
                 <p className="text-[#64748b] text-[0.85rem] mt-1 font-medium">Explore {filteredProperties.length} handpicked verified listings.</p>
               </div>
 
-              <div className="bg-white p-1.5 rounded-[12px] border border-[#e2e8f0] shadow-sm flex items-center gap-2 max-md:w-full min-w-[340px] max-sm:min-w-0 transition-all focus-within:border-amber-500 focus-within:shadow-md">
-                <div className="flex items-center gap-2.5 px-3 h-[36px] flex-1">
-                  <SearchIco className="w-3.5 h-3.5 text-[#94a3b8]" />
-                  <input
-                    type="text"
-                    placeholder="Search area, project or BHK..."
-                    className="bg-transparent border-none outline-none text-[0.8rem] font-medium text-[#0f172a] placeholder:text-[#94a3b8] w-full"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                {searchQuery && (
-                  <button
-                    className="text-[0.7rem] font-bold text-[#64748b] hover:text-amber-600 px-3 transition-colors"
-                    onClick={() => setSearchQuery('')}
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Filter Chips & Localities Group */}
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap items-center gap-1.5" ref={filterRef}>
-                <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider mr-2">Quick Filters:</span>
-                {/* <br /> */}
-                {[
-                  { id: 'budget', label: filters.minPrice > 0 || filters.maxPrice < 500000000 ? `${formatPrice(filters.minPrice)} - ${formatPrice(filters.maxPrice)}` : 'Budget' },
-                  { id: 'bhk', label: filters.beds.length > 0 ? `${filters.beds.join(', ')} BHK` : 'Bedrooms' },
-                  { id: 'status', label: filters.status.length > 0 ? 'Status Active' : 'Availability' }
-                ].map(f => (
-                  <div key={f.id} className="relative">
+              <div className="flex items-center gap-2 max-md:w-full">
+                <div className="bg-white p-1.5 rounded-[12px] border border-[#e2e8f0] shadow-sm flex items-center gap-2 flex-1 min-w-[340px] max-sm:min-w-0 transition-all focus-within:border-amber-500 focus-within:shadow-md">
+                  <div className="flex items-center gap-2.5 px-3 h-[36px] flex-1">
+                    <SearchIco className="w-3.5 h-3.5 text-[#94a3b8]" />
+                    <input
+                      type="text"
+                      placeholder="Search area, project or BHK..."
+                      className="bg-transparent border-none outline-none text-[0.8rem] font-medium text-[#0f172a] placeholder:text-[#94a3b8] w-full"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                  {searchQuery && (
                     <button
-                      className={`h-[34px] px-3.5 rounded-full border text-[0.75rem] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${activePopover === f.id ? 'bg-[#0f172a] border-[#0f172a] text-white' : 'bg-white border-[#e2e8f0] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
-                      onClick={() => setActivePopover(activePopover === f.id ? null : f.id)}
+                      className="text-[0.7rem] font-bold text-[#64748b] hover:text-amber-600 px-3 transition-colors"
+                      onClick={() => setSearchQuery('')}
                     >
-                      {f.label} <ChevronL className={`w-2.5 h-2.5 transition-transform ${activePopover === f.id ? 'rotate-90' : '-rotate-90'}`} />
+                      Clear
                     </button>
-
-                    {activePopover === f.id && (
-                      <div className="absolute top-[calc(100%+8px)] left-0 w-[280px] bg-white rounded-[20px] shadow-[0_15px_40px_rgba(0,0,0,0.12)] border border-[#f1f5f9] p-5 z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
-                        {f.id === 'budget' && (
-                          <>
-                            <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Price Range</h4>
-                            <div className="flex gap-2 items-center mb-5">
-                              <input type="number" value={filters.minPrice} onChange={e => setFilters(p => ({ ...p, minPrice: Number(e.target.value) }))} className="w-full h-9 px-3 rounded-lg border border-[#e2e8f0] text-[0.8rem] font-bold outline-none focus:border-amber-500" placeholder="Min" />
-                              <span className="text-[#94a3b8]">-</span>
-                              <input type="number" value={filters.maxPrice} onChange={e => setFilters(p => ({ ...p, maxPrice: Number(e.target.value) }))} className="w-full h-9 px-3 rounded-lg border border-[#e2e8f0] text-[0.8rem] font-bold outline-none focus:border-amber-500" placeholder="Max" />
-                            </div>
-                            <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Set Budget</button>
-                          </>
-                        )}
-                        {f.id === 'bhk' && (
-                          <>
-                            <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Select BHK</h4>
-                            <div className="grid grid-cols-2 gap-2 mb-5">
-                              {[1, 2, 3, 4, 5].map(v => (
-                                <button key={v} className={`h-9 rounded-lg border text-[0.75rem] font-bold transition-all ${filters.beds.includes(v) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => handleBHKToggle(v)}>{v} BHK</button>
-                              ))}
-                            </div>
-                            <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Set Rooms</button>
-                          </>
-                        )}
-                        {f.id === 'status' && (
-                          <>
-                            <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Availability</h4>
-                            <div className="flex flex-col gap-2 mb-5">
-                              {['ready to move', 'under construction'].map(stat => (
-                                <button key={stat} className={`flex items-center gap-3 px-3 h-9 rounded-lg border text-[0.75rem] font-bold capitalize transition-all ${filters.status.includes(stat) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => setFilters(prev => ({ ...prev, status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat] }))}><IconCheckCircle size={14} /> {stat}</button>
-                              ))}
-                            </div>
-                            <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Apply</button>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                {(filters.beds.length > 0 || filters.status.length > 0 || filters.minPrice > 0 || filters.maxPrice < 500000000) && (
-                  <button
-                    className="text-[0.7rem] font-bold text-amber-600 hover:underline px-2 transition-colors"
-                    onClick={() => setFilters({ minPrice: 0, maxPrice: 500000000, beds: [], status: [] })}
-                  >
-                    Reset Filters
-                  </button>
-                )}
-              </div>
-
-              {/* In-Line Locality Chips */}
-              {cityInfo.localities.length > 0 && (
-                <div className="flex items-center gap-3 pt-3 border-t border-slate-50">
-                  <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider shrink-0">Popular Areas:</span>
-                  <div className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth">
-                    {cityInfo.localities.map((loc) => (
-                      <button
-                        key={loc}
-                        className={`shrink-0 h-[34px] px-4 rounded-full border text-[0.75rem] font-bold transition-all whitespace-nowrap ${searchQuery === loc ? 'bg-amber-500 border-amber-500 text-[#0f172a]' : 'bg-[#f8fafc] border-[#f1f5f9] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
-                        onClick={() => setSearchQuery(loc === searchQuery ? '' : loc)}
-                      >
-                        {loc}
-                      </button>
-                    ))}
-                  </div>
+                  )}
                 </div>
-              )}
+                <button
+                  className="hidden max-md:flex items-center justify-center w-[50px] h-[50px] rounded-[12px] bg-[#0f172a] text-white shadow-lg shadow-[#0f172a]/20 active:scale-95 transition-all"
+                  onClick={() => setIsDrawerOpen(true)}
+                >
+                  <FilterIco className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
+          {/* Filter Chips & Localities Group */}
+          <div className="flex flex-wrap items-center justify-between gap-4 max-md:hidden">
+            <div className="flex flex-wrap items-center gap-1.5" ref={filterRef}>
+              <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider mr-2">Quick Filters:</span>
+              {/* <br /> */}
+              {[
+                { id: 'budget', label: filters.minPrice > 0 || filters.maxPrice < 500000000 ? `${formatPrice(filters.minPrice)} - ${formatPrice(filters.maxPrice)}` : 'Budget' },
+                { id: 'bhk', label: filters.beds.length > 0 ? `${filters.beds.join(', ')} BHK` : 'Bedrooms' },
+                { id: 'status', label: filters.status.length > 0 ? 'Status Active' : 'Availability' }
+              ].map(f => (
+                <div key={f.id} className="relative">
+                  <button
+                    className={`h-[34px] px-3.5 rounded-full border text-[0.75rem] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${activePopover === f.id ? 'bg-[#0f172a] border-[#0f172a] text-white' : 'bg-white border-[#e2e8f0] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
+                    onClick={() => setActivePopover(activePopover === f.id ? null : f.id)}
+                  >
+                    {f.label} <ChevronL className={`w-2.5 h-2.5 transition-transform ${activePopover === f.id ? 'rotate-90' : '-rotate-90'}`} />
+                  </button>
+
+                  {activePopover === f.id && (
+                    <div className="absolute top-[calc(100%+8px)] left-0 w-[280px] bg-white rounded-[20px] shadow-[0_15px_40px_rgba(0,0,0,0.12)] border border-[#f1f5f9] p-5 z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
+                      {f.id === 'budget' && (
+                        <>
+                          <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Price Range</h4>
+                          <div className="flex gap-2 items-center mb-5">
+                            <input type="number" value={filters.minPrice} onChange={e => setFilters(p => ({ ...p, minPrice: Number(e.target.value) }))} className="w-full h-9 px-3 rounded-lg border border-[#e2e8f0] text-[0.8rem] font-bold outline-none focus:border-amber-500" placeholder="Min" />
+                            <span className="text-[#94a3b8]">-</span>
+                            <input type="number" value={filters.maxPrice} onChange={e => setFilters(p => ({ ...p, maxPrice: Number(e.target.value) }))} className="w-full h-9 px-3 rounded-lg border border-[#e2e8f0] text-[0.8rem] font-bold outline-none focus:border-amber-500" placeholder="Max" />
+                          </div>
+                          <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Set Budget</button>
+                        </>
+                      )}
+                      {f.id === 'bhk' && (
+                        <>
+                          <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Select BHK</h4>
+                          <div className="grid grid-cols-2 gap-2 mb-5">
+                            {[1, 2, 3, 4, 5].map(v => (
+                              <button key={v} className={`h-9 rounded-lg border text-[0.75rem] font-bold transition-all ${filters.beds.includes(v) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => handleBHKToggle(v)}>{v} BHK</button>
+                            ))}
+                          </div>
+                          <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Set Rooms</button>
+                        </>
+                      )}
+                      {f.id === 'status' && (
+                        <>
+                          <h4 className="text-[0.9rem] font-bold text-[#0f172a] mb-3">Availability</h4>
+                          <div className="flex flex-col gap-2 mb-5">
+                            {['ready to move', 'under construction'].map(stat => (
+                              <button key={stat} className={`flex items-center gap-3 px-3 h-9 rounded-lg border text-[0.75rem] font-bold capitalize transition-all ${filters.status.includes(stat) ? 'bg-amber-50 border-amber-500 text-amber-600' : 'bg-white border-[#e2e8f0] text-[#64748b]'}`} onClick={() => setFilters(prev => ({ ...prev, status: prev.status.includes(stat) ? prev.status.filter(s => s !== stat) : [...prev.status, stat] }))}><IconCheckCircle size={14} /> {stat}</button>
+                            ))}
+                          </div>
+                          <button className="w-full h-9 rounded-lg bg-[#0f172a] text-white text-[0.75rem] font-bold" onClick={() => setActivePopover(null)}>Apply</button>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+              {(filters.beds.length > 0 || filters.status.length > 0 || filters.minPrice > 0 || filters.maxPrice < 500000000) && (
+                <button
+                  className="text-[0.7rem] font-bold text-amber-600 hover:underline px-2 transition-colors"
+                  onClick={() => setFilters({ minPrice: 0, maxPrice: 500000000, beds: [], status: [] })}
+                >
+                  Reset Filters
+                </button>
+              )}
+            </div>
+
+            {/* In-Line Locality Chips */}
+            {cityInfo.localities.length > 0 && (
+              <div className="flex items-center gap-3 pt-3 border-t border-slate-50 max-md:hidden">
+                <span className="text-[0.7rem] font-bold text-[#94a3b8] uppercase tracking-wider shrink-0">Popular Areas:</span>
+                <div className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+                  {cityInfo.localities.map((loc) => (
+                    <button
+                      key={loc}
+                      className={`shrink-0 h-[34px] px-4 rounded-full border text-[0.75rem] font-bold transition-all whitespace-nowrap ${searchQuery === loc ? 'bg-amber-500 border-amber-500 text-[#0f172a]' : 'bg-[#f8fafc] border-[#f1f5f9] text-[#475569] hover:border-amber-500 hover:text-amber-600'}`}
+                      onClick={() => setSearchQuery(loc === searchQuery ? '' : loc)}
+                    >
+                      {loc}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           {/* Grid Layout */}
           {filteredProperties.length > 0 ? (
-            <div className="grid grid-cols-5 gap-6 max-2xl:grid-cols-5 max-xl:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-5 lg:mt-10 gap-6 max-sm:gap-3 lg:px-[22px] ">
               {filteredProperties.map(p => (
                 <PropertyCard key={p.id} property={p} variant="vertical" />
               ))}
@@ -300,8 +388,8 @@ const CityPropertiesPage = () => {
               </button>
             </div>
           )}
-        </div>
-      </section>
+        </ div>
+      </section >
 
 
 

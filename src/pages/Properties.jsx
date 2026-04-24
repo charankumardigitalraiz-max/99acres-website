@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
 import { setQuery } from '../store/slices/searchSlice';
 import { SearchIco, PinIco } from '../data/icons';
+import { X } from 'lucide-react';
 import './Properties.css';
 
 // Detect mobile viewport
@@ -83,16 +84,16 @@ export default function Properties() {
 
       {/* ── MOBILE ONLY: overlay + slide drawer ── */}
       {isFilterOpen && (
-        <div 
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1000] transition-opacity duration-300" 
-          onClick={() => setIsFilterOpen(false)} 
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1000] transition-opacity duration-300"
+          onClick={() => setIsFilterOpen(false)}
         />
       )}
       <aside className={`fixed top-0 right-0 h-full w-[320px] bg-white z-[1001] shadow-[-10px_0_40px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] p-6 overflow-y-auto ${isFilterOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-between items-center mb-8 pb-4 border-b border-[#f1f5f9]">
           <h3 className="text-[1.25rem] font-bold text-[#0f172a]">Filters</h3>
-          <button 
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#f1f5f9] border-none text-[1.1rem] cursor-pointer hover:bg-red-50 hover:text-red-500 transition-colors" 
+          <button
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#f1f5f9] border-none text-[1.1rem] cursor-pointer hover:bg-red-50 hover:text-red-500 transition-colors"
             onClick={() => setIsFilterOpen(false)}
           >
             ✕
@@ -116,24 +117,26 @@ export default function Properties() {
           <div className="flex-1 min-w-0">
 
             {/* Search Input Row */}
-            <div className="mb-6">
-              <div className="relative group">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#94a3b8] transition-colors group-focus-within:text-amber-600">
-                  <SearchIco className="w-5 h-5" />
+            <div className="mb-8">
+              <div className="relative group ">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center transition-all duration-300 group-focus-within:bg-amber-50 group-focus-within:border-amber-100 group-focus-within:scale-110">
+                    <SearchIco className="w-5 h-5 text-slate-400 group-focus-within:text-amber-600 transition-colors" />
+                  </div>
                 </div>
                 <input
                   type="text"
-                  placeholder={`Search for properties in ${currentTabName}...`}
-                  className="w-full h-[56px] pl-12 pr-12 rounded-[18px] border border-[#e2e8f0] bg-white text-[1rem] font-medium placeholder:text-[#94a3b8] focus:outline-none focus:border-amber-500 focus:shadow-[0_8px_30px_rgba(245,158,11,0.06)] shadow-sm transition-all"
+                  placeholder={`Discover ${currentTabName} estates...`}
+                  className="w-full h-[64px] pl-18 pr-12 rounded-[22px] border border-[#e2e8f0] bg-white text-[1rem] font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-medium focus:outline-none transition-all duration-500"
                   value={query || ''}
                   onChange={(e) => dispatch(setQuery(e.target.value))}
                 />
                 {query && (
-                  <button 
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center rounded-full bg-slate-100 text-slate-400 border-none cursor-pointer hover:bg-slate-200 hover:text-slate-600 transition-colors" 
+                  <button
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-xl bg-slate-100 text-slate-400 border-none cursor-pointer hover:bg-rose-50 hover:text-rose-500 transition-all active:scale-90"
                     onClick={() => dispatch(setQuery(''))}
                   >
-                    ✕
+                    <X size={16} />
                   </button>
                 )}
               </div>
@@ -145,23 +148,28 @@ export default function Properties() {
               </div>
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <button
-                  className="hidden max-lg:flex items-center gap-2 h-11 px-5 rounded-full bg-white border border-[#e2e8f0] text-[#0f172a] font-bold text-[0.85rem] cursor-pointer shadow-sm hover:border-amber-500 hover:text-amber-600 transition-all flex-1 justify-center whitespace-nowrap"
+                  className="hidden max-lg:flex items-center gap-2.5 h-12 px-6 rounded-2xl bg-white border border-[#e2e8f0] text-[#0f172a] font-bold text-[0.85rem] cursor-pointer shadow-sm hover:border-amber-500 hover:text-amber-600 hover:shadow-md transition-all flex-1 justify-center whitespace-nowrap active:scale-95"
                   onClick={() => setIsFilterOpen(true)}
                 >
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                  </svg>
+                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-amber-600 transition-colors">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                  </div>
                   <span>Filters</span>
                 </button>
-                <div className="relative min-w-[180px] max-md:min-w-0 max-md:flex-1">
-                  <select className="appearance-none w-full h-11 pl-4 pr-10 rounded-full bg-white border border-[#e2e8f0] text-[#0f172a] text-[0.85rem] font-bold cursor-pointer transition-all hover:border-amber-500 focus:outline-none focus:border-amber-600 shadow-sm">
-                    <option>Sort by: Relevancy</option>
+                <div className="relative min-w-[200px] max-md:min-w-0 max-md:flex-1 group">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 border border-slate-100 text-slate-400 group-hover:text-amber-600 transition-all">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+                  </div>
+                  <select className="appearance-none w-full h-12 pl-14 pr-10 rounded-2xl bg-white border border-[#e2e8f0] text-[#0f172a] text-[0.85rem] font-bold cursor-pointer transition-all hover:border-amber-500 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-500/5 shadow-sm hover:shadow-md">
+                    <option>Sort: Relevancy</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>
                     <option>Recently Added</option>
                   </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#94a3b8]">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#94a3b8] group-hover:text-amber-600 transition-colors">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="6 9 12 15 18 9" /></svg>
                   </div>
                 </div>
               </div>
@@ -182,8 +190,8 @@ export default function Properties() {
                 <div className="text-[4rem] mb-6 grayscale opacity-20">🔍</div>
                 <h3 className="text-[1.75rem] font-semibold text-[#0f172a] mb-2">No properties found</h3>
                 <p className="text-[#64748b] text-[1.1rem] mb-8 max-w-[400px] mx-auto leading-relaxed">Try adjusting your search keywords, exploring a different category or clearing all filters.</p>
-                <button 
-                  className="h-[52px] px-8 rounded-full bg-[#0f172a] text-white text-[1rem] font-bold cursor-pointer transition-all hover:bg-amber-600 hover:shadow-[0_8px_20px_rgba(245,158,11,0.2)] active:scale-95" 
+                <button
+                  className="h-[52px] px-8 rounded-full bg-[#0f172a] text-white text-[1rem] font-bold cursor-pointer transition-all hover:bg-amber-600 hover:shadow-[0_8px_20px_rgba(245,158,11,0.2)] active:scale-95"
                   onClick={() => dispatch(setQuery(''))}
                 >
                   Clear Search

@@ -45,7 +45,7 @@ export default function Cities({ isSidebarOpen }) {
             <div className="text-amber-600 text-[0.7rem] font-bold uppercase tracking-[0.2em] mb-3">Explore Cities</div>
             <h2 className="text-[1.35rem] font-medium text-[#0f172a] tracking-[-0.01em] m-0 leading-[1.2]">Top Real Estate Markets</h2>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center  justify-between gap-4">
             <div className="flex items-center gap-2">
               <button className="city-prev-btn w-10 h-10 rounded-full border border-[#f1f5f9] bg-white flex items-center justify-center text-[#0f172a] transition-all hover:bg-[#0f172a] hover:text-white hover:shadow-lg disabled:opacity-30 disabled:pointer-events-none"><ChevronL className="w-4 h-4" /></button>
               <button className="city-next-btn w-10 h-10 rounded-full border border-[#f1f5f9] bg-white flex items-center justify-center text-[#0f172a] transition-all hover:bg-[#0f172a] hover:text-white hover:shadow-lg disabled:opacity-30 disabled:pointer-events-none"><ChevronR className="w-4 h-4" /></button>
@@ -81,7 +81,7 @@ export default function Cities({ isSidebarOpen }) {
           >
             {cities.map(city => (
               <SwiperSlide key={city.name}>
-                <div 
+                <div
                   className="group relative h-[220px] rounded-[24px] overflow-hidden cursor-pointer bg-[#0f172a] shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl max-md:h-[160px]"
                   onClick={() => handleCityClick(city.name)}
                 >
@@ -111,36 +111,36 @@ export default function Cities({ isSidebarOpen }) {
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="bg-white w-full max-w-[850px] max-height-[90vh] rounded-[32px] shadow-2xl flex flex-col overflow-hidden relative animate-in slide-in-from-bottom-5 duration-500"
+            className="bg-white w-full max-w-[850px] max-h-[90vh] rounded-[32px] shadow-2xl flex flex-col overflow-hidden relative animate-in slide-in-from-bottom-5 duration-500"
             onClick={e => e.stopPropagation()}
           >
-            <div className="px-10 py-8 flex items-start justify-between max-md:px-6 max-md:py-6">
+            <div className="px-10 pt-10 pb-6 flex items-start justify-between max-md:px-6 max-md:pt-8 max-md:pb-4">
               <div>
-                <h3 className="text-[1.75rem] font-bold text-[#0f172a] mb-1 tracking-tight max-md:text-[1.4rem]">Explore All Cities</h3>
+                <h3 className="text-[1.75rem] font-bold text-[#0f172a] mb-1.5 tracking-tight max-md:text-[1.4rem]">Explore All Cities</h3>
                 <p className="text-[#64748b] text-[0.9rem] font-medium">Discover properties in {cities.length} major Indian cities</p>
               </div>
               <button
-                className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#64748b] transition-all hover:bg-[#0f172a] hover:text-white hover:rotate-90"
+                className="w-11 h-11 rounded-2xl bg-[#f8fafc] border border-[#f1f5f9] flex items-center justify-center text-[#64748b] transition-all hover:bg-rose-50 hover:text-rose-500 hover:border-rose-100 active:scale-90"
                 onClick={() => setIsModalOpen(false)}
               >
                 <CloseIco className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="px-10 pb-6 max-md:px-6">
-              <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-xl px-4 flex items-center gap-3 h-11 focus-within:bg-white focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/10 transition-all">
-                <SearchIco className="w-4 h-4 text-[#94a3b8]" />
+            <div className="px-10 pb-8 max-md:px-6">
+              <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl px-5 flex items-center gap-4 h-14 focus-within:bg-white focus-within:border-amber-500 focus-within:ring-4 focus-within:ring-amber-500/5 transition-all">
+                <SearchIco className="w-4.5 h-4.5 text-amber-600" />
                 <input
                   type="text"
-                  placeholder="Search your city..."
-                  className="flex-1 bg-transparent border-none outline-none text-[0.9rem] font-medium text-[#0f172a] placeholder:text-[#94a3b8]"
+                  placeholder="Type city name (e.g. Mumbai, Delhi...)"
+                  className="flex-1 bg-transparent border-none outline-none text-[1rem] font-bold text-[#0f172a] placeholder:text-[#94a3b8] placeholder:font-medium"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
                 />
                 {searchQuery && (
-                  <button className="w-5 h-5 rounded-full bg-[#e2e8f0] flex items-center justify-center text-[#64748b] hover:bg-[#0f172a] hover:text-white" onClick={() => setSearchQuery('')}>
-                    <CloseIco className="w-3 h-3" />
+                  <button className="w-7 h-7 rounded-lg bg-slate-200/50 flex items-center justify-center text-[#64748b] hover:bg-[#0f172a] hover:text-white transition-all" onClick={() => setSearchQuery('')}>
+                    <CloseIco className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
@@ -148,19 +148,19 @@ export default function Cities({ isSidebarOpen }) {
 
             <div className="flex-1 overflow-y-auto px-10 pb-10 scrollbar-hide max-md:px-6">
               {filteredCities.length > 0 ? (
-                <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2">
+                <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:gap-2">
                   {filteredCities.map(city => (
-                    <div 
-                      key={city.name} 
-                      className="flex items-center gap-4 p-3 rounded-2xl border border-[#f1f5f9] hover:border-amber-500 hover:bg-amber-50 hover:translate-x-1.5 transition-all cursor-pointer group"
+                    <div
+                      key={city.name}
+                      className="flex items-center gap-3 p-2.5 rounded-2xl border border-[#f1f5f9] hover:border-amber-500 hover:bg-amber-50 hover:translate-x-1.5 transition-all cursor-pointer group max-sm:gap-2 max-sm:p-2"
                       onClick={() => handleCityClick(city.name)}
                     >
-                      <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-sm">
+                      <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-sm max-sm:w-10 max-sm:h-10">
                         <img src={city.img} alt={city.name} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                       </div>
-                      <div className="flex flex-col">
-                        <span className="text-[0.95rem] font-bold text-[#0f172a] leading-tight">{city.name}</span>
-                        <span className="text-[0.7rem] font-bold text-[#64748b] uppercase tracking-wider mt-0.5">{city.count} Listings</span>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[0.95rem] font-bold text-[#0f172a] leading-tight truncate max-sm:text-[0.8rem]">{city.name}</span>
+                        <span className="text-[0.7rem] font-bold text-[#64748b] uppercase tracking-wider mt-0.5 truncate max-sm:text-[0.6rem]">{city.count} Listings</span>
                       </div>
                     </div>
                   ))}

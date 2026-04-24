@@ -279,17 +279,19 @@ export default function PropertyCard({ property, variant = 'vertical' }) {
   return (
     <div className="bg-white border border-black/5 rounded-2xl overflow-hidden flex flex-col transition-all duration-[400ms] ease-[cubic-bezier(0.165,0.84,0.44,1)] shadow-[0_4px_20px_rgba(10,18,42,0.04)] cursor-pointer hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(10,18,42,0.08)] hover:border-amber-500/10 group" onClick={handleClick}>
       {/* Image */}
-      <div className="relative h-[170px] overflow-hidden bg-[#f1f5f9]">
+      <div className="relative h-[170px] max-sm:h-[130px] overflow-hidden bg-[#f1f5f9]">
         <img src={property.img} alt={property.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-[1.06]" />
         {/* Badges */}
         <div className="absolute top-2.5 left-2.5 z-[5] flex flex-col gap-1.5 items-start">
-          <span className="inline-flex items-center gap-[3px] px-2 py-1 text-[0.65rem] font-semibold rounded-full text-white bg-emerald-500 backdrop-blur-[4px] shadow-[0_4px_10px_rgba(0,0,0,0.15)] uppercase tracking-[0.04em]">Verified</span>
+          <span className="inline-flex items-center gap-[3px] px-2 py-1 text-[0.65rem] max-sm:text-[0.55rem] font-semibold rounded-full text-white bg-emerald-500 backdrop-blur-[4px] shadow-[0_4px_10px_rgba(0,0,0,0.15)] uppercase tracking-[0.04em]">Verified</span>
         </div>
         {/* Wish + Share */}
-        <button className={`${wishBtnBase} bottom-2.5 right-[18%] w-8 h-8`} onClick={handleWish}><HeartIco isWished={isWished} size={15} /></button>
-        <button className={`${shareBtnBase} bottom-2.5 right-[2%] w-8 h-8`} onClick={handleShare}>
-          {copied ? '✅' : <ShareIcon size={14} />}
-        </button>
+        <div className="absolute top-2.5 right-2.5 z-[5] flex flex-col gap-1.5">
+          <button className={`${wishBtnBase} static w-8 h-8 max-sm:w-7 max-sm:h-7 shadow-[0_2px_10px_rgba(0,0,0,0.1)]`} onClick={handleWish}><HeartIco isWished={isWished} size={15} /></button>
+          <button className={`${shareBtnBase} static w-8 h-8 max-sm:w-7 max-sm:h-7 shadow-[0_2px_10px_rgba(0,0,0,0.1)]`} onClick={handleShare}>
+            {copied ? '✅' : <ShareIcon size={14} />}
+          </button>
+        </div>
       </div>
 
       {/* Body */}
@@ -300,7 +302,7 @@ export default function PropertyCard({ property, variant = 'vertical' }) {
           <PinIco className="w-3 h-3 opacity-80 shrink-0" /> {property.loc}
         </div>
         {/* Meta strip */}
-        <div className="flex items-center gap-1.5 py-1.5 mt-auto border-t border-black/[0.04] overflow-hidden">
+        <div className="hidden sm:flex items-center gap-1.5 py-1.5 mt-auto border-t border-black/[0.04] overflow-hidden">
           {stats.map((s, i) => (
             <div key={i} className="flex items-center gap-0.5 text-[0.7rem] text-[#0f172a] whitespace-nowrap shrink-0" title={s.val}>
               {s.icon && <span className="opacity-50 shrink-0 [&>svg]:w-3 [&>svg]:h-3">{s.icon}</span>}
